@@ -1,0 +1,23 @@
+LEMBRAR QUE O HTML TRANSFORMA A TAG 'i' do fontaweosome em tag svg, ou seja, para chamar no CSS temos que usar svg
+https://www.youtube.com/watch?v=VpnKcYikdJ0 -- aula do Erick onde ele valida varios formulários
+
+tag head
+CSS
+all.css (css que o usuário criou)
+bootstrap/css/bootstrap.min.css
+fontaweosome/css/all.min.css
+sweetalert/dist/sweeetalert.all.min.css
+
+
+
+
+
+JS
+jquery/jquery.min.js → Todos dependem do Jquery, então ele precisa ser o primeiro
+jquery-validation/dist/jquery-validation.min.js
+jquery-validation/dist/aditional-methos.min.js
+jquery-validation/dist/localization/messages_pt_BR.min.js
+sweetalert/dist/sweetalert.all.min.
+jquery-mask-plugin-master/dist/jquery.mask.min.js
+boostrap/js/boostrap.min.js
+fontaweosome/js/all.min.js

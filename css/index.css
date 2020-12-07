@@ -1,0 +1,67 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+.form-control{
+    margin-bottom: 5px;
+}
+.btn-submit-forms {background-image: linear-gradient(to right, #abbaab 0%, #ffffff  51%, #abbaab  100%)}
+.btn-submit-forms {
+   padding: 15px 45px;
+   text-align: center;
+   transition: 0.5s !important;
+   background-size: 200% auto;
+   color: white;            
+   box-shadow: 0 0 20px #eee;
+   border-radius: 10px;
+   display: block;
+   border: 1px solid rgb(218, 210, 210) !important   ;
+ }
+ .btn-submit-forms:hover {
+   background-position: right center; /* change the direction of the change here */
+   color: #fff;
+   text-decoration: none;
+ }
+
+.flex-page{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+.side-bar{
+    background-color: #F7F7F7;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main-content{
+    background-color: #F7F7F7;
+    width: 100%;
+    background-image: url(/images/dashboard.png);
+    background-repeat: no-repeat;
+    background-size: 430px 280px;
+    background-position: center ;
+}
+.form-index-login{
+    width: 60%;
+    background-color: white;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+}
+.form-index-login button{
+    width: 40%;
+}
+.form-goto-cadastro{
+    display: flex;
+    justify-content: space-between;
+    margin-top:15px;
+}
+.form-index-login .form-goto-cadastro a{
+    text-decoration: none;
+}
+

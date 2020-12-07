@@ -1,0 +1,35 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+.form-width-cadastro{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #F7F7F7;
+}
+.form-cadastrar-login{
+    font-size: 14px;
+    width: 500px;
+    background-color: white ;
+    padding: 12px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+}
+.form-cadastrar-login input{
+    font-size: 14px;
+}
+.form-width-cadastro label{
+    margin-bottom: 5px;
+}
+.form-width-cadastro .form-group{
+    margin-bottom: 5px;
+}
+.btn-submit-cadastrar{
+    margin-top: 10px;
+    width: 100% !important;
+}
