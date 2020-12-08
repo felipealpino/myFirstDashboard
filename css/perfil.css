@@ -34,10 +34,13 @@
     justify-content: space-between;
 }
 div.top-dashboard-mobile svg{
-    margin-right: 10px;
-    height: 20px;
-    width: 20px;
+    margin-right: 30px;
     color: #7B75FF;
+    cursor: pointer;
+}
+div.open-close-mobile svg {
+    height: 28px;
+    width: 28px;
 }
 
 .perfil-usuario-foto{
