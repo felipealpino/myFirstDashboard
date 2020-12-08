@@ -1,8 +1,8 @@
 $(function() {
 
-
 $("#form-index-login").submit(function (event) {
     event.preventDefault();
+
 }).validate({
     rules:{
         formIndexEmail:{
@@ -16,7 +16,9 @@ $("#form-index-login").submit(function (event) {
     submitHandler: function(form){
         location.href = 'dashboard.html'
     }
-});
+})
+
+
 
 
 
