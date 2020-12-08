@@ -94,7 +94,7 @@ div.list-left-side ul li svg{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    grid-gap: 3 px;
+    grid-gap: 3px;
     padding: 30px;
     justify-items: center;
 }
@@ -153,4 +153,44 @@ div.list-left-side ul li svg{
 }
 .dashboard-vendas:hover{
     transform: scale(1.05);
+}
+
+@media screen and (min-width:800px) and (max-width: 1350px){
+    .content-dashboard-grid{
+        display: grid;
+        grid-template-columns: max-content min-content;
+        grid-template-rows: 1fr;
+        grid-gap: 3px;
+        padding: 20px;
+        justify-content: space-around;
+    }
+}
+
+@media screen and (min-width:555px) and (max-width:800px){
+    .content-dashboard-grid{
+        display: grid;
+        grid-template-columns: max-content;
+        grid-template-rows: 1fr ;
+        grid-gap: 10px;
+        padding: 20px;
+        justify-content: space-around;
+    }
+}
+@media screen and (min-width:0) and (max-width:555px){
+    .content-dashboard-grid{
+        display: grid;
+        grid-template-columns: max-content;
+        grid-template-rows: 1fr ;
+        grid-gap: 10px;
+        padding: 20px;
+        justify-content: space-around;
+    }
+    .left-side-dashboard{
+        position: absolute;
+        z-index: 1;
+        background-color: white;
+    }
+    .top-dashboard-mobile{
+        z-index: 0;
+    }
 }
