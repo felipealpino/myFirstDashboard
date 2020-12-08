@@ -1,0 +1,56 @@
+*{
+    margin: 0px;
+    box-sizing: border-box;
+    padding: 0px;
+}
+
+.content-perfil{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.perfil-usuario{
+    height: 90%;
+    width: 900px;
+    background-color: white;
+    padding: 20px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top-dashboard{
+    width: fit-content;
+}
+
+.open-close-mobile{
+    display: flex;
+    align-items: center;
+}
+.top-dashboard-mobile{
+    display: flex;
+    justify-content: space-between;
+}
+div.top-dashboard-mobile svg{
+    margin-right: 10px;
+    height: 20px;
+    width: 20px;
+    color: #7B75FF;
+}
+
+.perfil-usuario-foto{
+    width: 300px;
+    height: 400px;
+    background-image: url(../images/cachorro-dentuco.jpg);
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    border-radius: 5px;
+}
+
+.perfil-usuario-dados{
+    max-width: 500px;
+    width: 100%;
+}

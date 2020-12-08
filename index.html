@@ -14,7 +14,7 @@
 <body>
     <div class="flex-page">
         <div class="side-bar">
-            <form class="form-index-login" id="form-index-login">
+            <form method="POST" class="form-index-login" id="form-index-login">
                 <div class="form-group">
                     <label for="email-input-index">Email address</label>
                     <input type="email" name="formIndexEmail" class="form-control" id="email-form-index" placeholder="Digite seu email">
@@ -24,7 +24,7 @@
                     <input type="password" name="formIndexSenha" class="form-control" id="senha-form-index" placeholder="Digite sua senha">
                 </div>
                 <div class="form-goto-cadastro">
-                    <button type="submit"  class="btn btn-submit-forms" onclick="goToDashboard(event)">Entrar</button>
+                    <button type="submit"  class="btn btn-submit-forms">Entrar</button>
                     <a href="cadastrar.html">Cadastre-se</a>
                 </div>
             </form>
@@ -40,5 +40,7 @@
     <script src="/plugins/fontawesome5.15.1/js/all.min.js"></script>
     <script src="/js/validate/validate-index.js"></script>
     <script src="/js/all.js"></script>
+
+
 </body>
 </html>

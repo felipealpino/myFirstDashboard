@@ -78,6 +78,9 @@ div.top-dashboard svg{
     text-transform: uppercase;
     margin-top: 5px;
 }
+.selected{
+    background-color: rgba(204, 204, 204, 0.616);
+}
 .list-left-side ul li a{
     text-decoration: none;
     color: rgba(100, 96, 96, 0.8);
@@ -86,4 +89,7 @@ div.top-dashboard svg{
 div.list-left-side ul li svg{
     margin-right: 10px;
     color: #7B75FF;
+    height: 16px;
+    width: 18px;
+
 }
