@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="form-width-cadastro">
-        <form method="POST" class="form-cadastrar-login" id="form-cadastrar-login">
+        <form method="POST" action="" class="form-cadastrar-login" id="form-cadastrar-login">
             
             <div class="form-group">
                 <label for="email-input-cadastrar">Nome Completo</label>
@@ -28,6 +28,62 @@
             <div class="form-group">
                 <label for="email-input-cadastrar">Cpf</label>
                 <input type="text" name="formCadastrarCpf" class="form-control" id="Cpf-form-cadastrar" maxlength="11" placeholder="Digite um CPF válido (somente números)" >
+            </div>
+
+            <div class="form-group ">
+                <label for="aniversario-dia-input-cadastrar">Aniversário</label>
+                <div class="form-group aniversario">
+                    <select name="formCadastrarAniversarioDia" id="aniversario-dia-form-cadastrar">
+                        <option value="0">Dia</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select name="formCadastrarAniversarioMes" id="aniversario-mes-form-cadastrar">
+                        <option value="0">Mês</option>
+                        <option value="janeiro">Janeiro</option>
+                        <option value="fevereiro">Fevereiro</option>
+                        <option value="marco">Março</option>
+                        <option value="abril">Abril</option>
+                        <option value="maio">Maio</option>
+                        <option value="junho">Junho</option>
+                        <option value="julho">Julho</option>
+                        <option value="agosto">Agosto</option>
+                        <option value="setembro">Setembro</option>
+                        <option value="outubro">Outubro</option>
+                        <option value="novembro">Novembro</option>
+                        <option value="dezembro">Dezembro</option>
+                    </select>
+                    <input type="number" class="formCadastrarAno" value="ano" name="formCadastrarAniversarioAno" id="aniversario-ano-form-cadastrar">
+                </div>
             </div>
             
             <div class="form-group">
@@ -46,6 +102,10 @@
             </div>
 
             <div class="senha-input-cadastrar">
+                <input type="file" name="formCadastrarFile" class="formCadastrarFileInput" id="file-form-cadastrar">
+            </div> 
+
+            <div class="senha-input-cadastrar">
                 <label for="exampleInputPassword1">Senha</label>
                 <input type="password" name="formCadastrarSenha" class="form-control" id="senha-form-cadastrar" placeholder="Digite sua senha">
             </div>
@@ -55,7 +115,7 @@
                 <input type="password" name="formCadastrarConfirmarSenha" class="form-control" id="confirmar-senha-form-cadastrar" placeholder="Digine novamente a senha">
             </div>
             
-            <button type="submit" class="btn btn-submit-forms btn-submit-cadastrar" onclick="goToDashboard(event)">Cadastrar</button>
+            <button type="submit" class="btn btn-submit-forms btn-submit-cadastrar">Cadastrar</button>
 
         </form>
     </div>

@@ -20,7 +20,7 @@ function drawVisualization() {
         series: {5: {type: 'line'}}
     };
 
-    var chart = new google.visualization.ComboChart(document.getElementById('dashboard-grafico-producao'));
+    var chart = new google.visualization.ComboChart(document.getElementById('dashboard-grafico-estoque'));
     chart.draw(data, options);
 }
 
@@ -43,7 +43,7 @@ function drawChart2() {
         vAxis: {minValue: 0}
     };
 
-    var chart = new google.visualization.AreaChart(document.getElementById('dashboard-grafico-estoque'));
+    var chart = new google.visualization.AreaChart(document.getElementById('dashboard-grafico-producao'));
     chart.draw(data, options);
 }
 

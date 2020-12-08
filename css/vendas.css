@@ -1,0 +1,25 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.content-dashboard.vendas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.dashboard-grafico-vendas{
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
+    transition: 0.5s;
+    cursor: pointer;
+}
+.dashboard-grafico-vendas:hover{
+    transform: scale(1.05);
+}
+.dashboard-grafico-vendas{
+    width: 500px;
+    height: 500px;
+}

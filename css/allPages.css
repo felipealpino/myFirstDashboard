@@ -7,3 +7,9 @@
     border-right: 1px solid rgba(245, 238, 238, 0.8);
     transition: all 1s;
 }
+.error{
+    color: red;
+}
+.form-control.error {
+    border: 1px solid red;
+}

@@ -48,6 +48,9 @@ $(function() {
                 required: true,
                 CPF: true
             },
+            formCadastrarAniversarioAno:{
+                required:true
+            },
             formCadastrarSenha:{
                 required:true,
             },

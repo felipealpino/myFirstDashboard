@@ -29,6 +29,15 @@
 .form-width-cadastro .form-group{
     margin-bottom: 5px;
 }
+.formCadastrarFileInput{
+    margin-bottom: 5px;
+}
+.formCadastrarAno{
+    margin-right: 10px;
+}
+.formCadastrarAno.error{
+    border: 1px solid red
+}
 .btn-submit-cadastrar{
     margin-top: 10px;
     width: 100% !important;
