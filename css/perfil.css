@@ -9,8 +9,15 @@
     justify-content: center;
     align-items: center;
 }
+.content-dashboars.content-perfil{
+    overflow-y: auto;
+    max-height: calc(100vh - 70px);
+    height: 100%;   
+    background-color: #fafafa;
+    border-top: 1px solid rgba(245, 238, 238, 0.8);
+}
+
 .perfil-usuario{
-    height: 90%;
     width: 900px;
     background-color: white;
     padding: 20px;
@@ -20,6 +27,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+
 }
 .top-dashboard{
     width: fit-content;
@@ -52,4 +60,32 @@ div.open-close-mobile svg {
 .perfil-usuario-dados{
     max-width: 500px;
     width: 100%;
+}
+
+@media screen and (min-width:701px) and (max-width:1200px){
+    .perfil-usuario{
+        flex-direction: column;
+        padding: 30px;
+        width: fit-content;
+        margin-top: 300px;
+    }
+    .perfil-usuario-foto{
+        margin-bottom: 10px;
+    }
+}
+
+@media screen and (min-width:0px) and (max-width:700px){
+    .perfil-usuario{
+        flex-direction: column;
+        padding: 20px;
+        width: fit-content;
+        margin-top: 200px;
+        }
+    .perfil-usuario-foto{
+        margin-bottom: 10px;
+        width: 240px;
+        height: 320px;
+        background-position: left;
+         
+    }
 }
