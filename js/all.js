@@ -14,7 +14,6 @@ iconMobile.addEventListener('click', function(){
     } else {
         leftSideBar.classList.add("hide");
     }
-
-
+const opa = document.DOCUMENT_NODE
 });
 
