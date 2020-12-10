@@ -65,3 +65,29 @@
     text-decoration: none;
 }
 
+@media screen and (min-width:656px) and (max-width:800px){
+    .main-content{
+        flex: 1;
+        background-size: 215px 140px;
+    }
+    .side-bar{
+        flex: 2;
+    }
+}
+@media screen and (max-width:655px){
+    .flex-page{
+        display:grid;
+        grid-template-rows: 1fr 2fr
+    }
+    .main-content{
+        grid-row: 1/2 ;
+        background-size: 215px 140px;
+    }
+    .side-bar{
+        grid-row: 2/3
+    }
+    .form-index-login{
+        width: 80%;
+        padding: 10px;
+    }
+}
