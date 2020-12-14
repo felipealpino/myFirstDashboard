@@ -3,6 +3,21 @@
     margin: 0;
     box-sizing: border-box;
 }
+.form-producao{
+    margin-left: 20px;
+}
+.form-producao input{
+    text-align: center;
+}
+.submit_form_input{
+    padding: 2px;
+}
+.ano_form_span{
+    margin-left: 20px;
+}
+.form-producao input:last-child{
+    margin-left: 20px;
+}
 
 .content-dashboard.producao{
     display: flex;

@@ -40,7 +40,7 @@
 .main-content{
     background-color: #F7F7F7;
     width: 100%;
-    background-image: url(/images/dashboard.png);
+    background-image: url(images/dashboard.png);
     background-repeat: no-repeat;
     background-size: 430px 280px;
     background-position: center ;

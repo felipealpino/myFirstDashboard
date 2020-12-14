@@ -1,5 +1,58 @@
 // PRODUCAO
+google.charts.load('current', {'packages':['bar']});
+google.charts.setOnLoadCallback(drawChart);
 
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Dia', 'Quantidade'],
+        ['01', 2000],
+        ['02', 2000],
+        ['03', 2440],
+        ['04', 2670],
+        ['05', 2340],
+        ['06', 2230],
+        ['07', 2563],
+        ['08', 2523],
+        ['09', 1999],
+        ['10', 1000],
+        ['11', 2000],
+        ['12', 2000],
+        ['13', 2440],
+        ['14', 2670],
+        ['15', 2340],
+        ['16', 2230],
+        ['17', 2563],
+        ['18', 2523],
+        ['19', 1999],
+        ['20', 1000],
+        ['21', 2000],
+        ['22', 2000],
+        ['23', 2440],
+        ['24', 2670],
+        ['25', 2340],
+        ['26', 2230],
+        ['27', 2563],
+        ['28', 2523],
+        ['29', 1999],
+        ['30', 1000],
+        ['31', 1000],
+    ]);
+
+    var options = {
+        chart: {
+        title: 'Production Performance',
+        subtitle: 'Production / day',
+        },
+        hAxis:{
+            maxValue: 3000,
+        },
+        bars: 'vertical' // Required for Material Bar Charts.
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('dashboard-grafico-producao'));
+
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+}
 
 
 // ESTOQUE 
