@@ -1,5 +1,8 @@
+
+//Fechar e abrir menu-esquerdo-lateral
 const iconMobile = document.querySelector('.open-close-mobile-icon')
 const leftSideBar = document.querySelector('.left-side-dashboard')
+const topDashboard = document.querySelector('.top-dashboard')
 iconMobile.addEventListener('click', function(){
     // const mLeft = window.getComputedStyle(leftSideBar).getPropertyValue('margin-left')
     // if(mLeft === "0px"){
@@ -14,6 +17,16 @@ iconMobile.addEventListener('click', function(){
     } else {
         leftSideBar.classList.add("hide");
     }
-const opa = document.DOCUMENT_NODE
+});
+
+
+//produtos_estoque_filter
+$(document).ready(function(){
+    $("#myInput").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
 });
 

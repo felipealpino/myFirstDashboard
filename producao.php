@@ -8,14 +8,17 @@ require 'config.php';
 */
 
 
+
 $mes = filter_input(INPUT_GET,'mes_producao_name');
 $ano = filter_input(INPUT_GET,'ano_producao_name');
-$pesoDia = [];
+
+// Adicionando valores a $mes e $ano caso não setados
 if (!$mes && !$ano){
     $mes = date('m');
     $ano = date('Y');
 }
 
+// Manipulando valores $mes e $ano caso passados pelo form
 if($mes && $ano) {
     $mvGeral = 'SELECT * FROM MVGERAL';
     $dados = odbc_exec($conn, $mvGeral)  or die('Erro no sql');
@@ -133,10 +136,7 @@ if($mes && $ano) {
                     break;
         }
     }
-
-    // return $pesoDia;
 }
-
 
 ?>
 
@@ -160,18 +160,64 @@ if($mes && $ano) {
       function drawChart() {
         var x = 1;
         var data = google.visualization.arrayToDataTable([
-        ['Dia', 'Quant.', { role: 'annotation' } ],
+        ['Dia', 'Quant.'],
         <?php for($x=1; $x<=31; $x++): ?>   
-            //Adicionando valores no gráfico:
-            ['<?='0'.$x;?>' , <?=$pesoDia[$x - 1];?>, <?=$pesoDia[$x -1];?>],
+            <?php if($x<9):?> 
+                ['<?='0'.$x;?>' , <?=$pesoDia[$x - 1];?>],
+            <?php else: ?>
+                ['<?=$x;?>' , <?=$pesoDia[$x - 1];?>],
+            <?php endif ?> 
         <?php endfor ?>
-
+            
+        <?php 
+            $nomeMes = '';
+            switch($mes){
+                case '01':
+                    $nomeMes = 'Janeiro';   
+                    break;
+                case '02':
+                    $nomeMes = 'Fevereiro';
+                    break;
+                case '03':
+                    $nomeMes = 'Março';
+                    break;
+                case '04':
+                    $nomeMes = 'Abril';
+                    break;
+                case '05':
+                    $nomeMes = 'Maio';
+                    break;
+                case '06':
+                    $nomeMes = 'Junho';
+                    break;
+                case '07':
+                    $nomeMes = 'Julho';
+                    break;
+                case '08':
+                    $nomeMes = 'Agosto';
+                    break;
+                case '09':
+                    $nomeMes = 'Setembro';
+                    break;
+                case '10':
+                    $nomeMes = 'Outubro';
+                    break;
+                case '11':
+                    $nomeMes = 'Novembro';
+                    break;
+                case '12':
+                    $nomeMes = 'Dezembro';
+                    break;
+                default:
+                    $nomeMes = 'Error';
+            }
+        ?>
         ]);
 
         var options = {
           chart: {
             title: 'Production Performance',
-            subtitle: 'Production / day',
+            subtitle: ' <?=$nomeMes;?> / <?=$ano;?>',
           },
           hAxis:{
               maxValue: 3000,
@@ -184,50 +230,7 @@ if($mes && $ano) {
       </script>
 
       
-    <title>Dashboard</title>
-</head>
-<body>
-    <div class="dashboard-content">
-        <div class="left-side-dashboard">
-            <div class="sidebar-dashboard">
-                <div class="icone-top-leftside">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <span>Dashboard</span>
-                </div>
-                <div class="list-left-side">
-                    <ul>
-                        <li>
-                            <i class="fas fa-home"></i>
-                            <a href="dashboard.html">Dashboard</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-user-alt"></i>
-                            <a href="perfil.html">Perfil</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-boxes"></i>
-                            <a href="estoque.html">estoque</a>
-                        </li>
-                        <li class="selected">
-                            <i class="fas fa-hammer"></i>
-                            <a href="producao.php">producao</a>
-                        </li>
-                        <li>
-                            <i class="far fa-money-bill-alt"></i>
-                            <a href="vendas.html">vendas</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-shopping-cart"></i>
-                            <a href="compras.html">compras</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-sign-out-alt"></i>
-                            <a href="index.html">Logout</a>    
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <?php include 'all.php'; ?>  
 
         <div class="right-side-dashboard">    
             <div class="top-dashboard-mobile">

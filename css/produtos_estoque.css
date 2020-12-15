@@ -1,0 +1,49 @@
+*{
+    /* margin:0; */
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.produtos_estoque_h2{
+    font-family: 'Montserrat', sans-serif;
+    font-size:25px;
+    padding-top: 10px;
+}
+.container-main{
+    max-height: calc(100vh - 70px); 
+    overflow: hidden; 
+}
+
+.content-table{
+    overflow-y: auto;
+    max-height: calc(100vh - 133px);
+}
+
+.header-produtos{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px ;
+    background-color: #6db1f5;
+}
+.header-produtos{
+    display: flex;
+    justify-content: space-between;
+}
+.form-control.input-busca{
+    width: 200px;
+}
+.thead_produtos_estoque tr{
+    background-color:#A2D0FF;
+    text-transform: uppercase;
+}
+.thead_produtos_estoque tr th{
+    width: min-content;
+    padding: 0px;
+}
+.table-produtos-estoque{
+    text-align: center;
+}
+#myTable tr td {
+    font-size: 13px;
+}

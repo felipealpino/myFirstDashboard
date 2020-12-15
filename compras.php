@@ -8,39 +8,40 @@
     <link rel="stylesheet" href="plugins/fontawesome5.15.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <title>My Dashboard</title>
+    <link rel="stylesheet" href="plugins/package/dist/sweetalert2.min.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-</head>
-<body>
-    <div class="flex-page">
-        <div class="side-bar">
-            <form method="POST" class="form-index-login" id="form-index-login">
-                <div class="form-group">
-                    <label for="email-input-index">Email address</label>
-                    <input type="email" name="formIndexEmail" class="form-control" id="email-form-index" placeholder="Digite seu email">
+        <?php include 'all.php';?>
+
+        <div class="right-side-dashboard">    
+            <div class="top-dashboard-mobile">
+                <div class="top-dashboard">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Compras</span>
                 </div>
-                <div class="senha-input-index">
-                    <label for="exampleInputPassword1">Senha</label>
-                    <input type="password" name="formIndexSenha" class="form-control" id="senha-form-index" placeholder="Digite sua senha">
+                <div class="open-close-mobile">
+                    <div class="open-close-mobile-icon">
+                        <i class="fas fa-align-justify"></i>
+                    </div>
                 </div>
-                <div class="form-goto-cadastro">
-                    <button type="submit"  class="btn btn-submit-forms">Entrar</button>
-                    <a href="cadastrar.php">Cadastre-se</a>
-                </div>
-            </form>
-        </div>
-        <div class="main-content">
+            </div>
+
+            <div class="content-dashboard compras">
+                <div id="dashboard-grafico-compras" class="dashboard-grafico-compras"></div>
+            </div>
+
         </div>
     </div>
+
     <script src="plugins/jquery-3.5.1/jquery-3.5.1.js"></script>
     <script src="plugins/jquery-validation-1.19.2/dist/jquery.validate.min.js"></script>
     <script src="plugins/jquery-validation-1.19.2/dist/additional-methods.min.js"></script>
     <script src="plugins/jquery-validation-1.19.2/dist/localization/messages_pt_BR.min.js"></script>
     <script src="plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
     <script src="plugins/fontawesome5.15.1/js/all.min.js"></script>
-    <script src="js/validate/validate-index.js"></script>
+    <script src="plugins/package/dist/sweetalert2.all.min.js"></script>
+    <script src="plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js"></script>
     <script src="js/all.js"></script>
-
-
+    <script src="js/googleCharts.js"></script>
 </body>
 </html>
