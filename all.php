@@ -24,6 +24,10 @@
                             <a href="produtos_estoque.php">Produtos Estoque</a>
                         </li>
                         <li>
+                            <i class="fas fa-layer-group"></i>
+                            <a href="composicoes.php">composições</a>
+                        </li>
+                        <li>
                             <i class="fas fa-boxes"></i>
                             <a href="estoque.php">estoque</a>
                         </li>

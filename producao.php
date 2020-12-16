@@ -7,8 +7,6 @@ require 'config.php';
 3) é montado um array de 31 IDs ($pesoDia) e disponibilizado para o HTML, com isso pode ser acessado para adicionar os valores no gráfico
 */
 
-
-
 $mes = filter_input(INPUT_GET,'mes_producao_name');
 $ano = filter_input(INPUT_GET,'ano_producao_name');
 
@@ -20,14 +18,14 @@ if (!$mes && !$ano){
 
 // Manipulando valores $mes e $ano caso passados pelo form
 if($mes && $ano) {
-    $mvGeral = 'SELECT * FROM MVGERAL';
+    $mvGeral = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL';
     $dados = odbc_exec($conn, $mvGeral)  or die('Erro no sql');
     $myArray = [];
 
     while(odbc_fetch_row($dados)){
         $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
 
-        if (odbc_result($dados,"CODEMPRESA") == "00" && $arrayData[1] == $mes && $arrayData[0] == $ano && odbc_result($dados,"TIPOMOV") == "11" && (odbc_result($dados,"CODPROD") == "000880" || odbc_result($dados,"CODPROD") == "000383")){
+        if ($arrayData[1] == $mes && $arrayData[0] == $ano && odbc_result($dados,"TIPOMOV") == "11" && (odbc_result($dados,"CODPROD") == "000880" || odbc_result($dados,"CODPROD") == "000383")){
             array_push($myArray, (object)[
             'dia' => substr(($arrayData[2]),0,2),
             'quant' => odbc_result($dados, "QUANTIDADE"),
@@ -242,7 +240,7 @@ if($mes && $ano) {
                         <span>Mês:</span>
                         <input type="number" value="<?=date("m");?>" name="mes_producao_name" min="1" max="12" id="mes_producao_id" required>
                         <span class="ano_form_span">Ano:</span>
-                        <input type="number" value="<?=date("Y");?>" name="ano_producao_name" min="2019" max="2021" id="ano_producao_id" required>
+                        <input type="number" value="<?=date("Y");?>" name="ano_producao_name" min="2017" max="<?=(date('Y')+1);?>" id="ano_producao_id" required>
                         <input type="submit" value="Modificar" class="submit_form_input">
                     </form>
                 

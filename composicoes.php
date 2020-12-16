@@ -10,35 +10,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="plugins/package/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <?php include 'all.php'; ?>
 
-    <div class="right-side-dashboard">    
+        <?php include 'all.php';?>
 
-        <div class="top-dashboard-mobile">
-            <div class="top-dashboard">
-                <i class="fas fa-boxes"></i>
-                <span>Produtos Estoque</span>
-            </div>
-            <div class="open-close-mobile">
-                <div class="open-close-mobile-icon">
-                    <i class="fas fa-align-justify"></i>
+        <div class="right-side-dashboard">    
+            <div class="top-dashboard-mobile">
+                <div class="top-dashboard">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Composições</span>
+                </div>
+                <div class="open-close-mobile">
+                    <div class="open-close-mobile-icon">
+                        <i class="fas fa-align-justify"></i>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="container-main">
+
+            <div class="container-main">
             <div class="header-produtos">
                 <div class="header-pagina-produtos">
-                    <h2 class="produtos_estoque_h2">Relatório de produtos</h2>
+                    <h2 class="produtos_estoque_h2">Relatório de composições</h2>
                 </div>
                 <div method="GET" action="php_helper/busca_produto.php" class="form-busca-produtos-estoque">
-                    <input id="myInput" class="form-control input-busca" type="text" placeholder="Buscar referencia ou descrição..">
+                    <input id="myInput" class="form-control input-busca" type="text" placeholder="Buscar ficha técnica..">
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                 </div>
             </div>
             
             <div class="tabela-produtos" id="dados-tabela-produtos">
-                <span class="span-produto-estoque-sem-produto"> Utilize o filtro para localizar os produtos...</span>
+                <span class="span-produto-estoque-sem-produto"> Utilize o filtro para localizar uma composição...</span>
                 <script>
                     document.getElementById('buscar-produto').addEventListener('click', function(){
                         buscar($("#myInput").val())
@@ -51,7 +52,7 @@
                                     //Configurações
                                     type:'POST',    //metodo que está sendo utilizado
                                     dataType: 'html',   //tipo de dado que a página vai retornar
-                                    url: 'php_helper/busca_produto.php',    //pagina que está sendo solicitada
+                                    url: 'php_helper/busca_composicoes.php',    //pagina que está sendo solicitada
                                     beforeSend: function(){
                                         $("#dados-tabela-produtos").html("Carregando....");
                                     },
@@ -69,9 +70,16 @@
                     // });
                 </script>
             </div>
-        </div>
+        </div>  
 
-    </div>
+
+
+
+
+
+
+
+        </div>
 
     <script src="plugins/jquery-3.5.1/jquery-3.5.1.js"></script>
     <script src="plugins/jquery-validation-1.19.2/dist/jquery.validate.min.js"></script>

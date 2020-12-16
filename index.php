@@ -14,7 +14,7 @@
 <body>
     <div class="flex-page">
         <div class="side-bar">
-            <form method="POST" class="form-index-login" id="form-index-login">
+            <form  method="POST" action="login_action.php" class="form-index-login" id="form-index-login">
                 <div class="form-group">
                     <label for="email-input-index">Email address</label>
                     <input type="email" name="formIndexEmail" class="form-control" id="email-form-index" placeholder="Digite seu email">
@@ -29,8 +29,7 @@
                 </div>
             </form>
         </div>
-        <div class="main-content">
-        </div>
+        <div class="main-content"> </div> <!--  Imagem que não está aparecendo -->
     </div>
     <script src="plugins/jquery-3.5.1/jquery-3.5.1.js"></script>
     <script src="plugins/jquery-validation-1.19.2/dist/jquery.validate.min.js"></script>
