@@ -2,6 +2,22 @@ td{
     cursor: pointer;
 }
 
+.top-dashboard{
+    width: fit-content;
+}
+
+.open-close-mobile{
+    display: flex;
+    align-items: center;
+}
+.top-dashboard-mobile{
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-dashboard{
+    padding-top: 30px;
+}
 
 .hide {
     margin-left: -250px;
@@ -19,7 +35,6 @@ td{
 .dashboard-content .left-side-dashboard .sidebar-dashboard .icone-top-leftside svg{
     width: 45px;
     height: 45px;
-    /* color: #7B75FF; */
 }
 .list-left-side ul{
     margin-top: 20px;
@@ -57,9 +72,22 @@ div.list-left-side ul li svg{
 .form-control.error {
     border: 1px solid red;
 }
+
 div.top-dashboard-mobile svg{
+    margin-right: 35px;
+    color: #7B75FF;
+    cursor: pointer;
+    height: 40px;
+    width: 40px;
+}
+div.top-dashboard-mobile.left-icon svg{
     margin-right: 15px;
     color: #7B75FF;
     cursor: pointer;
+    height: 30px;
+    width: 30px;
+}
+.open-close-mobile-icon{
+    margin-right: 25px;
 }
 

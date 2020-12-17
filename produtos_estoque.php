@@ -14,7 +14,7 @@
 
     <div class="right-side-dashboard">    
 
-        <div class="top-dashboard-mobile">
+        <div class="top-dashboard-mobile left-icon">
             <div class="top-dashboard">
                 <i class="fas fa-boxes"></i>
                 <span>Produtos Estoque</span>

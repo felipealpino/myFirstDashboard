@@ -14,7 +14,7 @@
         <?php include 'all.php';?>
 
         <div class="right-side-dashboard">    
-            <div class="top-dashboard-mobile">
+            <div class="top-dashboard-mobile left-icon">
                 <div class="top-dashboard">
                     <i class="fas fa-shopping-cart"></i>
                     <span>Composições</span>

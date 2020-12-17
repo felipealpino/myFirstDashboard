@@ -14,7 +14,7 @@
         <?php include 'all.php';?>
 
         <div class="right-side-dashboard">    
-            <div class="top-dashboard-mobile">
+            <div class="top-dashboard-mobile left-icon">
                 <div class="top-dashboard">
                     <i class="fas fa-user-alt"></i>
                     <span>Perfil</span>
@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <div class="content-dashboars content-perfil">
+            <div class="content-dashboard content-perfil">
                 <div class="perfil-usuario">
                     <div class="perfil-usuario-foto">
                         <!-- img cachorro -->

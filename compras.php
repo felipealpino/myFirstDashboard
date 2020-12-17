@@ -1,3 +1,15 @@
+<?php
+require 'config.php';
+
+$sqlCOMPRAS = "SELECT EMP, TOTAL, DT_ENTRADA FROM COMPRAS";
+$dados = (odbc_exec($conn, $sqlCOMPRAS));
+
+while (odbc_fetch_row($dados)){
+    echo (odbc_result($dados,"TOTAL")).'---'.(odbc_result($dados,"DT_ENTRADA"));
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -10,11 +22,45 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="plugins/package/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script>
+        google.charts.load('current', {'packages':['bar']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', '2019', '2020', '2021'],
+          ['Janeiro', 1000, 400, 200],
+          ['Fevereiro', 1170, 460, 250],
+          ['Março', 660, 1120, 300],
+          ['Abril', 1030, 540, 350],
+          ['Maio', 1030, 540, 350],
+          ['Junho', 1030, 540, 350],
+          ['Julho', 1030, 540, 350],
+          ['Agosto', 1030, 540, 350],
+          ['Setembro', 1030, 540, 350],
+          ['Outubro', 1030, 540, 350],
+          ['Novembro', 1030, 540, 350],
+          ['Dezembro', 1030, 540, 350],
+        ]);
+
+        var options = {
+          legend: {position:'in'},
+          chart: {
+            title: 'Relatório de compras',
+          }
+        };
+
+        var chart = new google.charts.Bar(document.getElementById('dashboard-grafico-compras'));
+
+        chart.draw(data, google.charts.Bar.convertOptions(options));
+      }
+    </script>
+    </script>
 
         <?php include 'all.php';?>
 
         <div class="right-side-dashboard">    
-            <div class="top-dashboard-mobile">
+            <div class="top-dashboard-mobile left-icon">
                 <div class="top-dashboard">
                     <i class="fas fa-shopping-cart"></i>
                     <span>Compras</span>

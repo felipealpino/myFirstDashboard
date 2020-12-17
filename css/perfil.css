@@ -9,10 +9,7 @@
     justify-content: center;
     align-items: center;
 }
-.content-dashboars.content-perfil{
-    /* overflow-y: auto; */
-    /* max-height: calc(100vh - 70px); */
-    height: 100%;   
+.content-dashboard.content-perfil{
     background-color: #fafafa;
     border-top: 1px solid rgba(245, 238, 238, 0.8);
 }
@@ -27,23 +24,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-.top-dashboard{
-    width: fit-content;
-}
-
-.open-close-mobile{
-    display: flex;
-    align-items: center;
-}
-.top-dashboard-mobile{
-    display: flex;
-    justify-content: space-between;
-}
-
-div.open-close-mobile svg {
-    height: 28px;
-    width: 28px;
 }
 
 .perfil-usuario-foto{
