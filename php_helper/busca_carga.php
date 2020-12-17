@@ -2,45 +2,40 @@
 require '../config.php';
 // $myInput = filter_input(INPUT_GET,'busca-descricao');
 $myInput = $_POST['myInput'];
-switch(strlen($myInput)){
-    case 1:
-        $myInput = "000000000".$myInput; 
-        break;
-    case 2:
-        $myInput = "00000000".$myInput;
-        break;
-    case 3:
-        $myInput = "0000000".$myInput;
-        break;
-    case 4:
-        $myInput = "000000".$myInput;
-        break;
-    case 5:
-        $myInput = "00000".$myInput;
-        break;
-    case 6:
-        $myInput = "0000".$myInput;
-        break;
-    case 7:
-        $myInput = "000".$myInput;
-        break;
-    case 8:
-        $myInput = "00".$myInput;
-        break;
-    case 9:
-        $myInput = "0".$myInput;
-        break;
-}
 
-$sqlVW_PRODUTO =   "SELECT * FROM 
-                   (SELECT VW_PRODUTO.EMP, VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, FICHATECNICAI.IDFICHATECNICA, FICHATECNICAI.QUANTIDADE, FICHATECNICAI.PRECOCUSTO, FICHATECNICAI.SOMA
-                    FROM VW_PRODUTO
-                    INNER JOIN FICHATECNICAI
-                    ON VW_PRODUTO.CODPROD = FICHATECNICAI.CODPROD) 
-                    WHERE (IDFICHATECNICA LIKE '%$myInput%' AND EMP LIKE '00')";
+$sqlENTREGACxCLIENTE =        "SELECT ENTREGAC.DOCUMENTO, ENTREGAC.IDENTREGAC, ENTREGAC.CODCLIENTE, ENTREGA.FRETETOTAL, CLIENTE.NOME, CLIENTE.CIDADE
+                               FROM ENTREGAC
+                               INNER JOIN CLIENTE
+                               ON ENTREGAC.CODCLIENTE = CLIENTE.CODCLIENTE";
 
-$dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
+$sqlENTREGACxCLIENTExCARGA2 = "SELECT sqlENTREGACxCLIENTE.DOCUMENTO, sqlENTREGACxCLIENTE.IDENTREGAC, sqlENTREGACxCLIENTE.CODCLIENTE, sqlENTREGACxCLIENTE.FRETETOTAL, sqlENTREGACxCLIENTE.NOME, sqlENTREGACxCLIENTE.CIDADE, CARGA2.VENDEDOR
+                               FROM sqlENTREGACxCLIENTE
+                               INNER JOIN CARGA2
+                               ON sqlENTREGACxCLIENTE.DOCUMENTO = CARGA2.DOCUMENTO";
 
+$sqlVW_PRODUTOxFICHATECNICAI = 
+                              "SELECT VW_PRODUTO.EMP, VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, FICHATECNICAI.IDFICHATECNICA
+                               FROM VW_PRODUTO
+                               INNER JOIN FICHATECNICAI
+                               ON VW_PRODUTO.CODPROD = FICHATECNICAI.CODPROD"; 
+
+$sqlENTREGACxCLIENTExCARGA2xENTREGAI = 
+                              "SELECT sqlENTREGACxCLIENTExCARGA2.DOCUMENTO, sqlENTREGACxCLIENTExCARGA2.FRETETOTAL, sqlENTREGACxCLIENTExCARGA2.NOME, sqlENTREGACxCLIENTExCARGA2.CIDADE, sqlENTREGACxCLIENTExCARGA2.VENDEDOR, ENTREGAI.CODEMPRESA, ENTREGAI.CODPROD, ENTREGAI.QUANTIDADE, ENTREGAI.DATAPENTREGA, ENTREGAI.STATUS
+                               FROM sqlENTREGACxCLIENTExCARGA2
+                               INNER JOIN ENTREGAI
+                               ON sqlENTREGACxCLIENTExCARGA2.IDENTREGAC = ENTREGAI.IDENTREGAC";
+
+$sqlALL = 
+       "SELECT sqlENTREGACxCLIENTExCARGA2xENTREGAI.DOCUMENTO, sqlENTREGACxCLIENTExCARGA2xENTREGAI.FRETETOTAL, sqlENTREGACxCLIENTExCARGA2xENTREGAI.NOME, sqlENTREGACxCLIENTExCARGA2xENTREGAI.CIDADE, sqlENTREGACxCLIENTExCARGA2xENTREGAI.VENDEDOR, sqlENTREGACxCLIENTExCARGA2xENTREGAI.CODEMPRESA, sqlENTREGACxCLIENTExCARGA2xENTREGAI.CODPROD, sqlENTREGACxCLIENTExCARGA2xENTREGAI.QUANTIDADE, sqlENTREGACxCLIENTExCARGA2xENTREGAI.DATAPENTREGA, sqlENTREGACxCLIENTExCARGA2xENTREGAI.STATUS
+        FROM sqlENTREGACxCLIENTExCARGA2xENTREGAI
+        INNER JOIN $sqlVW_PRODUTOxFICHATECNICAI
+        ON sqlENTREGACxCLIENTExCARGA2xENTREGAI.CODPROD = sqlVW_PRODUTOxFICHATECNICAI.CODPROD";
+
+
+$dados = odbc_exec($conn, $sqlALL)  or die('Erro no sql');
+while(odbc_fetch_row($dados)){
+    echo (odbc_result($sqlALL,"CODPROD")).'---'.(odbc_result($sqlALL,"REFERENCIA")).'---'.(odbc_result($sqlALL,"DESCRICAO"));
+};
 
 // $sqlFICHATECNICAI = "SELECT * FROM FICHATECNICAI WHERE IDFICHATECNICA LIKE '$myInput'";
 // $dados = odbc_exec($conn, $sqlFICHATECNICAI)  or die('Erro no sql');

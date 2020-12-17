@@ -34,7 +34,7 @@
 
 .content-table{
     overflow-y: auto;
-    max-height: calc(100vh - 133px);
+    max-height: calc(100vh - 138px);
 }
 
 .header-produtos{
@@ -58,9 +58,6 @@
 .thead_produtos_estoque tr th{
     width: min-content;
     padding: 0px;
-}
-.table-produtos-estoque{
-    text-align: center;
 }
 #myTable tr td {
     font-size: 13px;

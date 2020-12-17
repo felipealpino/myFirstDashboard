@@ -25,7 +25,15 @@
                         </li>
                         <li>
                             <i class="fas fa-layer-group"></i>
-                            <a href="composicoes.php">composições</a>
+                            <a href="composicoes.php">Composições</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-truck"></i>
+                            <a href="carga.php">Carga</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-clipboard-check"></i>
+                            <a href="kardex.php">Kardex</a>
                         </li>
                         <li>
                             <i class="fas fa-boxes"></i>

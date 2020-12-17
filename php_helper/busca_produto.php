@@ -3,23 +3,31 @@ require '../config.php';
 // $myInput = filter_input(INPUT_GET,'busca-descricao');
 $myInput = $_POST['myInput'];
 $myInput = strtoupper($myInput);
-$sqlVW_PRODUTO = "SELECT * FROM VW_PRODUTO WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%') AND EMP LIKE '00'";
+
+$sqlVW_PRODUTO =   "SELECT * FROM 
+                   (SELECT VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA, PRODUTO.IDFICHATECNICA 
+                    FROM VW_PRODUTO
+                    INNER JOIN PRODUTO
+                    ON VW_PRODUTO.CODPROD = PRODUTO.CODPROD) 
+                    WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR CODPROD LIKE '%$myInput%')";
+
 $dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
 
+// $sqlVW_PRODUTO = "SELECT * FROM VW_PRODUTO WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%') AND EMP LIKE '00'";
+// $dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
 
-
-$sqlPRODUTO = 'SELECT CODPROD,CODFAMILIA,IDFICHATECNICA from PRODUTO';
-$dadosFamilia = odbc_exec($conn, $sqlPRODUTO) or die('Erro no sql');
-$myArray = [];
-while(odbc_fetch_row($dadosFamilia)){  
-    array_push($myArray, (object)[
-        'codprod' => odbc_result($dadosFamilia,"CODPROD"),
-        'codfamilia' => odbc_result($dadosFamilia,"CODFAMILIA"),
-        'idfichatec' =>odbc_result($dadosFamilia,"IDFICHATECNICA"),
-    ]);
-}
-$idFichaTec = '';
-$codFamilia = '';
+// $sqlPRODUTO = 'SELECT CODPROD,CODFAMILIA,IDFICHATECNICA from PRODUTO';
+// $dadosFamilia = odbc_exec($conn, $sqlPRODUTO) or die('Erro no sql');
+// $myArray = [];
+// while(odbc_fetch_row($dadosFamilia)){  
+//     array_push($myArray, (object)[
+//         'codprod' => odbc_result($dadosFamilia,"CODPROD"),
+//         'codfamilia' => odbc_result($dadosFamilia,"CODFAMILIA"),
+//         'idfichatec' =>odbc_result($dadosFamilia,"IDFICHATECNICA"),
+//     ]);
+// }
+// $idFichaTec = '';
+// $codFamilia = '';
 
 
 ?>
@@ -29,24 +37,19 @@ $codFamilia = '';
     <table class="table sortable table-sm table-bordered table-hover tabela-produtos">
             <thead class="thead_produtos_estoque">
                 <tr>
-                    <th data-column='ft' data-order='desc'>Ficha Tec</th>
-                    <th data-column='cod' data-order='desc'>Código</th>
-                    <th data-column='red' data-order='desc'>Referencia</th>
-                    <th data-column='descri' data-order='desc'>Descrição</th>
-                    <th data-column='custo' data-order='desc'>Custo (R$)</th>
-                    <th data-column='estoque' data-order='desc'>Estoque</th>
-                    <th data-column='estoque-final' data-order='desc'>$ Total</th>
-                    <th data-column='familia' data-order='desc'>Familia</th>    
+                    <th>Ficha Tec</th>
+                    <th>Código</th>
+                    <th>Referencia</th>
+                    <th>Descrição</th>
+                    <th>Custo (R$)</th>
+                    <th>Estoque</th>
+                    <th>Total (R$)</th>
+                    <th>Familia</th>    
                 </tr>
             </thead>
         
             <?php while(odbc_fetch_row($dados)): ?>
-                <?php for($c=0; $c<=(count($myArray)-1); $c++){
-                if ($myArray[$c]->codprod === odbc_result($dados,"CODPROD")){
-                    $idFichaTec = $myArray[$c]->idfichatec;
-                    $codFamilia = $myArray[$c]->codfamilia;
-                }
-                switch ($codFamilia) {
+            <?php switch (odbc_result($dados,"CODFAMILIA")){
                     case '01':
                         $nomeFamilia = "INSUMO";
                         break;
@@ -109,17 +112,16 @@ $codFamilia = '';
                         break;
                     default:
                         $nomeFamilia = "ADICIONAR FAMILIA";
-                }
-            }
-            ?>
+            } //endswitch ?> 
+
                 <tbody id="myTable">
                     <tr>
-                        <td> <?=$idFichaTec ?> </td>
+                        <td> <?=odbc_result($dados,"IDFICHATECNICA") ?> </td>
                         <td> <?=odbc_result($dados,"CODPROD")?> </td>
                         <td> <?=odbc_result($dados,"REFERENCIA")?></td>
                         <td> <?=odbc_result($dados,"DESCRICAO")?></td>
                         <td> <?="R$ ".number_format(odbc_result($dados,"PRECO_CUSTO"),2)?></td>
-                        <td class="table-produtos-estoque"> <?=number_format(odbc_result($dados,"ESTOQUE"),2)?></td>
+                        <td style="text-align: center;"> <?=number_format(odbc_result($dados,"ESTOQUE"),2)?></td>
                         <td> <?="R$ ".number_format(odbc_result($dados,"ESTOQUE") * odbc_result($dados,"PRECO_CUSTO"),2); ?></td>
                         <td> <?=$nomeFamilia ?> </td>
                     </tr>

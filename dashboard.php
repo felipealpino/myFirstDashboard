@@ -16,8 +16,8 @@
         <div class="right-side-dashboard">    
             <div class="top-dashboard-mobile">
                 <div class="top-dashboard">
-                    <i class="fas fa-user-alt"></i>
-                    <span>Perfil</span>
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
                 </div>
                 <div class="open-close-mobile">
                     <div class="open-close-mobile-icon">
@@ -29,14 +29,14 @@
             <div class="content-dashboard">
                 <div class="content-dashboard-grid">
                     <div class="dashboard-estoque">
-                        <a href="estoque.html"><div id="dashboard-grafico-estoque" style="width: 100%; height:100%;"></div></a>
+                        <a href="estoque.php"><div id="dashboard-grafico-estoque" style="width: 100%; height:100%;"></div></a>
                     </div>
 
                     <div class="dashboard-vendas">
-                        <a href="vendas.html"><div id="dashboard-grafico-vendas" style="width: 100%; height: 100%"></div></a>
+                        <a href="vendas.php"><div id="dashboard-grafico-vendas" style="width: 100%; height: 100%"></div></a>
                     </div>
                     <div class="dashboard-compras">
-                        <a href="compras.html"><div id="dashboard-grafico-compras" style="width: 100%; height: 100%"></div></a>
+                        <a href="compras.php"><div id="dashboard-grafico-compras" style="width: 100%; height: 100%"></div></a>
                     </div>
                 </div>
             </div>

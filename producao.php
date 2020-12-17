@@ -29,7 +29,6 @@ if($mes && $ano) {
             array_push($myArray, (object)[
             'dia' => substr(($arrayData[2]),0,2),
             'quant' => odbc_result($dados, "QUANTIDADE"),
-            // 'prod' => odbc_result($dados,"CODPROD"),
             ]);
         }
     }
@@ -137,8 +136,6 @@ if($mes && $ano) {
 }
 
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="pt-br">
