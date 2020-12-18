@@ -1,4 +1,3 @@
-
 //Fechar e abrir menu-esquerdo-lateral
 const iconMobile = document.querySelector('.open-close-mobile-icon')
 const leftSideBar = document.querySelector('.left-side-dashboard')
@@ -18,6 +17,16 @@ iconMobile.addEventListener('click', function(){
         leftSideBar.classList.add("hide");
     }
 });
+
+const optButton = document.querySelectorAll(".option-button-produtos-estoque")
+optButton.forEach((button,index) => {
+    
+    button.addEventListener('click', (index) => {
+        optButton.forEach((item) => {
+            item.removeAttribute('checked')
+        })
+    })
+})
 
 
 //produtos_estoque_filter

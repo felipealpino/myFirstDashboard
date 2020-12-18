@@ -4,9 +4,43 @@ require 'config.php';
 $sqlCOMPRAS = "SELECT EMP, TOTAL, DT_ENTRADA FROM COMPRAS";
 $dados = (odbc_exec($conn, $sqlCOMPRAS));
 
-while (odbc_fetch_row($dados)){
-    echo (odbc_result($dados,"TOTAL")).'---'.(odbc_result($dados,"DT_ENTRADA"));
+
+class QtAnoDia {
+  public $Ano_2019;
+  public $Ano_2020;
+  public $Ano_2021;
+
+  public function  __construct() {
+    $this->Ano_2019 = 0;
+    $this->Ano_2020 = 0;
+    $this->Ano_2021 = 0;
+  }
 }
+
+for ($c=0; $c<=11; $c++){
+  $arrayObjMesesAno[] = new QtAnoDia(); 
+}
+
+while (odbc_fetch_row($dados)):
+  for($c=1; $c<=12; $c++):
+    if($c === intval(explode("-",odbc_result($dados,"DT_ENTRADA"))[1])){
+      if(explode("-",odbc_result($dados,"DT_ENTRADA"))[0] === '2019'){
+        $arrayObjMesesAno[$c-1]->Ano_2019 += odbc_result($dados,"TOTAL");
+      } elseif (explode("-",odbc_result($dados,"DT_ENTRADA"))[0] === '2020'){
+        $arrayObjMesesAno[$c-1]->Ano_2020 += odbc_result($dados,"TOTAL");
+      } elseif (explode("-",odbc_result($dados,"DT_ENTRADA"))[0] === '2021'){
+        $arrayObjMesesAno[$c-1]->Ano_2021 += odbc_result($dados,"TOTAL");
+      }
+    }
+  endfor;
+endwhile;
+
+// var_dump(round(5.045, 2));
+
+// print "<pre>";
+// print_r($arrayObjMesesAno);
+// print "</pre>";
+
 
 ?>
 
@@ -29,18 +63,61 @@ while (odbc_fetch_row($dados)){
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Year', '2019', '2020', '2021'],
-          ['Janeiro', 1000, 400, 200],
-          ['Fevereiro', 1170, 460, 250],
-          ['Março', 660, 1120, 300],
-          ['Abril', 1030, 540, 350],
-          ['Maio', 1030, 540, 350],
-          ['Junho', 1030, 540, 350],
-          ['Julho', 1030, 540, 350],
-          ['Agosto', 1030, 540, 350],
-          ['Setembro', 1030, 540, 350],
-          ['Outubro', 1030, 540, 350],
-          ['Novembro', 1030, 540, 350],
-          ['Dezembro', 1030, 540, 350],
+      <?php
+        for($c=1; $c<=12; $c++): ?>
+          <?php switch($c):
+            case 1:
+              $mesNome = 'Janeiro';
+              break;
+            case 2:
+              $mesNome = 'Fevereiro';
+              break;
+            case 3:
+              $mesNome = 'Março';
+              break;
+            case 4:
+              $mesNome = 'Abril';
+              break;
+            case 5:
+              $mesNome = 'Maio';
+              break;
+            case 6:
+              $mesNome = 'Junho';
+              break;
+            case 7:
+              $mesNome = 'Julho';
+              break;
+            case 8:
+              $mesNome = 'Agosto';
+              break;
+            case 9:
+              $mesNome = 'Setem.';
+              break;
+            case 10:
+              $mesNome = 'Outubro';
+              break;
+            case 11:
+              $mesNome = 'Novem.';
+              break;
+            case 12:
+              $mesNome = 'Dezem.';
+              break;
+          endswitch?>
+          ['<?=$mesNome?>', <?=$arrayObjMesesAno[$c-1]->Ano_2019?>, <?=$arrayObjMesesAno[$c-1]->Ano_2020 ?>, <?=$arrayObjMesesAno[$c-1]->Ano_2021?>],
+      <?php endfor; ?>
+        
+          // ['Janeiro', 1000, 400, 200],
+          // ['Fevereiro', 1170, 460, 250],
+          // ['Março', 660, 1120, 300],
+          // ['Abril', 1030, 540, 350],
+          // ['Maio', 1030, 540, 350],
+          // ['Junho', 1030, 540, 350],
+          // ['Julho', 1030, 540, 350],
+          // ['Agosto', 1030, 540, 350],
+          // ['Setembro', 1030, 540, 350],
+          // ['Outubro', 1030, 540, 350],
+          // ['Novembro', 1030, 540, 350],
+          // ['Dezembro', 1030, 540, 350],
         ]);
 
         var options = {

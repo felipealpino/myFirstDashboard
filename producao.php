@@ -18,13 +18,16 @@ if (!$mes && !$ano){
 
 // Manipulando valores $mes e $ano caso passados pelo form
 if($mes && $ano) {
-    $mvGeral = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL';
-    $dados = odbc_exec($conn, $mvGeral)  or die('Erro no sql');
+    $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL';
+    $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
     $myArray = [];
 
     while(odbc_fetch_row($dados)){
         $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
 
+        //TIPOMOV = 11 = ENTRADA ACABADO
+        //CODPROD = 000880 = QUILO ISOFTALICO BRANCO
+        //CODPROD = 000383 = QUILO ISOFTALICO 
         if ($arrayData[1] == $mes && $arrayData[0] == $ano && odbc_result($dados,"TIPOMOV") == "11" && (odbc_result($dados,"CODPROD") == "000880" || odbc_result($dados,"CODPROD") == "000383")){
             array_push($myArray, (object)[
             'dia' => substr(($arrayData[2]),0,2),
@@ -33,7 +36,7 @@ if($mes && $ano) {
         }
     }
 
-    $myArraySize = (count($myArray)-1);
+    // $myArraySize = (count($myArray)-1);
     $pesoDia = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];  //DECLAREI ASSIM PORQUE ESTAVA DANDO ERROR
 
     foreach($myArray as $value){
@@ -134,6 +137,18 @@ if($mes && $ano) {
         }
     }
 }
+
+$z= 0;
+$pesoTotal = 0;
+
+for($contador=0; $contador<count($pesoDia); $contador++){
+    if($pesoDia[$contador] !== 0 ){
+        $pesoTotal += $pesoDia[$contador];
+        $z += 1; 
+    }
+}
+
+$mediaMes = ($pesoTotal/$z);
 
 ?>
 
@@ -254,8 +269,39 @@ if($mes && $ano) {
 
             <div class="content-dashboard producao">
                 <div id="dashboard-grafico-producao" class="dashboard-grafico-producao" ></div>
-            </div>
+                
+                <div class="producao-table-values">
+                    <div><?='Média produzida por dia: '.round($mediaMes,2).' kg' ?></div>
+                    <table class="table sortable table-sm table-bordered table-hover tabela-produtos">
+                        <thead class="thead_produtos_estoque">
+                            <tr>
+                                <th style="text-align: center;">Dia</th>
+                                <th style="text-align: center;">Quant.</th>
 
+                            </tr>
+                        </thead>
+                    
+                    <?php //Fazendo consulta SQL novamente (não estava funcionando com a do inicio da página) 
+                        $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL ORDER BY DT_MOVIMENTO ASC';
+                        $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
+
+                    ?>
+                    <?php while(odbc_fetch_row($dados)): ?>
+                        <?php    $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO")); 
+                            if ($arrayData[1] == $mes && $arrayData[0] == $ano && odbc_result($dados,"TIPOMOV") == "11" && (odbc_result($dados,"CODPROD") == "000880" || odbc_result($dados,"CODPROD") == "000383")): ?>
+
+                        <tbody>
+                            <tr>
+                                <td style="text-align: center;"> <?php echo (substr(($arrayData[2]),0,2)."/".$arrayData[1]."/".$arrayData[0])  ?></td>
+                                <td style="text-align: center;"> <?=odbc_result($dados,"QUANTIDADE").' kg'?> </td>
+                            </tr>
+                        </tbody>
+                    <?php endif ?>
+                <?php endwhile; ?>
+                    </table>
+                </div>
+
+            </div>
         </div>
     </div>
 

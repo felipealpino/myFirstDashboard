@@ -35,9 +35,6 @@
                     <div class="dashboard-vendas">
                         <a href="vendas.php"><div id="dashboard-grafico-vendas" style="width: 100%; height: 100%"></div></a>
                     </div>
-                    <div class="dashboard-compras">
-                        <a href="compras.php"><div id="dashboard-grafico-compras" style="width: 100%; height: 100%"></div></a>
-                    </div>
                 </div>
             </div>
         </div>

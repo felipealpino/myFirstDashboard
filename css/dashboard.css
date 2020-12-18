@@ -68,7 +68,7 @@ div.top-dashboard svg{
     cursor: pointer;
 }
 .dashboard-producao:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .dashboard-estoque{
@@ -82,7 +82,7 @@ div.top-dashboard svg{
     cursor: pointer;
 }
 .dashboard-estoque:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .dashboard-compras{
@@ -96,7 +96,7 @@ div.top-dashboard svg{
     cursor: pointer;
 }
 .dashboard-compras:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 .dashboard-vendas{
@@ -110,7 +110,7 @@ div.top-dashboard svg{
     cursor: pointer;
 }
 .dashboard-vendas:hover{
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
 @media screen and (min-width:821px) and (max-width: 1350px){

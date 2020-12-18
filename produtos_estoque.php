@@ -9,7 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="plugins/package/dist/sweetalert2.min.css">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+
     <?php include 'all.php'; ?>
 
     <div class="right-side-dashboard">    
@@ -31,7 +32,13 @@
                 <div class="header-pagina-produtos">
                     <h2 class="produtos_estoque_h2">Relatório de produtos</h2>
                 </div>
-                <div method="GET" action="php_helper/busca_produto.php" class="form-busca-produtos-estoque">
+                <div action="php_helper/busca_produto.php" class="form-busca-produtos-estoque">
+                    <div class="option-buttons"> 
+                        <input type="radio" class="option-button-produtos-estoque" id="ascRadio" name="asc" value="ASC" checked>
+                        <label for="asc">A-Z</label><br>
+                        <input type="radio" class="option-button-produtos-estoque" id="descRadio" name="desc" value="DESC">
+                        <label for="desc">Z-A</label><br>
+                    </div>
                     <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar referencia ou descrição..">
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                 </div>
@@ -41,10 +48,10 @@
                 <span class="span-produto-estoque-sem-produto"> Utilize o filtro para localizar os produtos...</span>
                 <script>
                     document.getElementById('buscar-produto').addEventListener('click', function(){
-                        buscar($("#myInput").val())
+                        buscar($("#myInput").val(),$("#ascRadio").val())
                     }, false);
 
-                    function buscar(myInput){
+                    function buscar(myInput,radioValue){
                         //metodo ajax responsavel pela req
                         $.ajax
                                 ({
@@ -55,8 +62,10 @@
                                     beforeSend: function(){
                                         $("#dados-tabela-produtos").html("Carregando....");
                                     },
-                                    data: {myInput:myInput},    //Dados para consulta
-                                    
+                                    data: {myInput: myInput,
+                                           radioValue: radioValue,
+                                    },  //Dados para consulta
+
                                     //funcao que sera executada quando a solicitação for finalizada.
                                     success: function(msg){
                                         $("#dados-tabela-produtos").html(msg);
@@ -64,6 +73,8 @@
                                 });
                     }
 
+                    
+                    
                     // $("#buscar-produto").click(function () {
                     //     buscar($("#myInput").val())
                     // });
@@ -81,7 +92,8 @@
     <script src="plugins/fontawesome5.15.1/js/all.min.js"></script>
     <script src="plugins/package/dist/sweetalert2.all.min.js"></script>
     <script src="plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js"></script>
-    <script src="js/all.js"></script>
     <script src="js/googleCharts.js"></script>
+    <script src="js/all.js"></script>
+
 </body>
 </html>
