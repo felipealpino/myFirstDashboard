@@ -32,20 +32,31 @@
                 <div class="header-pagina-produtos">
                     <h2 class="produtos_estoque_h2">Relatório de carga</h2>
                 </div>
-                <div method="GET" action="php_helper/busca_produto.php" class="form-busca-produtos-estoque">
+                <div class="select-filter-carga">
+                    <label for="filterCarga" id="filterCargaId">Escolha que deseja filtrar</label>
+                    <select name="filtragem-carga" id="filterCargaSelect">
+                        <option value="CLIENTE">Cliente</option>
+                        <option value="REFERENCIA">Referencia</option>
+                        <option value="DESCRICAO">Descrição</option>
+                        <option value="CODPROD">Código do pedido</option>
+                    </select>
+                </div>
+                
+                <div action="php_helper/busca_produto.php" class="form-busca-produtos-estoque">
                     <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar ..">
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                 </div>
             </div>
             
             <div class="tabela-produtos" id="dados-tabela-produtos">
-                <span class="span-produto-estoque-sem-produto"> Utilize o filtro para localizar uma composição...</span>
+                <span class="span-produto-estoque-sem-produto"> Utilize o filtro para localizar o desejado...</span>
                 <script>
                     document.getElementById('buscar-produto').addEventListener('click', function(){
-                        buscar($("#myInput").val())
+                        const selectValue = document.querySelector('select').value
+                            buscar($("#myInput").val(), selectValue)
                     }, false);
 
-                    function buscar(myInput){
+                    function buscar(myInput, selectionValue){
                         //metodo ajax responsavel pela req
                         $.ajax
                                 ({
@@ -56,7 +67,9 @@
                                     beforeSend: function(){
                                         $("#dados-tabela-produtos").html("Carregando....");
                                     },
-                                    data: {myInput:myInput},    //Dados para consulta
+                                    data: {myInput:myInput,
+                                           selectionValue:selectionValue,
+                                          },    //Dados para consulta
                                     
                                     //funcao que sera executada quando a solicitação for finalizada.
                                     success: function(msg){

@@ -1,0 +1,24 @@
+.select-filter-carga{
+    display: flex;
+    align-items: center;
+}
+.select-filter-carga label{
+    margin:0px;
+    padding-right: 2px;
+}
+#filterCargaSelect{
+    border-radius: 4px;
+}
+#filterCargaId:hover ~ #filterCargaSelect {
+    background-color: #6DB1F5;
+    animation-name: inputSelect;
+    animation-duration: 1s;
+    animation-direction:alternate;
+    animation-iteration-count: infinite;
+
+}
+
+@keyframes inputSelect{
+    from {background-color: white;}
+    to {background-color: rgb(214, 108, 108);}
+}

@@ -18,15 +18,13 @@ iconMobile.addEventListener('click', function(){
     }
 });
 
-const optButton = document.querySelectorAll(".option-button-produtos-estoque")
-optButton.forEach((button,index) => {
-    
-    button.addEventListener('click', (index) => {
-        optButton.forEach((item) => {
-            item.removeAttribute('checked')
-        })
-    })
-})
+const cargaSelectValue = document.querySelector('select')
+cargaSelectValue.addEventListener('click', changePlaceHolder)
+function changePlaceHolder(){
+    const selectValue = document.querySelector('select').value
+    const buscarInput = document.getElementById('myInput')
+    buscarInput.placeholder = `Buscar ${selectValue}`
+}
 
 
 //produtos_estoque_filter

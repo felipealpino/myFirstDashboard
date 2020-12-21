@@ -34,9 +34,9 @@
                 </div>
                 <div action="php_helper/busca_produto.php" class="form-busca-produtos-estoque">
                     <div class="option-buttons"> 
-                        <input type="radio" class="option-button-produtos-estoque" id="ascRadio" name="asc" value="ASC" checked>
+                        <input type="radio" class="option-button-produtos-estoque" id="ascRadio" name="sorting" value="ASC" checked>
                         <label for="asc">A-Z</label><br>
-                        <input type="radio" class="option-button-produtos-estoque" id="descRadio" name="desc" value="DESC">
+                        <input type="radio" class="option-button-produtos-estoque" id="descRadio" name="sorting" value="DESC">
                         <label for="desc">Z-A</label><br>
                     </div>
                     <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar referencia ou descrição..">
@@ -48,7 +48,13 @@
                 <span class="span-produto-estoque-sem-produto"> Utilize o filtro para localizar os produtos...</span>
                 <script>
                     document.getElementById('buscar-produto').addEventListener('click', function(){
-                        buscar($("#myInput").val(),$("#ascRadio").val())
+                        const optButtons = document.querySelectorAll('.option-button-produtos-estoque')
+                        if(optButtons[0].checked){
+                            radioValue = 'ASC';
+                        } else {
+                            radioValue = 'DESC';
+                        }
+                        buscar($("#myInput").val(),radioValue)
                     }, false);
 
                     function buscar(myInput,radioValue){

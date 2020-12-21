@@ -22,14 +22,16 @@ for ($c=0; $c<=11; $c++){
 }
 
 while (odbc_fetch_row($dados)):
-  for($c=1; $c<=12; $c++):
-    if($c === intval(explode("-",odbc_result($dados,"DT_ENTRADA"))[1])){
-      if(explode("-",odbc_result($dados,"DT_ENTRADA"))[0] === '2019'){
-        $arrayObjMesesAno[$c-1]->Ano_2019 += odbc_result($dados,"TOTAL");
-      } elseif (explode("-",odbc_result($dados,"DT_ENTRADA"))[0] === '2020'){
-        $arrayObjMesesAno[$c-1]->Ano_2020 += odbc_result($dados,"TOTAL");
-      } elseif (explode("-",odbc_result($dados,"DT_ENTRADA"))[0] === '2021'){
-        $arrayObjMesesAno[$c-1]->Ano_2021 += odbc_result($dados,"TOTAL");
+ for($c=1; $c<=12; $c++):
+    $explode_data = explode("-",odbc_result($dados,"DT_ENTRADA"));
+    $resulth_total = odbc_result($dados,"TOTAL");
+    if ($c === intval($explode_data[1])) {
+      if($explode_data[0] === '2019'){
+        $arrayObjMesesAno[$c-1]->Ano_2019 += $resulth_total;
+      } elseif ($explode_data[0] === '2020'){
+        $arrayObjMesesAno[$c-1]->Ano_2020 += $resulth_total;
+      } elseif ($explode_data[0] === '2021'){
+        $arrayObjMesesAno[$c-1]->Ano_2021 += $resulth_total;
       }
     }
   endfor;

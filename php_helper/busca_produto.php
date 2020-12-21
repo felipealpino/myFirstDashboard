@@ -5,20 +5,23 @@ $myInput = $_POST['myInput'];
 $myInput = strtoupper($myInput);
 
 $radioValue = $_POST['radioValue'];
-if ($radioValue !== 'ASC'){
-    $radioValue = 'DESC';
-} else {
-    $radioValue = 'ASC';
-}
 
 
-$sqlVW_PRODUTO =   "SELECT * FROM 
-                   (SELECT VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA, PRODUTO.IDFICHATECNICA 
+// $sqlVW_PRODUTO =   "SELECT * FROM 
+//                    (SELECT VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA, PRODUTO.IDFICHATECNICA 
+//                     FROM VW_PRODUTO
+//                     INNER JOIN PRODUTO
+//                     ON VW_PRODUTO.CODPROD = PRODUTO.CODPROD) 
+//                     WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR CODPROD LIKE '%$myInput%')
+//                     ORDER BY ESTOQUE $radioValue";
+
+$sqlVW_PRODUTO =   "SELECT VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA, PRODUTO.IDFICHATECNICA 
                     FROM VW_PRODUTO
                     INNER JOIN PRODUTO
-                    ON VW_PRODUTO.CODPROD = PRODUTO.CODPROD) 
+                    ON VW_PRODUTO.CODPROD = PRODUTO.CODPROD 
                     WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR CODPROD LIKE '%$myInput%')
-                    ORDER BY ESTOQUE $radioValue";
+                    ORDER BY ESTOQUE $radioValue ";
+ 
 
 $dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
 
