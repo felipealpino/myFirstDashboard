@@ -1,5 +1,6 @@
 <?php
-require 'config.php';
+require 'configODBC.php';
+require 'php_library/biblioteca.php';
 
 $sqlCOMPRAS = "SELECT EMP, TOTAL, DT_ENTRADA FROM COMPRAS";
 $dados = (odbc_exec($conn, $sqlCOMPRAS));
@@ -43,7 +44,6 @@ endwhile;
 // print_r($arrayObjMesesAno);
 // print "</pre>";
 
-
 ?>
 
 <!DOCTYPE html>
@@ -66,45 +66,9 @@ endwhile;
         var data = google.visualization.arrayToDataTable([
           ['Year', '2019', '2020', '2021'],
       <?php
-        for($c=1; $c<=12; $c++): ?>
-          <?php switch($c):
-            case 1:
-              $mesNome = 'Janeiro';
-              break;
-            case 2:
-              $mesNome = 'Fevereiro';
-              break;
-            case 3:
-              $mesNome = 'Março';
-              break;
-            case 4:
-              $mesNome = 'Abril';
-              break;
-            case 5:
-              $mesNome = 'Maio';
-              break;
-            case 6:
-              $mesNome = 'Junho';
-              break;
-            case 7:
-              $mesNome = 'Julho';
-              break;
-            case 8:
-              $mesNome = 'Agosto';
-              break;
-            case 9:
-              $mesNome = 'Setem.';
-              break;
-            case 10:
-              $mesNome = 'Outubro';
-              break;
-            case 11:
-              $mesNome = 'Novem.';
-              break;
-            case 12:
-              $mesNome = 'Dezem.';
-              break;
-          endswitch?>
+
+        for($c=1; $c<=12; $c++): 
+          $mesNome = findNomeMes($c) ?> //php_library/biblioteca.php
           ['<?=$mesNome?>', <?=$arrayObjMesesAno[$c-1]->Ano_2019?>, <?=$arrayObjMesesAno[$c-1]->Ano_2020 ?>, <?=$arrayObjMesesAno[$c-1]->Ano_2021?>],
       <?php endfor; ?>
         

@@ -1,5 +1,6 @@
 <?php
-require 'config.php';
+require 'configODBC.php';
+require 'php_library/biblioteca.php';
 
 /* EXPLICAÇÃO DO CÓDIGO: 
 1) inicialmente é pego o valor ano e mes via GET, caso nao setado, é setado automaticamente o mes e ano atual
@@ -167,6 +168,7 @@ $mediaMes = ($pesoTotal/$z);
     <script type="text/javascript">
         google.charts.load('current', {'packages':['bar']});
         google.charts.setOnLoadCallback(drawChart);
+        <?php $nomeMes = findNomeMes($mes); ?> ///php_library/biblioteca.php
       function drawChart() {
         var x = 1;
         var data = google.visualization.arrayToDataTable([
@@ -178,50 +180,6 @@ $mediaMes = ($pesoTotal/$z);
                 ['<?=$x;?>' , <?=$pesoDia[$x - 1];?>],
             <?php endif ?> 
         <?php endfor ?>
-            
-        <?php 
-            $nomeMes = '';
-            switch($mes){
-                case '01':
-                    $nomeMes = 'Janeiro';   
-                    break;
-                case '02':
-                    $nomeMes = 'Fevereiro';
-                    break;
-                case '03':
-                    $nomeMes = 'Março';
-                    break;
-                case '04':
-                    $nomeMes = 'Abril';
-                    break;
-                case '05':
-                    $nomeMes = 'Maio';
-                    break;
-                case '06':
-                    $nomeMes = 'Junho';
-                    break;
-                case '07':
-                    $nomeMes = 'Julho';
-                    break;
-                case '08':
-                    $nomeMes = 'Agosto';
-                    break;
-                case '09':
-                    $nomeMes = 'Setembro';
-                    break;
-                case '10':
-                    $nomeMes = 'Outubro';
-                    break;
-                case '11':
-                    $nomeMes = 'Novembro';
-                    break;
-                case '12':
-                    $nomeMes = 'Dezembro';
-                    break;
-                default:
-                    $nomeMes = 'Error';
-            }
-        ?>
         ]);
 
         var options = {

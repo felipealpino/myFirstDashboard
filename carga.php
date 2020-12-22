@@ -42,7 +42,7 @@
                     </select>
                 </div>
                 
-                <div action="php_helper/busca_produto.php" class="form-busca-produtos-estoque">
+                <div action="php_controller/busca_produto.php" class="form-busca-produtos-estoque">
                     <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar ..">
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                 </div>
@@ -63,7 +63,7 @@
                                     //Configurações
                                     type:'POST',    //metodo que está sendo utilizado
                                     dataType: 'html',   //tipo de dado que a página vai retornar
-                                    url: 'php_helper/busca_carga.php',    //pagina que está sendo solicitada
+                                    url: 'php_controller/busca_carga.php',    //pagina que está sendo solicitada
                                     beforeSend: function(){
                                         $("#dados-tabela-produtos").html("Carregando....");
                                     },
