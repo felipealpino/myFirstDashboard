@@ -32,7 +32,7 @@
                 <div class="header-pagina-produtos">
                     <h2 class="produtos_estoque_h2">Relatório de produtos</h2>
                 </div>
-                <div action="php_controller/busca_produto.php" class="form-busca-produtos-estoque">
+                <div class="form-busca-produtos-estoque">
                     <div class="option-buttons"> 
                         <input type="radio" class="option-button-produtos-estoque" id="ascRadio" name="sorting" value="ASC" checked>
                         <label for="asc">A-Z</label><br>
@@ -59,12 +59,11 @@
 
                     function buscar(myInput,radioValue){
                         //metodo ajax responsavel pela req
-                        $.ajax
-                                ({
+                        $.ajax  ({
                                     //Configurações
                                     type:'POST',    //metodo que está sendo utilizado
                                     dataType: 'html',   //tipo de dado que a página vai retornar
-                                    url: 'php_controller/busca_produto.php',    //pagina que está sendo solicitada
+                                    url: 'php_controller/busca_produto_estoque.php',    //pagina que está sendo solicitada
                                     beforeSend: function(){
                                         $("#dados-tabela-produtos").html("Carregando....");
                                     },
@@ -79,8 +78,6 @@
                                 });
                     }
 
-                    
-                    
                     // $("#buscar-produto").click(function () {
                     //     buscar($("#myInput").val())
                     // });

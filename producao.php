@@ -2,12 +2,6 @@
 require 'configODBC.php';
 require 'php_library/biblioteca.php';
 
-/* EXPLICAÇÃO DO CÓDIGO: 
-1) inicialmente é pego o valor ano e mes via GET, caso nao setado, é setado automaticamente o mes e ano atual
-2) é montado um array de objetos 'data' e 'quantidade' com a data escolhida (os filtros estão no 'if' dentro do 'while') 
-3) é montado um array de 31 IDs ($pesoDia) e disponibilizado para o HTML, com isso pode ser acessado para adicionar os valores no gráfico
-*/
-
 $mes = filter_input(INPUT_GET,'mes_producao_name');
 $ano = filter_input(INPUT_GET,'ano_producao_name');
 
@@ -175,23 +169,26 @@ $mediaMes = ($pesoTotal/$z);
         ['Dia', 'Quant.'],
         <?php for($x=1; $x<=31; $x++): ?>   
             <?php if($x<9):?> 
-                ['<?='0'.$x;?>' , <?=$pesoDia[$x - 1];?>],
+                ['<?='0'.$x;?>', <?=$pesoDia[$x - 1];?>],
             <?php else: ?>
-                ['<?=$x;?>' , <?=$pesoDia[$x - 1];?>],
+                ['<?=$x;?>', <?=$pesoDia[$x - 1];?>],
             <?php endif ?> 
         <?php endfor ?>
         ]);
 
         var options = {
-          legend: { position: 'none' },
-          chart: {
-            title: 'Production Performance',
-            subtitle: ' <?=$nomeMes;?> / <?=$ano;?>',
-          },
-          hAxis:{
-              maxValue: 3000,
-          },
-          bars: 'vertical' // Required for Material Bar Charts.
+            legend: { position: 'none' },
+            chart: {
+                title: 'Production Performance',
+                subtitle: ' <?=$nomeMes;?> / <?=$ano;?>',
+            },
+            hAxis:{
+                maxValue: 3000,
+            },
+            bars: 'vertical', // Required for Material Bar Charts.
+            annotations: {
+            style: 'line',
+          }
         };
         var chart = new google.charts.Bar(document.getElementById('dashboard-grafico-producao'));
         chart.draw(data, google.charts.Bar.convertOptions(options));
@@ -243,22 +240,22 @@ $mediaMes = ($pesoTotal/$z);
                         $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL ORDER BY DT_MOVIMENTO ASC';
                         $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
 
+                        while(odbc_fetch_row($dados)): 
+                            $dataFormated = formatEuaDataToBrasilData(odbc_result($dados,"DT_MOVIMENTO"));
+                            $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO")); 
+                            if ($arrayData[1] == $mes && $arrayData[0] == $ano && odbc_result($dados,"TIPOMOV") == "11" && (odbc_result($dados,"CODPROD") == "000880" || odbc_result($dados,"CODPROD") == "000383")):
                     ?>
-                    <?php while(odbc_fetch_row($dados)): ?>
-                        <?php    $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO")); 
-                            if ($arrayData[1] == $mes && $arrayData[0] == $ano && odbc_result($dados,"TIPOMOV") == "11" && (odbc_result($dados,"CODPROD") == "000880" || odbc_result($dados,"CODPROD") == "000383")): ?>
 
                         <tbody>
                             <tr>
-                                <td style="text-align: center;"> <?php echo (substr(($arrayData[2]),0,2)."/".$arrayData[1]."/".$arrayData[0])  ?></td>
+                                <td style="text-align: center;"> <?=$dataFormated?></td>
                                 <td style="text-align: center;"> <?=odbc_result($dados,"QUANTIDADE").' kg'?> </td>
                             </tr>
                         </tbody>
-                    <?php endif ?>
-                <?php endwhile; ?>
+                            <?php endif ?>
+                  <?php endwhile; ?>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>

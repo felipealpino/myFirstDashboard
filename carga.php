@@ -42,7 +42,7 @@
                     </select>
                 </div>
                 
-                <div action="php_controller/busca_produto.php" class="form-busca-produtos-estoque">
+                <div class="form-busca-produtos-estoque">
                     <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar ..">
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                 </div>
@@ -57,9 +57,8 @@
                     }, false);
 
                     function buscar(myInput, selectionValue){
-                        //metodo ajax responsavel pela req
-                        $.ajax
-                                ({
+
+                        $.ajax  ({
                                     //Configurações
                                     type:'POST',    //metodo que está sendo utilizado
                                     dataType: 'html',   //tipo de dado que a página vai retornar
@@ -96,6 +95,7 @@
     <script src="plugins/package/dist/sweetalert2.all.min.js"></script>
     <script src="plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js"></script>
     <script src="js/all.js"></script>
+    <script src="js/carga.js"></script>
     <script src="js/googleCharts.js"></script>
 </body>
 </html>

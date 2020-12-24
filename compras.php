@@ -65,8 +65,8 @@ endwhile;
       function drawChart() {
         var data = google.visualization.arrayToDataTable([
           ['Year', '2019', '2020', '2021'],
+      
       <?php
-
         for($c=1; $c<=12; $c++): 
           $mesNome = findNomeMes($c) ?> //php_library/biblioteca.php
           ['<?=$mesNome?>', <?=$arrayObjMesesAno[$c-1]->Ano_2019?>, <?=$arrayObjMesesAno[$c-1]->Ano_2020 ?>, <?=$arrayObjMesesAno[$c-1]->Ano_2021?>],
@@ -92,9 +92,7 @@ endwhile;
             title: 'Relatório de compras',
           }
         };
-
         var chart = new google.charts.Bar(document.getElementById('dashboard-grafico-compras'));
-
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
     </script>
@@ -103,22 +101,21 @@ endwhile;
         <?php include 'all.php';?>
 
         <div class="right-side-dashboard">    
-            <div class="top-dashboard-mobile left-icon">
-                <div class="top-dashboard">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span>Compras</span>
-                </div>
-                <div class="open-close-mobile">
-                    <div class="open-close-mobile-icon">
-                        <i class="fas fa-align-justify"></i>
-                    </div>
-                </div>
-            </div>
+          <div class="top-dashboard-mobile left-icon">
+              <div class="top-dashboard">
+                <i class="fas fa-shopping-cart"></i>
+                <span>Compras</span>
+              </div>
+              <div class="open-close-mobile">
+                  <div class="open-close-mobile-icon">
+                    <i class="fas fa-align-justify"></i>
+                  </div>
+              </div>
+          </div>
 
-            <div class="content-dashboard compras">
-                <div id="dashboard-grafico-compras" class="dashboard-grafico-compras"></div>
-            </div>
-
+          <div class="content-dashboard compras">
+            <div id="dashboard-grafico-compras" class="dashboard-grafico-compras"></div>
+          </div>
         </div>
     </div>
 

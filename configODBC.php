@@ -1,4 +1,5 @@
 <?php
+    // phpinfo();
     $conn = odbc_connect('ATS','SYSDBA','masterkey') or die('Falha na Conexão');
 
     // $db_name = 'dashboard_loja';

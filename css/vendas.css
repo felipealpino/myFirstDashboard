@@ -5,9 +5,16 @@
 }
 
 .content-dashboard.vendas{
-    display: flex;
+    height: calc(100vh - 70px);
+    overflow-y: auto;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    display: grid;
+    grid-column: 900px;
+    grid-row: 500px 1fr;
+    justify-content: center;
+    grid-gap: 40px;
 }
 .dashboard-grafico-vendas{
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
@@ -20,14 +27,17 @@
     transform: scale(1.02);
 }
 .dashboard-grafico-vendas{
-    width: 500px;
+    width: 900px;
     height: 500px;
+}
+
+@media screen and (min-width:561px) and (max-width:1230px){
+    .dashboard-grafico-vendas{
+        transform: scale(0.8);
+    }
 }
 @media screen and (max-width:560px){
     .dashboard-grafico-vendas{
-        transform: scale(0.6);
-    }
-    .dashboard-grafico-vendas:hover{
-        transform: scale(0.6);
+        transform: scale(0.5);
     }
 }

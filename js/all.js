@@ -17,23 +17,3 @@ iconMobile.addEventListener('click', function(){
         leftSideBar.classList.add("hide");
     }
 });
-
-const cargaSelectValue = document.querySelector('select')
-cargaSelectValue.addEventListener('click', changePlaceHolder)
-function changePlaceHolder(){
-    const selectValue = document.querySelector('select').value
-    const buscarInput = document.getElementById('myInput')
-    buscarInput.placeholder = `Buscar ${selectValue}`
-}
-
-
-//produtos_estoque_filter
-// $(document).ready(function(){
-//     $("#myInput").on("keyup", function() {
-//       var value = $(this).val().toLowerCase();
-//       $("#myTable tr").filter(function() {
-//         $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-//       });
-//     });
-// });
-

@@ -55,6 +55,13 @@
                             <i class="fas fa-sign-out-alt"></i>
                             <a href="index.php">Logout</a>    
                         </li>
+                        <li>
+                            <?php
+                                $ip = file_get_contents('https://api.ipify.org');
+                                echo "My public IP address is: " . $ip;
+                            ?>
+                        </li>
+                        
                     </ul>
                 </div>
             </div>

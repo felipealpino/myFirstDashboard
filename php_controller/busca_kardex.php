@@ -1,11 +1,12 @@
 <?php 
-require '../configODBC.php';
+require '../configODBC.php';~
+require '../php_library/biblioteca.php';
 // $myInput = filter_input(INPUT_GET,'busca-descricao');
 $myInput = $_POST['myInput'];
 
 $myInput = strtoupper($myInput);
 if ($myInput === ''){
-    goto notfound;
+    goto notfound; //muitas linhas, sistema estava crachando 
 }
 
 // $sqlMVGERAL = "SELECT * FROM MVGERAL WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%') AND EMP LIKE '00'";
@@ -35,11 +36,12 @@ $dados = odbc_exec($conn, $sqlMVGERAL)  or die('Erro no sql');
                     <th>Total (R$)</th>     -->
                 </tr>
             </thead>
-        <?php while(odbc_fetch_row($dados)): ?>
-            <?php $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO")); ?> 
+        <?php while(odbc_fetch_row($dados)): 
+            $dataFormated = formatEuaDataToBrasilData(odbc_result($dados,"DT_MOVIMENTO"));
+        ?> 
             <tbody id="myTable">
                 <tr>
-                    <td style="text-align: center;"> <?php echo (substr(($arrayData[2]),0,2)."/".$arrayData[1]."/".$arrayData[0])  ?></td>
+                    <td style="text-align: center;"> <?=$dataFormated?></td>
                     <td> <?=odbc_result($dados,"DOCUMENTO")?> </td>
                     <td> <?=odbc_result($dados,"TIPOMOV")?> </td>
                     <td> <?=odbc_result($dados,"CODPROD")?> </td>

@@ -10,6 +10,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="plugins/package/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            
+            var data = google.visualization.arrayToDataTable([
+            ['Vendedor', 'Quantidade vendida'],
+            ['Camila <?='R$ 5000,00'?>',5],
+            ['Daniele',2],
+            ['Eduardo',2],
+            ['Janaina',22],
+            ['Lilas', 4],
+            ['Rosangela',20]
+            ]);
+
+            var options = {
+            title: 'Vendas por mês'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('dashboard-grafico-vendas'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
 
         <?php include 'all.php';?>
 
@@ -19,6 +45,7 @@
                     <i class="far fa-money-bill-alt"></i>
                     <span>Vendas</span>
                 </div>
+                
                 <div class="open-close-mobile">
                     <div class="open-close-mobile-icon">
                         <i class="fas fa-align-justify"></i>
