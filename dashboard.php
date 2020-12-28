@@ -31,10 +31,6 @@
                     <div class="dashboard-estoque">
                         <a href="estoque.php"><div id="dashboard-grafico-estoque" style="width: 100%; height:100%;"></div></a>
                     </div>
-
-                    <div class="dashboard-vendas">
-                        <a href="vendas.php"><div id="dashboard-grafico-vendas" style="width: 100%; height: 100%"></div></a>
-                    </div>
                 </div>
             </div>
         </div>
