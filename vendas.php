@@ -3,6 +3,7 @@
 require 'configODBC.php';
 require 'entities/Vendedor.php';
 require 'entities/VendaDataValor.php';
+require 'php_library/biblioteca.php';
 
 $mes = filter_input(INPUT_GET,"mes_vendas_name");
 $ano = filter_input(INPUT_GET,"ano_vendas_name");
@@ -83,12 +84,12 @@ if($mes && $ano){
             
             var data = google.visualization.arrayToDataTable([
             ['Vendedor', 'Quantidade vendida'],
-            ['Camila <?='R$ '.$somaVendas[3]?>',<?=$somaVendas[3]?>],
-            ['Daniele <?='R$ '.$somaVendas[5]?>',<?=$somaVendas[5]?>],
-            ['Eduardo <?='R$ '.$somaVendas[4]?>',<?=$somaVendas[4]?>],
-            ['Janaina <?='R$ '.$somaVendas[0]?>',<?=$somaVendas[0]?>],
-            ['Lilas <?='R$ '.$somaVendas[2]?>', <?=$somaVendas[2]?>],
-            ['Rosangela <?='R$ '.$somaVendas[1]?>',<?=$somaVendas[1]?>]
+            ['Camila <?='R$ '.formatNumberToReal($somaVendas[3]);?>',<?=$somaVendas[3]?>],
+            ['Daniele <?='R$ '.formatNumberToReal($somaVendas[5]);?>',<?=$somaVendas[5]?>],
+            ['Eduardo <?='R$ '.formatNumberToReal($somaVendas[4]);?>',<?=$somaVendas[4]?>],
+            ['Janaina <?='R$ '.formatNumberToReal($somaVendas[0]);?>',<?=$somaVendas[0]?>],
+            ['Lilas <?='R$ '.formatNumberToReal($somaVendas[2]);?>', <?=$somaVendas[2]?>],
+            ['Rosangela <?='R$ '.formatNumberToReal($somaVendas[1]);?>',<?=$somaVendas[1]?>]
             ]);
 
             var options = {
@@ -130,7 +131,9 @@ if($mes && $ano){
             <div class="content-dashboard vendas">
                 <div id="dashboard-grafico-vendas" class="dashboard-grafico-vendas"></div>
                 <div>
-                    <?php echo "Total vendido no mês: R$ ".$totalVendidoMes?>
+                    <?php
+                        echo "Total vendido no mês: R$ ".formatNumberToReal($totalVendidoMes)
+                    ?>
                 </div>
             </div>
             
