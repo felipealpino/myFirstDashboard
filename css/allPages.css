@@ -2,9 +2,30 @@ td{
     cursor: pointer;
 }
 
+/* Input mes e ano top dashboard */
+.form-top-dashboard-mes-ano{
+    margin-left: 20px;
+}
+.form-top-dashboard-mes-ano input{
+    text-align: center;
+}
+.submit_form_input{
+    padding: 2px;
+}
+.ano_form_span{
+    margin-left: 20px;
+}
+.form-top-dashboard-mes-ano input:last-child{
+    margin-left: 20px;
+}
+
+
+
 .top-dashboard{
     width: fit-content;
 }
+
+
 
 .open-close-mobile{
     display: flex;
@@ -15,9 +36,11 @@ td{
     justify-content: space-between;
 }
 
+
 .content-dashboard{
     padding-top: 30px;
 }
+
 
 .hide {
     margin-left: -250px;

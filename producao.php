@@ -31,6 +31,8 @@ if($mes && $ano) {
         }
     }
 
+    // var_dump($myArray);
+
     // $myArraySize = (count($myArray)-1);
     $pesoDia = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];  //DECLAREI ASSIM PORQUE ESTAVA DANDO ERROR
 
@@ -136,6 +138,7 @@ if($mes && $ano) {
 $z= 0;
 $pesoTotal = 0;
 
+//Calculando média por dia produzido
 for($contador=0; $contador<count($pesoDia); $contador++){
     if($pesoDia[$contador] !== 0 ){
         $pesoTotal += $pesoDia[$contador];
@@ -204,7 +207,7 @@ $mediaMes = ($pesoTotal/$z);
                     <i class="fas fa-hammer"></i>
                     <span>Produção</span>
                         
-                    <form action="producao.php" method="GET" class="form-producao">
+                    <form action="producao.php" method="GET" class="form-top-dashboard-mes-ano">
                         <span>Mês:</span>
                         <input type="number" value="<?=date("m");?>" name="mes_producao_name" min="1" max="12" id="mes_producao_id" required>
                         <span class="ano_form_span">Ano:</span>

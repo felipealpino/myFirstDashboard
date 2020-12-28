@@ -1,3 +1,68 @@
+<?php
+
+require 'configODBC.php';
+require 'entities/Vendedor.php';
+require 'entities/VendaDataValor.php';
+
+$mes = filter_input(INPUT_GET,"mes_vendas_name");
+$ano = filter_input(INPUT_GET,"ano_vendas_name");
+
+if(!$mes && !$ano){
+    $mes = date('m');
+    $ano = date('Y');
+}
+
+if($mes && $ano){
+    $sqlENCEFAT = 'SELECT CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO FROM ENCEFAT '; 
+    $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
+    $myArray = [];
+
+    while(odbc_fetch_row($dados)){
+        $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
+        if ($arrayData[1] == $mes && $arrayData[0] == $ano){
+            $vendedor = new Vendedor(
+                odbc_result($dados, "CODVENDEDOR"),
+                [odbc_result($dados,"DT_MOVIMENTO"),odbc_result($dados, "VLRRECEBER")],
+            );
+            array_push($myArray, $vendedor);
+        }
+    }
+
+    $somaVendas = [0,0,0,0,0,0]; //começa aqui o erro da OO    
+
+    foreach ($myArray as $value){
+        // var_dump($value->getVendaDataAndValor()->getValor_venda())."<br>";
+        switch($value->getCodVendedor()){
+            case '0002':
+                $somaVendas[0] += $value->getVendaDataAndValor()->getValor_venda();   
+                break;
+            case '0012':
+                $somaVendas[1] += $value->getVendaDataAndValor()->getValor_venda();
+                break;
+            case '0057':
+                $somaVendas[2] += $value->getVendaDataAndValor()->getValor_venda();
+                break;
+            case '0056':
+                $somaVendas[3] += $value->getVendaDataAndValor()->getValor_venda();
+                break;
+            case '0047':
+                $somaVendas[4] += $value->getVendaDataAndValor()->getValor_venda();
+                break;
+            case '0058':
+                $somaVendas[5] += $value->getVendaDataAndValor()->getValor_venda();
+                break;
+        }
+    }
+
+    $totalVendidoMes = 0;
+    foreach($somaVendas as $item){
+        $totalVendidoMes += $item;
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -18,12 +83,12 @@
             
             var data = google.visualization.arrayToDataTable([
             ['Vendedor', 'Quantidade vendida'],
-            ['Camila <?='R$ 5000,00'?>',5],
-            ['Daniele',2],
-            ['Eduardo',2],
-            ['Janaina',22],
-            ['Lilas', 4],
-            ['Rosangela',20]
+            ['Camila <?='R$ '.$somaVendas[3]?>',<?=$somaVendas[3]?>],
+            ['Daniele <?='R$ '.$somaVendas[5]?>',<?=$somaVendas[5]?>],
+            ['Eduardo <?='R$ '.$somaVendas[4]?>',<?=$somaVendas[4]?>],
+            ['Janaina <?='R$ '.$somaVendas[0]?>',<?=$somaVendas[0]?>],
+            ['Lilas <?='R$ '.$somaVendas[2]?>', <?=$somaVendas[2]?>],
+            ['Rosangela <?='R$ '.$somaVendas[1]?>',<?=$somaVendas[1]?>]
             ]);
 
             var options = {
@@ -44,6 +109,15 @@
                 <div class="top-dashboard">
                     <i class="far fa-money-bill-alt"></i>
                     <span>Vendas</span>
+
+                    <form action="vendas.php" method="GET" class="form-top-dashboard-mes-ano">
+                        <span>Mês:</span>
+                        <input type="number" value="<?=date("m");?>" name="mes_vendas_name" min="1" max="12" id="mes_producao_id" required>
+                        <span class="ano_form_span">Ano:</span>
+                        <input type="number" value="<?=date("Y");?>" name="ano_vendas_name" min="2017" max="<?=(date('Y')+1);?>" id="ano_producao_id" required>
+                        <input type="submit" value="Modificar" class="submit_form_input">
+                    </form>
+
                 </div>
                 
                 <div class="open-close-mobile">
@@ -55,7 +129,11 @@
 
             <div class="content-dashboard vendas">
                 <div id="dashboard-grafico-vendas" class="dashboard-grafico-vendas"></div>
+                <div>
+                    <?php echo "Total vendido no mês: R$ ".$totalVendidoMes?>
+                </div>
             </div>
+            
 
         </div>
     </div>
