@@ -1,5 +1,35 @@
 <?php
 
+function findNomeVendedor($codVendedor){
+  switch($codVendedor){
+    case '0002':
+      $nomeVendedor = 'Janaina';
+      break;
+    case '0012':
+      $nomeVendedor = 'Rosangela';
+      break;
+    case '0057':
+      $nomeVendedor = 'Lilas';
+      break;
+    case '0056':
+      $nomeVendedor = 'Camila';
+      break;
+    case '0047':
+      $nomeVendedor = 'Eduardo';
+      break;
+    case '0058':
+      $nomeVendedor = 'Daniele';
+      break;
+    case '0055':
+      $nomeVendedor = 'Dlucca';
+      break;
+    default:
+      $nomeVendedor = $codVendedor;
+      break;
+  }
+  return $nomeVendedor;
+}
+
 function findNomeMes($c){
     $mesNome = '';
     switch($c):

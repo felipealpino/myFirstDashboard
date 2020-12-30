@@ -8,6 +8,8 @@ require 'php_library/biblioteca.php';
 $mes = filter_input(INPUT_GET,"mes_vendas_name");
 $ano = filter_input(INPUT_GET,"ano_vendas_name");
 
+var_dump($mes,$ano);
+
 if(!$mes && !$ano){
     $mes = date('m');
     $ano = date('Y');
@@ -17,43 +19,29 @@ if($mes && $ano){
     $sqlENCEFAT = 'SELECT CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO FROM ENCEFAT '; 
     $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
     $myArray = [];
-
+    $vendedoresMes = [];
     while(odbc_fetch_row($dados)){
+        $codVendedor = odbc_result($dados, "CODVENDEDOR");
         $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
         if ($arrayData[1] == $mes && $arrayData[0] == $ano){
             $vendedor = new Vendedor(
-                odbc_result($dados, "CODVENDEDOR"),
+                $codVendedor,
                 [odbc_result($dados,"DT_MOVIMENTO"),odbc_result($dados, "VLRRECEBER")],
             );
             array_push($myArray, $vendedor);
+            if(array_search($codVendedor, $vendedoresMes) === false){
+                array_push($vendedoresMes,$codVendedor);
+            }
         }
     }
 
-    // var_dump($myArray);
+    $somaVendas = array_fill(0,count($vendedoresMes),0);  
 
-    $somaVendas = [0,0,0,0,0,0]; //começa aqui o erro da OO    
-
-    foreach ($myArray as $value){
-        // var_dump($value->getVendaDataAndValor()->getValor_venda())."<br>";
-        switch($value->getCodVendedor()){
-            case '0002':
-                $somaVendas[0] += $value->getVendaDataAndValor()->getValor_venda();   
-                break;
-            case '0012':
-                $somaVendas[1] += $value->getVendaDataAndValor()->getValor_venda();
-                break;
-            case '0057':
-                $somaVendas[2] += $value->getVendaDataAndValor()->getValor_venda();
-                break;
-            case '0056':
-                $somaVendas[3] += $value->getVendaDataAndValor()->getValor_venda();
-                break;
-            case '0047':
-                $somaVendas[4] += $value->getVendaDataAndValor()->getValor_venda();
-                break;
-            case '0058':
-                $somaVendas[5] += $value->getVendaDataAndValor()->getValor_venda();
-                break;
+    foreach ($myArray as $value){        
+        for($i=0; $i<count($vendedoresMes); $i++){
+            if($value->getCodVendedor() === $vendedoresMes[$i]){
+                $somaVendas[$i] += $value->getVendaDataAndValor()->getValor_venda();
+            }
         }
     }
 
@@ -61,6 +49,8 @@ if($mes && $ano){
     foreach($somaVendas as $item){
         $totalVendidoMes += $item;
     }
+
+    // var_dump($vendedoresMes,"<br>",count($vendedoresMes),"<br>",$somaVendas);
 
 }
 
@@ -86,19 +76,14 @@ if($mes && $ano){
             
             var data = google.visualization.arrayToDataTable([
             ['Vendedor', 'Quantidade vendida'],
-            ['Camila <?='R$ '.formatNumberToReal($somaVendas[3]);?>',<?=$somaVendas[3]?>],
-            ['Daniele <?='R$ '.formatNumberToReal($somaVendas[5]);?>',<?=$somaVendas[5]?>],
-            ['Eduardo <?='R$ '.formatNumberToReal($somaVendas[4]);?>',<?=$somaVendas[4]?>],
-            ['Janaina <?='R$ '.formatNumberToReal($somaVendas[0]);?>',<?=$somaVendas[0]?>],
-            ['Lilas <?='R$ '.formatNumberToReal($somaVendas[2]);?>', <?=$somaVendas[2]?>],
-            ['Rosangela <?='R$ '.formatNumberToReal($somaVendas[1]);?>',<?=$somaVendas[1]?>]
+            <?php for($i=0; $i<count($vendedoresMes); $i++): 
+                $nomeVendedor = findNomeVendedor($vendedoresMes[$i]); ?> 
+                ['<?= $nomeVendedor.' R$ '.formatNumberToReal($somaVendas[$i])?>', <?=$somaVendas[$i]?>],
+            <?php endfor ?>    
             ]);
-
-            <?php
-                $mesNome = findNomeMes($mes);
-            ?>
-
+            
             var options = {
+            <?php $mesNome = findNomeMes($mes);?>
             title: 'Vendas por mês - <?=$mesNome?>'
             };
 
@@ -119,9 +104,9 @@ if($mes && $ano){
 
                     <form action="vendas.php" method="GET" class="form-top-dashboard-mes-ano">
                         <span>Mês:</span>
-                        <input type="number" value="<?=date("m");?>" name="mes_vendas_name" min="1" max="12" id="mes_producao_id" required>
+                        <input type="number" value="<?=$_GET['mes_vendas_name'];?>" name="mes_vendas_name" min="1" max="12" id="mes_producao_id" required>
                         <span class="ano_form_span">Ano:</span>
-                        <input type="number" value="<?=date("Y");?>" name="ano_vendas_name" min="2017" max="<?=(date('Y')+1);?>" id="ano_producao_id" required>
+                        <input type="number" value="<?=$_GET['ano_vendas_name'];?>" name="ano_vendas_name" min="2017" max="<?=(date('Y')+1);?>" id="ano_producao_id" required>
                         <input type="submit" value="Modificar" class="submit_form_input">
                     </form>
 
@@ -137,9 +122,7 @@ if($mes && $ano){
             <div class="content-dashboard vendas">
                 <div id="dashboard-grafico-vendas" class="dashboard-grafico-vendas"></div>
                 <div>
-                    <?php
-                        echo "Total vendido no mês: R$ ".formatNumberToReal($totalVendidoMes)
-                    ?>
+                    <?php echo "Total vendido no mês: R$ ".formatNumberToReal($totalVendidoMes) ?>
                 </div>
             </div>
             
