@@ -29,6 +29,8 @@ if($mes && $ano){
         }
     }
 
+    // var_dump($myArray);
+
     $somaVendas = [0,0,0,0,0,0]; //começa aqui o erro da OO    
 
     foreach ($myArray as $value){
@@ -92,8 +94,12 @@ if($mes && $ano){
             ['Rosangela <?='R$ '.formatNumberToReal($somaVendas[1]);?>',<?=$somaVendas[1]?>]
             ]);
 
+            <?php
+                $mesNome = findNomeMes($mes);
+            ?>
+
             var options = {
-            title: 'Vendas por mês'
+            title: 'Vendas por mês - <?=$mesNome?>'
             };
 
             var chart = new google.visualization.PieChart(document.getElementById('dashboard-grafico-vendas'));

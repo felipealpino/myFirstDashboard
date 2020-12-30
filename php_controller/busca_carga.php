@@ -25,7 +25,7 @@ $sqlAll =   "SELECT CARGA2.CODPEDIDO, CARGA2.CLIENTE, CARGA2.REFERENCIA, CARGA2.
             -- INNER JOIN FICHATECNICAI
             -- ON CARGA2.CODPROD = FICHATECNICAI.CODPROD
             WHERE ($selectedValue LIKE '%$myInput%')
-            ORDER BY CLIENTE ASC";
+            ORDER BY DATAPENTREGA ASC";
 
 $dados = odbc_exec($conn,$sqlAll)  or die('Erro no sql');
 ?>

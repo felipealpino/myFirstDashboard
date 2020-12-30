@@ -35,10 +35,10 @@
                 <div class="select-filter-carga">
                     <label for="filterCarga" id="filterCargaId">Escolha que deseja filtrar</label>
                     <select name="filtragem-carga" id="filterCargaSelect">
-                        <option value="CLIENTE">Cliente</option>
+                        <option value="CLIENTE">Cliente || CodCliente</option>
                         <option value="REFERENCIA">Referencia</option>
                         <option value="DESCRICAO">Descrição</option>
-                        <option value="CODPROD">Código do pedido</option>
+                        <option value="CODPEDIDO">Código do pedido</option>
                     </select>
                 </div>
                 
