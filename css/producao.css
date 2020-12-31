@@ -31,6 +31,16 @@
     height: 500px;
 }
 
+.dados_finais_producao_mes{
+    border: 1px solid black;
+    margin-bottom: 5px;
+    padding: 5px;
+    width: fit-content
+}
+
+
+
+
 @media screen and (min-width:561px) and (max-width:1230px){
     .dashboard-grafico-producao{
         transform: scale(0.8);

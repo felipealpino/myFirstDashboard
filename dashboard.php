@@ -28,9 +28,10 @@
 
             <div class="content-dashboard">
                 <div class="content-dashboard-grid">
-                    <div class="dashboard-estoque">
-                        <a href="estoque.php"><div id="dashboard-grafico-estoque" style="width: 100%; height:100%;"></div></a>
-                    </div>
+                    <div class="dashboard_rel_carga">carga</div>
+                    <div class="dashboard_rel_vendas">vendas</div>
+                    <div class="dashboard_rel_estoque">estoque</div>
+                    <div class="dashboard_rel_producao">producao</div>
                 </div>
             </div>
         </div>

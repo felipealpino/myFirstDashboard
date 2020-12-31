@@ -1,6 +1,7 @@
 <?php
 require 'configODBC.php';
 require 'php_library/biblioteca.php';
+require 'php_controller/dataAccessObject.php';
 
 $mes = filter_input(INPUT_GET,'mes_producao_name');
 $ano = filter_input(INPUT_GET,'ano_producao_name');
@@ -13,8 +14,7 @@ if (!$mes && !$ano){
 
 // Manipulando valores $mes e $ano caso passados pelo form
 if($mes && $ano) {
-    $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL';
-    $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
+    $dados = producaoAccessData();
     $myArray = [];
 
     while(odbc_fetch_row($dados)){
@@ -229,7 +229,11 @@ $mediaMes = ($pesoTotal/$z);
                 <div id="dashboard-grafico-producao" class="dashboard-grafico-producao" ></div>
                 
                 <div class="producao-table-values">
-                    <div><?='Média produzida por dia: '.round($mediaMes,2).' kg' ?></div>
+                    <div class="dados_finais_producao_mes">
+                        <div><?='Total produzido no mês: '.formatNumberToReal($pesoTotal).' kg'?></div>
+                        <div><?='Total dias trabalhados no mês: '.$z.' dias'?></div>
+                        <div><?='Média produzida por dia: '.formatNumberToReal($mediaMes).' kg' ?></div>
+                    </div>
                     <table class="table sortable table-sm table-bordered table-hover tabela-produtos">
                         <thead class="thead_produtos_estoque">
                             <tr>
@@ -240,9 +244,7 @@ $mediaMes = ($pesoTotal/$z);
                         </thead>
                     
                     <?php //Fazendo consulta SQL novamente (não estava funcionando com a do inicio da página) 
-                        $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL ORDER BY DT_MOVIMENTO ASC';
-                        $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
-
+                        $dados = producaoAccessData();
                         while(odbc_fetch_row($dados)): 
                             $dataFormated = formatEuaDataToBrasilData(odbc_result($dados,"DT_MOVIMENTO"));
                             $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO")); 

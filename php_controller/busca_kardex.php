@@ -1,6 +1,7 @@
 <?php 
 require '../configODBC.php';~
 require '../php_library/biblioteca.php';
+require 'dataAccessObject.php';
 // $myInput = filter_input(INPUT_GET,'busca-descricao');
 $myInput = $_POST['myInput'];
 
@@ -9,15 +10,8 @@ if ($myInput === ''){
     goto notfound; //muitas linhas, sistema estava crachando 
 }
 
-// $sqlMVGERAL = "SELECT * FROM MVGERAL WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%') AND EMP LIKE '00'";
-$sqlMVGERAL = "SELECT * FROM 
-              (SELECT MVGERAL.CODEMPRESA, MVGERAL.DT_MOVIMENTO, MVGERAL.DOCUMENTO, MVGERAL.CODPROD, MVGERAL.TIPOMOV, MVGERAL.QUANTIDADE,VW_PRODUTO.EMP, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO
-               FROM MVGERAL
-               INNER JOIN VW_PRODUTO
-               ON MVGERAL.CODPROD = VW_PRODUTO.CODPROD) 
-               WHERE ((DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR DOCUMENTO LIKE '%$myInput%') AND (CODEMPRESA LIKE '00' AND EMP LIKE '00'))";
+$dados = kardexAccessData($myInput);
 
-$dados = odbc_exec($conn, $sqlMVGERAL)  or die('Erro no sql');
 ?>
 
 <div class="content-table"> 

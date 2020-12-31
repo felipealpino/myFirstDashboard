@@ -1,17 +1,11 @@
 <?php 
 require '../configODBC.php';
 require '../php_library/biblioteca.php';
+require 'dataAccessObject.php';
 $myInput = $_POST['myInput'];
 $myInput = getIdFIchaTecnicaSintaxe($myInput); 
 
-$sqlVW_PRODUTO =   "SELECT * FROM 
-                   (SELECT VW_PRODUTO.EMP, VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, FICHATECNICAI.IDFICHATECNICA, FICHATECNICAI.QUANTIDADE, FICHATECNICAI.PRECOCUSTO, FICHATECNICAI.SOMA
-                    FROM VW_PRODUTO
-                    INNER JOIN FICHATECNICAI
-                    ON VW_PRODUTO.CODPROD = FICHATECNICAI.CODPROD) 
-                    WHERE (IDFICHATECNICA LIKE '%$myInput%' AND EMP LIKE '00')";
-
-$dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
+$dados = composicoesAccessData($myInput);
 
 ?>
 

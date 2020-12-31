@@ -1,37 +1,13 @@
 <?php 
 require '../configODBC.php';
 require '../php_library/biblioteca.php';
+require 'dataAccessObject.php';
+
 $myInput = $_POST['myInput'];
 $myInput = strtoupper($myInput);
-
 $radioValue = $_POST['radioValue'];
 
-$sqlVW_PRODUTO =   "SELECT VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA, PRODUTO.IDFICHATECNICA 
-                    FROM VW_PRODUTO
-                    INNER JOIN PRODUTO
-                    ON VW_PRODUTO.CODPROD = PRODUTO.CODPROD 
-                    WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR CODPROD LIKE '%$myInput%')
-                    ORDER BY ESTOQUE $radioValue ";
- 
-
-$dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
-
-// $sqlVW_PRODUTO = "SELECT * FROM VW_PRODUTO WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%') AND EMP LIKE '00'";
-// $dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
-
-// $sqlPRODUTO = 'SELECT CODPROD,CODFAMILIA,IDFICHATECNICA from PRODUTO';
-// $dadosFamilia = odbc_exec($conn, $sqlPRODUTO) or die('Erro no sql');
-// $myArray = [];
-// while(odbc_fetch_row($dadosFamilia)){  
-//     array_push($myArray, (object)[
-//         'codprod' => odbc_result($dadosFamilia,"CODPROD"),
-//         'codfamilia' => odbc_result($dadosFamilia,"CODFAMILIA"),
-//         'idfichatec' =>odbc_result($dadosFamilia,"IDFICHATECNICA"),
-//     ]);
-// }
-// $idFichaTec = '';
-// $codFamilia = '';
-
+$dados = produtosAccessData($myInput, $radioValue);
 
 ?>
 
