@@ -146,7 +146,11 @@ for($contador=0; $contador<count($pesoDia); $contador++){
     }
 }
 
-$mediaMes = ($pesoTotal/$z);
+if($z !== 0){
+    $mediaMes = ($pesoTotal/$z);
+} else {
+    $mediaMes = 0;
+}
 
 ?>
 
@@ -235,7 +239,7 @@ $mediaMes = ($pesoTotal/$z);
                         <div><?='Média produzida por dia: '.formatNumberToReal($mediaMes).' kg' ?></div>
                     </div>
                     <table class="table sortable table-sm table-bordered table-hover tabela-produtos">
-                        <thead class="thead_produtos_estoque">
+                        <thead class="thead_produtos">
                             <tr>
                                 <th style="text-align: center;">Dia</th>
                                 <th style="text-align: center;">Quant.</th>

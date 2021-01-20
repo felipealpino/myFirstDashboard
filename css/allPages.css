@@ -21,6 +21,12 @@ td{
 
 
 
+.header_texto{
+    font-family: 'Montserrat', sans-serif;
+    font-size:20px;
+    padding-top: 10px;
+}
+
 .top-dashboard{
     width: fit-content;
 }
@@ -117,6 +123,20 @@ div.list-left-side ul li svg{
     border: 1px solid red;
 }
 
+.form-control.input-busca{
+    width: 300px;
+}
+.thead_produtos tr{
+    background-color:#A2D0FF;
+    text-transform: uppercase;
+}
+.thead_produtos tr th{
+    width: min-content;
+    padding: 5px;
+}
+
+
+
 div.top-dashboard-mobile svg{
     margin-right: 35px;
     color: #7B75FF;
@@ -135,3 +155,6 @@ div.top-dashboard-mobile.left-icon svg{
     margin-right: 25px;
 }
 
+.selected{
+    background-color: #7c75fc1e !important;
+}

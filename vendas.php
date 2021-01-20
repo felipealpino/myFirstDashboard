@@ -4,11 +4,10 @@ require 'configODBC.php';
 require 'entities/Vendedor.php';
 require 'entities/VendaDataValor.php';
 require 'php_library/biblioteca.php';
+require 'php_controller/dataAccessObject.php';
 
 $mes = filter_input(INPUT_GET,"mes_vendas_name");
 $ano = filter_input(INPUT_GET,"ano_vendas_name");
-
-var_dump($mes,$ano);
 
 if(!$mes && !$ano){
     $mes = date('m');
@@ -16,8 +15,7 @@ if(!$mes && !$ano){
 }
 
 if($mes && $ano){
-    $sqlENCEFAT = 'SELECT CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO FROM ENCEFAT '; 
-    $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
+    $dados = vendasAccessData();
     $myArray = [];
     $vendedoresMes = [];
     while(odbc_fetch_row($dados)){
@@ -104,9 +102,9 @@ if($mes && $ano){
 
                     <form action="vendas.php" method="GET" class="form-top-dashboard-mes-ano">
                         <span>Mês:</span>
-                        <input type="number" value="<?=$_GET['mes_vendas_name'];?>" name="mes_vendas_name" min="1" max="12" id="mes_producao_id" required>
+                        <input type="number" value="<?=date('m');?>" name="mes_vendas_name" min="1" max="12" id="mes_producao_id" required>
                         <span class="ano_form_span">Ano:</span>
-                        <input type="number" value="<?=$_GET['ano_vendas_name'];?>" name="ano_vendas_name" min="2017" max="<?=(date('Y')+1);?>" id="ano_producao_id" required>
+                        <input type="number" value="<?=date('Y');?>" name="ano_vendas_name" min="2017" max="<?=(date('Y')+1);?>" id="ano_producao_id" required>
                         <input type="submit" value="Modificar" class="submit_form_input">
                     </form>
 

@@ -30,18 +30,34 @@
             <div class="container-main">
             <div class="header-produtos">
                 <div class="header-pagina-produtos">
-                    <h2 class="produtos_estoque_h2">Relatório de carga</h2>
+                    <h2 class="header_texto">Relatório de carga</h2>
                 </div>
-                <div class="select-filter-carga">
-                    <label for="filterCarga" id="filterCargaId">Escolha que deseja filtrar</label>
-                    <select name="filtragem-carga" id="filterCargaSelect">
-                        <option value="CLIENTE">Cliente || CodCliente</option>
-                        <option value="REFERENCIA">Referencia</option>
-                        <option value="DESCRICAO">Descrição</option>
-                        <option value="CODPEDIDO">Código do pedido</option>
-                    </select>
+
+                <div class="inputs-select-filter-carga">
+                    <div class="select-filter-carga">
+                        <div class="select-filter-carga--data">
+                            <div><span>Data inicial:</span></div> 
+                            <input type="date" name="" id="">
+                        </div>
+
+                        <div class="select-filter-carga--data">
+                            <div><span>Data final:</span></div>  
+                            <input type="date" name="" id="">
+                        </div>
+
+                        <div class="select-filter-carga--option">
+                            <div><label for="filterCarga" id="filterCargaId">Escolha que deseja filtrar</label></div> 
+                            <div><select name="filtragem-carga" id="filterCargaSelect">
+                                <option value="CLIENTE">Cliente ou CodCliente</option>
+                                <option value="CODPEDIDO">Código do pedido</option>
+                                <option value="STATUS">Situação</option>
+                                <option value="REFERENCIA">Referencia</option>
+                                <option value="DESCRICAO">Descrição</option>
+                            </select></div> 
+                        </div>
+                    </div>
                 </div>
-                
+
                 <div class="form-busca-produtos-estoque">
                     <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar ..">
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
@@ -53,11 +69,11 @@
                 <script>
                     document.getElementById('buscar-produto').addEventListener('click', function(){
                         const selectValue = document.querySelector('select').value
-                            buscar($("#myInput").val(), selectValue)
+                        const settedDates = document.querySelectorAll('.select-filter-carga--data input');
+                            buscar($("#myInput").val(), selectValue, settedDates[0].value, settedDates[1].value)
                     }, false);
 
-                    function buscar(myInput, selectionValue){
-
+                    function buscar(myInput, selectionValue, dataInicial, dataFinal){
                         $.ajax  ({
                                     //Configurações
                                     type:'POST',    //metodo que está sendo utilizado
@@ -68,6 +84,8 @@
                                     },
                                     data: {myInput:myInput,
                                            selectionValue:selectionValue,
+                                           dataInicial:dataInicial,
+                                           dataFinal:dataFinal,
                                           },    //Dados para consulta
                                     
                                     //funcao que sera executada quando a solicitação for finalizada.

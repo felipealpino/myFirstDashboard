@@ -6,16 +6,16 @@ require 'dataAccessObject.php';
 $myInput = $_POST['myInput'];
 $myInput = strtoupper($myInput);
 $selectedValue = $_POST['selectionValue'];
-
-$dados = cargaAccessData($myInput, $selectedValue);
-
+$dataInicial = $_POST['dataInicial'];
+$dataFinal = $_POST['dataFinal'];
+$dados = cargaAccessData($myInput, $selectedValue, $dataInicial, $dataFinal);
 ?>
 
 
 <div class="content-table"> 
     <?php if(odbc_fetch_row($dados) > 0){ ?>
     <table class="table sortable table-sm table-bordered table-hover tabela-produtos">
-        <thead class="thead_produtos_estoque">
+        <thead class="thead_produtos">
             <tr>
                 <th style="text-align: center;">Doc.</th>
                 <th>Nome do cliente</th>

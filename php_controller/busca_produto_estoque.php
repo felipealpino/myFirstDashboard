@@ -14,7 +14,7 @@ $dados = produtosAccessData($myInput, $radioValue);
 <div class="content-table"> 
     <?php if(odbc_fetch_row($dados) > 0){ ?>
     <table class="table sortable table-sm table-bordered table-hover tabela-produtos">
-            <thead class="thead_produtos_estoque">
+            <thead class="thead_produtos">
                 <tr>
                     <th>Ficha Tec</th>
                     <th>Código</th>

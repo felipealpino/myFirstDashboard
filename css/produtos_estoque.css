@@ -4,11 +4,6 @@
     box-sizing: border-box;
 }
 
-.produtos_estoque_h2{
-    font-family: 'Montserrat', sans-serif;
-    font-size:25px;
-    padding-top: 10px;
-}
 .form-busca-produtos-estoque{
     display: flex;
     align-items: center;
@@ -59,17 +54,7 @@
     display: flex;
     justify-content: space-between;
 }
-.form-control.input-busca{
-    width: 300px;
-}
-.thead_produtos_estoque tr{
-    background-color:#A2D0FF;
-    text-transform: uppercase;
-}
-.thead_produtos_estoque tr th{
-    width: min-content;
-    padding: 0px;
-}
+
 #myTable tr td {
     font-size: 13px;
 }

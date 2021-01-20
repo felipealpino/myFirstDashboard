@@ -17,3 +17,15 @@ iconMobile.addEventListener('click', function(){
         leftSideBar.classList.add("hide");
     }
 });
+
+
+const itensLeftSideToSelect = document.querySelectorAll(".list-left-side ul li");
+const txtTopSpan = document.querySelector(".top-dashboard span").innerText;
+function checkMenuLeftSite(){
+    itensLeftSideToSelect.forEach(item => {
+        if((item.innerText).trim()  == (txtTopSpan).trim()){
+            item.classList.add("selected");
+        }
+    });
+}
+checkMenuLeftSite();

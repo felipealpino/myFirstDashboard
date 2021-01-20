@@ -30,7 +30,7 @@
         <div class="container-main">
             <div class="header-produtos">
                 <div class="header-pagina-produtos">
-                    <h2 class="produtos_estoque_h2">Relatório de produtos</h2>
+                    <h2 class="header_texto">Relatório de produtos</h2>
                 </div>
                 <div class="form-busca-produtos-estoque">
                     <div class="option-buttons"> 

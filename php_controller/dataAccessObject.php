@@ -1,17 +1,25 @@
 <?php 
 // require '../configODBC.php';
 
-function cargaAccessData ($myInput, $selectedValue){
+function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
     require '../configODBC.php';
+    
+    // $arrData = explode("-",$dataInicial);
+    // $dataInicial = $arrData[2]."-".$arrData[1]."-".$arrData[0];
+
+    // $arrData = explode("-",$dataFinal);
+    // $dataFinal = $arrData[2]."-".$arrData[1]."-".$arrData[0];
+    
+    //105	dd-mm-yyyy
     $sqlAll =   "SELECT CARGA2.CODPEDIDO, CARGA2.CLIENTE, CARGA2.REFERENCIA, CARGA2.DESCRICAO, CARGA2.QUANTIDADE, CARGA2.DATAPENTREGA, CARGA2.CIDADE, CARGA2.STATUS, CARGA2.VENDEDOR
             FROM CARGA2
-            -- INNER JOIN FICHATECNICAI
-            -- ON CARGA2.CODPROD = FICHATECNICAI.CODPROD
-            WHERE ($selectedValue LIKE '%$myInput%')
+            WHERE ($selectedValue LIKE '%$myInput%') --AND (CONVERT(varchar(10), DATAPENTREGA, 105) <= $dataInicial AND CONVERT(varchar(10), DATAPENTREGA, 105) >= $dataFinal)
             ORDER BY DATAPENTREGA ASC";
     $dados = odbc_exec($conn, $sqlAll)  or die('Erro no sql');
     return $dados;
 }
+
+
 
 function composicoesAccessData($myInput){
     require '../configODBC.php';
@@ -24,6 +32,8 @@ function composicoesAccessData($myInput){
     $dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
     return $dados;
 }
+
+
 
 function kardexAccessData($myInput){
     require '../configODBC.php';
@@ -39,6 +49,8 @@ function kardexAccessData($myInput){
     return $dados;
 }
 
+
+
 function produtosAccessData($myInput, $radioValue){
     require '../configODBC.php';
     $sqlVW_PRODUTO =   "SELECT VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA, PRODUTO.IDFICHATECNICA 
@@ -51,10 +63,21 @@ function produtosAccessData($myInput, $radioValue){
     return $dados;
 }
 
+
+
 function producaoAccessData(){
     require 'configODBC.php';
     $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL';
     $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
+    return $dados;
+}
+
+
+
+function vendasAccessData(){
+    require 'configODBC.php';
+    $sqlENCEFAT = 'SELECT CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO FROM ENCEFAT '; 
+    $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
     return $dados;
 }
 

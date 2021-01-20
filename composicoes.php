@@ -30,7 +30,7 @@
             <div class="container-main">
             <div class="header-produtos">
                 <div class="header-pagina-produtos">
-                    <h2 class="produtos_estoque_h2">Relatório de composições</h2>
+                    <h2 class="header_texto">Relatório de composições</h2>
                 </div>
                 <div class="form-busca-produtos-estoque">
                     <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar ficha técnica..">
