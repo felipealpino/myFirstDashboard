@@ -8,12 +8,17 @@ $myInput = strtoupper($myInput);
 $selectedValue = $_POST['selectionValue'];
 $dataInicial = $_POST['dataInicial'];
 $dataFinal = $_POST['dataFinal'];
+
+if ($myInput === ''){
+    goto notfound; //muitas linhas, sistema estava crachando 
+}
+
 $dados = cargaAccessData($myInput, $selectedValue, $dataInicial, $dataFinal);
 ?>
 
 
 <div class="content-table"> 
-    <?php if(odbc_fetch_row($dados) > 0){ ?>
+    <?php if(odbc_fetch_row($dados) > 0 && $myInput !== ""){ ?>
     <table class="table sortable table-sm table-bordered table-hover tabela-produtos">
         <thead class="thead_produtos">
             <tr>
@@ -51,5 +56,6 @@ $dados = cargaAccessData($myInput, $selectedValue, $dataInicial, $dataFinal);
 </div>
 
     <?php } else {
+        notfound:
         echo "<span class=\"span-produto-estoque-sem-produto\">Nenhum resultado encontrado ....</span>";
     } ?>

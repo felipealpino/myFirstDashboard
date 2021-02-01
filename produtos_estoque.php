@@ -33,12 +33,6 @@
                     <h2 class="header_texto">Relatório de produtos</h2>
                 </div>
                 <div class="form-busca-produtos-estoque">
-                    <div class="option-buttons"> 
-                        <input type="radio" class="option-button-produtos-estoque" id="ascRadio" name="sorting" value="ASC" checked>
-                        <label for="asc">A-Z</label><br>
-                        <input type="radio" class="option-button-produtos-estoque" id="descRadio" name="sorting" value="DESC">
-                        <label for="desc">Z-A</label><br>
-                    </div>
                     <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar referencia ou descrição..">
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                 </div>
@@ -48,16 +42,12 @@
                 <span class="span-produto-estoque-sem-produto"> Utilize o filtro para localizar os produtos...</span>
                 <script>
                     document.getElementById('buscar-produto').addEventListener('click', function(){
-                        const optButtons = document.querySelectorAll('.option-button-produtos-estoque')
-                        if(optButtons[0].checked){
-                            radioValue = 'ASC';
-                        } else {
-                            radioValue = 'DESC';
-                        }
-                        buscar($("#myInput").val(),radioValue)
+                        ascendingAndDescending();
+                        buscar($("#myInput").val())
+                        
                     }, false);
 
-                    function buscar(myInput,radioValue){
+                    function buscar(myInput){
                         //metodo ajax responsavel pela req
                         $.ajax  ({
                                     //Configurações
@@ -67,20 +57,17 @@
                                     beforeSend: function(){
                                         $("#dados-tabela-produtos").html("Carregando....");
                                     },
-                                    data: {myInput: myInput,
-                                           radioValue: radioValue,
-                                    },  //Dados para consulta
+                                    data: {myInput: myInput}, //Dados para consulta
 
                                     //funcao que sera executada quando a solicitação for finalizada.
                                     success: function(msg){
                                         $("#dados-tabela-produtos").html(msg);
-                                    }
+                                    },
+                                    complete : function (data) {
+                                        ascendingAndDescending();
+                                    }        
                                 });
                     }
-
-                    // $("#buscar-produto").click(function () {
-                    //     buscar($("#myInput").val())
-                    // });
                 </script>
             </div>
         </div>

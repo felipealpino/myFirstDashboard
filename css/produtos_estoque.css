@@ -11,6 +11,8 @@
 .option-buttons{
     display: flex;
     align-items: center;
+    min-width: 100px;
+    max-width: 110px;
 }
 .option-buttons input{
     margin-right: 5px;

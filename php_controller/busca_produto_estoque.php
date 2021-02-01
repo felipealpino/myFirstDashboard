@@ -5,11 +5,11 @@ require 'dataAccessObject.php';
 
 $myInput = $_POST['myInput'];
 $myInput = strtoupper($myInput);
-$radioValue = $_POST['radioValue'];
 
-$dados = produtosAccessData($myInput, $radioValue);
+$dados = produtosAccessData($myInput);
 
 ?>
+
 
 <div class="content-table"> 
     <?php if(odbc_fetch_row($dados) > 0){ ?>
@@ -27,25 +27,27 @@ $dados = produtosAccessData($myInput, $radioValue);
                 </tr>
             </thead>
         
+            
+            <tbody id="myTable">
+
             <?php while(odbc_fetch_row($dados)): 
                 $nomeFamilia = findNomeFamilia(odbc_result($dados,"CODFAMILIA"));
             ?> 
-
-                <tbody id="myTable">
-                    <tr>
-                        <td> <?=odbc_result($dados,"IDFICHATECNICA") ?> </td>
-                        <td> <?=odbc_result($dados,"CODPROD")?> </td>
-                        <td> <?=odbc_result($dados,"REFERENCIA")?></td>
-                        <td> <?=odbc_result($dados,"DESCRICAO")?></td>
-                        <td> <?="R$ ".number_format(odbc_result($dados,"PRECO_CUSTO"),2)?></td>
-                        <td style="text-align: center;"> <?=number_format(odbc_result($dados,"ESTOQUE"),2)?></td>
-                        <td> <?="R$ ".number_format(odbc_result($dados,"ESTOQUE") * odbc_result($dados,"PRECO_CUSTO"),2); ?></td>
-                        <td> <?=$nomeFamilia ?> </td>
-                    </tr>
-                </tbody>
+                <tr>
+                    <td> <?=odbc_result($dados,"IDFICHATECNICA") ?> </td>
+                    <td> <?=odbc_result($dados,"CODPROD")?> </td>
+                    <td> <?=odbc_result($dados,"REFERENCIA")?></td>
+                    <td> <?=odbc_result($dados,"DESCRICAO")?></td>
+                    <td> <?="R$ ".number_format(odbc_result($dados,"PRECO_CUSTO"),2)?></td>
+                    <td style="text-align: center;"> <?=number_format(odbc_result($dados,"ESTOQUE"),2)?></td>
+                    <td> <?="R$ ".number_format(odbc_result($dados,"ESTOQUE") * odbc_result($dados,"PRECO_CUSTO"),2); ?></td>
+                    <td> <?=$nomeFamilia ?> </td>
+                </tr>
             <?php endwhile; ?>
+            </tbody>
     </table>
 </div>
-        <?php } else {
-            echo "<span class=\"span-produto-estoque-sem-produto\">Nenhum resultado encontrado ....</span>";
-        } ?>
+
+    <?php } else {
+        echo "<span class=\"span-produto-estoque-sem-produto\">Nenhum resultado encontrado ....</span>";
+    } ?>

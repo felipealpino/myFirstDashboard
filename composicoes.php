@@ -60,7 +60,10 @@
                                     //funcao que sera executada quando a solicitação for finalizada.
                                     success: function(msg){
                                         $("#dados-tabela-produtos").html(msg);
-                                    }
+                                    },
+                                    complete : function (data) {
+                                        ascendingAndDescending();
+                                    }       
                                 });
                     }
 

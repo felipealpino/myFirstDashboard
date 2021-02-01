@@ -51,14 +51,14 @@ function kardexAccessData($myInput){
 
 
 
-function produtosAccessData($myInput, $radioValue){
+function produtosAccessData($myInput){
     require '../configODBC.php';
+    $myInput = trim($myInput);
     $sqlVW_PRODUTO =   "SELECT VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA, PRODUTO.IDFICHATECNICA 
                     FROM VW_PRODUTO
                     INNER JOIN PRODUTO
                     ON VW_PRODUTO.CODPROD = PRODUTO.CODPROD 
-                    WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR CODPROD LIKE '%$myInput%')
-                    ORDER BY ESTOQUE $radioValue ";
+                    WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR CODPROD LIKE '%$myInput%')";
     $dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
     return $dados;
 }
@@ -80,8 +80,6 @@ function vendasAccessData(){
     $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
     return $dados;
 }
-
-
 
 
 ?>

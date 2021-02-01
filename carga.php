@@ -46,7 +46,7 @@
                         </div>
 
                         <div class="select-filter-carga--option">
-                            <div><label for="filterCarga" id="filterCargaId">Escolha que deseja filtrar</label></div> 
+                            <div><label for="filterCarga" id="filterCargaId">Escolha o filtro</label></div> 
                             <div><select name="filtragem-carga" id="filterCargaSelect">
                                 <option value="CLIENTE">Cliente ou CodCliente</option>
                                 <option value="CODPEDIDO">Código do pedido</option>
@@ -56,11 +56,11 @@
                             </select></div> 
                         </div>
                     </div>
-                </div>
 
-                <div class="form-busca-produtos-estoque">
-                    <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar ..">
-                    <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
+                    <div class="form-busca-produtos-estoque">
+                        <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar ..">
+                        <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
+                    </div>
                 </div>
             </div>
             
@@ -91,7 +91,10 @@
                                     //funcao que sera executada quando a solicitação for finalizada.
                                     success: function(msg){
                                         $("#dados-tabela-produtos").html(msg);
-                                    }
+                                    },
+                                    complete : function (data) {
+                                        ascendingAndDescending();
+                                    }       
                                 });
                     }
 
