@@ -10,7 +10,7 @@ $dataInicial = $_POST['dataInicial'];
 $dataFinal = $_POST['dataFinal'];
 
 if ($myInput === ''){
-    goto notfound; //muitas linhas, sistema estava crachando 
+    goto notfound; //vai pro final desse arquivo
 }
 
 $dados = cargaAccessData($myInput, $selectedValue, $dataInicial, $dataFinal);

@@ -182,6 +182,7 @@ function formatEuaDataToBrasilData($dataInvertida){
   return (substr($arrayData[2],0,2).'/'.$arrayData[1].'/'.$arrayData[0]);
 }
 
+
 function formatNumberToReal($intValue){
   return number_format($intValue, 2, ',', '.');
 }

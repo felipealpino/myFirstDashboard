@@ -1,3 +1,31 @@
+<?php 
+require 'php_controller/dataAccessObject.php';
+require 'entities/ProdutoFactory.php';
+require 'configODBC.php';
+
+$produtoFactory = new ProdutoFactory;
+$x=0;
+$dados = valorDevendoCliente();
+while(odbc_fetch_row($dados)){
+    $codProduto = odbc_result($dados,"CODPROD");
+    $refProduto = odbc_result($dados,"REFERENCIA");
+    $descProduto = odbc_result($dados,"DESCRICAO");
+    $custoProduto = odbc_result($dados,"PRECO_CUSTO");
+    $qtVendidaProduto = odbc_result($dados, "QUANTIDADE");
+
+    $produtoFactory->thisExist($codProduto, $refProduto, $descProduto, $custoProduto, $qtVendidaProduto);
+    
+    // echo($codProduto." - ".$refProduto." - ".$descProduto." - ".$custoProduto." - ".$qtVendidaProduto."<br>");
+    // $x++;
+
+}
+
+// print_r($produtoFactory->getListaProd());
+// echo ($produtoFactory->valorTotal());
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -28,7 +56,9 @@
 
             <div class="content-dashboard">
                 <div class="content-dashboard-grid">
-                    <div class="dashboard_rel_carga">carga</div>
+                    <div class="dashboard_rel_carga"> <?php echo "Valor total não entregue: R$".$produtoFactory->valorTotal() ?> </div>
+
+
                     <div class="dashboard_rel_vendas">vendas</div>
                     <div class="dashboard_rel_estoque">estoque</div>
                     <div class="dashboard_rel_producao">producao</div>

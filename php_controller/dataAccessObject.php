@@ -3,33 +3,39 @@
 
 function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
     require '../configODBC.php';
-    
-    // $arrData = explode("-",$dataInicial);
-    // $dataInicial = $arrData[2]."-".$arrData[1]."-".$arrData[0];
 
-    // $arrData = explode("-",$dataFinal);
-    // $dataFinal = $arrData[2]."-".$arrData[1]."-".$arrData[0];
-    
-    //105	dd-mm-yyyy
-    $sqlAll =   "SELECT CARGA2.CODPEDIDO, CARGA2.CLIENTE, CARGA2.REFERENCIA, CARGA2.DESCRICAO, CARGA2.QUANTIDADE, CARGA2.DATAPENTREGA, CARGA2.CIDADE, CARGA2.STATUS, CARGA2.VENDEDOR
+    $sqlCARGA2 =   "SELECT CARGA2.CODPEDIDO, CARGA2.CLIENTE, CARGA2.REFERENCIA, CARGA2.DESCRICAO, CARGA2.QUANTIDADE, CARGA2.DATAPENTREGA, CARGA2.CIDADE, CARGA2.STATUS, CARGA2.VENDEDOR
             FROM CARGA2
             WHERE ($selectedValue LIKE '%$myInput%') --AND (CONVERT(varchar(10), DATAPENTREGA, 105) <= $dataInicial AND CONVERT(varchar(10), DATAPENTREGA, 105) >= $dataFinal)
             ORDER BY DATAPENTREGA ASC";
-    $dados = odbc_exec($conn, $sqlAll)  or die('Erro no sql');
+    $dados = odbc_exec($conn, $sqlCARGA2)  or die('Erro no sql');
     return $dados;
 }
 
+
+function valorDevendoCliente(){
+    require 'configODBC.php';
+
+    $sqlVW_PRODUTO_ENTREGAI = "SELECT * FROM
+                                (SELECT ENTREGAI.CODPROD, ENTREGAI.QUANTIDADE, ENTREGAI.STATUS, VW_PRODUTO.EMP, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO
+                                FROM ENTREGAI
+                                INNER JOIN VW_PRODUTO
+                                ON ENTREGAI.CODPROD = VW_PRODUTO.CODPROD)
+                                WHERE (EMP LIKE '00' AND STATUS LIKE '01')";
+    $dados = odbc_exec($conn, $sqlVW_PRODUTO_ENTREGAI) or die('Erro no sql');
+    return $dados;
+}
 
 
 function composicoesAccessData($myInput){
     require '../configODBC.php';
     $sqlVW_PRODUTO =   "SELECT * FROM 
-                   (SELECT VW_PRODUTO.EMP, VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, FICHATECNICAI.IDFICHATECNICA, FICHATECNICAI.QUANTIDADE, FICHATECNICAI.PRECOCUSTO, FICHATECNICAI.SOMA
+                    (SELECT VW_PRODUTO.EMP, VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, FICHATECNICAI.IDFICHATECNICA, FICHATECNICAI.QUANTIDADE, FICHATECNICAI.PRECOCUSTO, FICHATECNICAI.SOMA
                     FROM VW_PRODUTO
                     INNER JOIN FICHATECNICAI
                     ON VW_PRODUTO.CODPROD = FICHATECNICAI.CODPROD) 
                     WHERE (IDFICHATECNICA LIKE '%$myInput%' AND EMP LIKE '00')";
-    $dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
+    $dados = odbc_exec($conn, $sqlVW_PRODUTO) or die('Erro no sql');
     return $dados;
 }
 
