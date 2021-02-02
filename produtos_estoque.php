@@ -63,7 +63,7 @@
                                     success: function(msg){
                                         $("#dados-tabela-produtos").html(msg);
                                     },
-                                    complete : function (data) {
+                                    complete : function () {
                                         ascendingAndDescending();
                                     }        
                                 });

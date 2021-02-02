@@ -67,7 +67,7 @@ function produtosAccessData($myInput){
 
 function producaoAccessData(){
     require 'configODBC.php';
-    $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL';
+    $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL ORDER BY DT_MOVIMENTO ASC';
     $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
     return $dados;
 }
