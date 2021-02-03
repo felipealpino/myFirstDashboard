@@ -20,21 +20,31 @@ if($mes && $ano) {
     while(odbc_fetch_row($dados)){
         $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
 
-        //TIPOMOV = 11 = ENTRADA ACABADO
-        //CODPROD = 000880 = QUILO ISOFTALICO BRANCO
-        //CODPROD = 000383 = QUILO ISOFTALICO 
-        if ($arrayData[1] == $mes && $arrayData[0] == $ano && odbc_result($dados,"TIPOMOV") == "11" && (odbc_result($dados,"CODPROD") == "000880" || odbc_result($dados,"CODPROD") == "000383")){
+        /**
+         * TIPOMOV = 11 = ENTRADA ACABADO
+         * CODPROD = 000880 = QUILO ISOFTALICO BRANCO
+         * CODPROD = 000383 = QUILO ISOFTALICO 
+         */
+        if ($arrayData[1] == $mes && $arrayData[0] == $ano 
+            && odbc_result($dados,"TIPOMOV") == "11" 
+            && (odbc_result($dados,"CODPROD") == "000880" 
+            || odbc_result($dados,"CODPROD") == "000383")) {
+            
             array_push($myArray, (object)[
             'dia' => substr(($arrayData[2]),0,2),
             'quant' => odbc_result($dados, "QUANTIDADE"),
             ]);
+            
+            
+            
+
         }
     }
 
-    // var_dump($myArray);
-
-    // $myArraySize = (count($myArray)-1);
-    $pesoDia = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];  //DECLAREI ASSIM PORQUE ESTAVA DANDO ERROR
+    /**
+     * Declarando array de [0] até [30]
+     */
+    $pesoDia = array_fill(0, 31, 0);
 
     foreach($myArray as $value){
             switch($value->dia){

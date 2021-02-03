@@ -7,7 +7,10 @@ function changePlaceHolder(){
     const buscarInput = document.getElementById('myInput')
     buscarInput.placeholder = `Buscar ${selectValue}`
 }
-cargaSelectValue.addEventListener('click', changePlaceHolder)
+cargaSelectValue.querySelectorAll('option').forEach(element => {
+    element.addEventListener('mouseover', console.log(element));
+});
+
 
 
 
