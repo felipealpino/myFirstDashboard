@@ -1,6 +1,6 @@
 <?php
     require 'ProdutoVendido.php';
-    require 'php_library/biblioteca.php';
+    require '../php_library/biblioteca.php';
 
     class ProdutoFactory{
 
