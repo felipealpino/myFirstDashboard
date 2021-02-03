@@ -18,7 +18,7 @@ if($mes && $ano) {
     $myArray = [];
 
     /**
-    * Declarando array de [0] até [30]
+    * Declarando array $pesoDia de [0] até [30]
     */
     $pesoDia = array_fill(0, 31, 0);
 
@@ -47,17 +47,22 @@ if($mes && $ano) {
     }
 }
 
-$z= 0;
-$pesoTotal = 0;
 
-//Calculando média por dia produzido
+/**
+ * Descobrindo quantos dias da semana tiveram 0kg produzidos
+ * Esse valor armazenado em $z será util para fazer a média do mês
+ */
+$z= 0;
 for($contador=0; $contador<count($pesoDia); $contador++){
     if($pesoDia[$contador] !== 0 ){
-        $pesoTotal += $pesoDia[$contador];
         $z += 1; 
     }
 }
 
+/**
+ * Descobrindo média produzia no mês
+ */
+$pesoTotal = array_sum($pesoDia);
 if($z !== 0){
     $mediaMes = ($pesoTotal/$z);
 } else {
@@ -169,12 +174,13 @@ if($z !== 0){
 
                         <tbody>
                             <tr>
-                                <td style="text-align: center;"> <?=$dataFormated?></td>
-                                <td style="text-align: center;"> <?=odbc_result($dados,"QUANTIDADE").' kg'?> </td>
+                                <td style="text-align: center;"> <?= $dataFormated ?></td>
+                                <td style="text-align: center;"> <?= odbc_result($dados,"QUANTIDADE").' kg' ?> </td>
                             </tr>
                         </tbody>
                             <?php endif ?>
-                  <?php endwhile; ?>
+                        <?php endwhile; ?>
+
                     </table>
                 </div>
             </div>
