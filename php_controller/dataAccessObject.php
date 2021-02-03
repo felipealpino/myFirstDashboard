@@ -6,7 +6,7 @@
  * Query que alimenta aba carga.php
 */
 function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
-    require '../configODBC.php';
+    require '../views/configODBC.php';
 
     $sqlCARGA2 =   "SELECT CARGA2.CODPEDIDO, CARGA2.CLIENTE, CARGA2.REFERENCIA, CARGA2.DESCRICAO, CARGA2.QUANTIDADE, CARGA2.DATAPENTREGA, CARGA2.CIDADE, CARGA2.STATUS, CARGA2.VENDEDOR
             FROM CARGA2
@@ -22,7 +22,7 @@ function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
  * Query que alimenta dashboard.php - quantidade que deve para cliente
  */
 function valorDevendoCliente(){
-    require 'configODBC.php';
+    require '../views/configODBC.php';
 
     $sqlVW_PRODUTO_ENTREGAI = "SELECT * FROM
                                 (SELECT ENTREGAI.CODPROD, ENTREGAI.QUANTIDADE, ENTREGAI.STATUS, VW_PRODUTO.EMP, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO
@@ -40,7 +40,7 @@ function valorDevendoCliente(){
  * Query que alimenta composicoes.php
  */
 function composicoesAccessData($myInput){
-    require '../configODBC.php';
+    require '../views/configODBC.php';
     $sqlVW_PRODUTO =   "SELECT * FROM 
                     (SELECT VW_PRODUTO.EMP, VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, FICHATECNICAI.IDFICHATECNICA, FICHATECNICAI.QUANTIDADE, FICHATECNICAI.PRECOCUSTO, FICHATECNICAI.SOMA
                     FROM VW_PRODUTO
@@ -57,7 +57,7 @@ function composicoesAccessData($myInput){
  * Query que alimenta kardex.php
  */
 function kardexAccessData($myInput){
-    require '../configODBC.php';
+    require '../views/configODBC.php';
     // $sqlMVGERAL = "SELECT * FROM MVGERAL WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%') AND EMP LIKE '00'";
     $sqlMVGERAL = "SELECT * FROM 
     (SELECT MVGERAL.CODEMPRESA, MVGERAL.DT_MOVIMENTO, MVGERAL.DOCUMENTO, MVGERAL.CODPROD, MVGERAL.TIPOMOV, MVGERAL.QUANTIDADE,VW_PRODUTO.EMP, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO
@@ -76,7 +76,7 @@ function kardexAccessData($myInput){
  * Query que alimenta produtos_estoque.php
  */
 function produtosAccessData($myInput){
-    require '../configODBC.php';
+    require '../views/configODBC.php';
     $myInput = trim($myInput);
     $sqlVW_PRODUTO =   "SELECT VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA, PRODUTO.IDFICHATECNICA 
                     FROM VW_PRODUTO
@@ -93,7 +93,7 @@ function produtosAccessData($myInput){
  * Query que alimenta producao.php
  */
 function producaoAccessData(){
-    require 'configODBC.php';
+    require '../views/configODBC.php';
     $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL ORDER BY DT_MOVIMENTO ASC';
     $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
     return $dados;
@@ -105,7 +105,7 @@ function producaoAccessData(){
  * Query que alimenta vendas.php
  */
 function vendasAccessData(){
-    require 'configODBC.php';
+    require '../views/configODBC.php';
     $sqlENCEFAT = 'SELECT CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO FROM ENCEFAT '; 
     $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
     return $dados;

@@ -1,10 +1,9 @@
 <?php
-
 require 'configODBC.php';
-require 'entities/Vendedor.php';
-require 'entities/VendaDataValor.php';
-require 'php_library/biblioteca.php';
-require 'php_controller/dataAccessObject.php';
+require '../entities/Vendedor.php';
+require '../entities/VendaDataValor.php';
+require '../php_library/biblioteca.php';
+require '../php_controller/dataAccessObject.php';
 
 $mes = filter_input(INPUT_GET,"mes_vendas_name");
 $ano = filter_input(INPUT_GET,"ano_vendas_name");
@@ -81,9 +80,8 @@ if($mes && $ano){
             ]);
             
             var options = {
-            <?php $mesNome = findNomeMes($mes);?>
-            title: 'Vendas por mês - <?=$mesNome?>'
-            };
+                <?php $mesNome = findNomeMes($mes); ?>
+                title: 'Vendas por mês - <?=$mesNome?>'};
 
             var chart = new google.visualization.PieChart(document.getElementById('dashboard-grafico-vendas'));
 

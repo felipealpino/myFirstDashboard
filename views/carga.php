@@ -78,7 +78,7 @@
                                     //Configurações
                                     type:'POST',    //metodo que está sendo utilizado
                                     dataType: 'html',   //tipo de dado que a página vai retornar
-                                    url: 'php_controller/busca_carga.php',    //pagina que está sendo solicitada
+                                    url: '../php_controller/busca_carga.php',    //pagina que está sendo solicitada
                                     beforeSend: function(){
                                         $("#dados-tabela-produtos").html("Carregando....");
                                     },

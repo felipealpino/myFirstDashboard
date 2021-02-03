@@ -70,7 +70,7 @@ td{
 
 
 .hide {
-    margin-left: -320px;
+    margin-left: -205px;
 }
 .icone-top-leftside{
     display: flex;
@@ -111,7 +111,7 @@ div.list-left-side ul li svg{
 
 }
 .left-side-dashboard{
-    min-width: 250px;
+    max-width: 205px;
     height: 100vh;
     border-right: 1px solid rgba(245, 238, 238, 0.8);
     transition: all 0.5s;

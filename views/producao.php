@@ -1,7 +1,7 @@
 <?php
 require 'configODBC.php';
-require 'php_library/biblioteca.php';
-require 'php_controller/dataAccessObject.php';
+require '../php_library/biblioteca.php';
+require '../php_controller/dataAccessObject.php';
 
 $mes = filter_input(INPUT_GET,'mes_producao_name');
 $ano = filter_input(INPUT_GET,'ano_producao_name');

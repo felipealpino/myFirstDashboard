@@ -4,7 +4,7 @@ $senha = filter_input(INPUT_POST,'formIndexSenha');
 
 
 if ($email && $senha){
-    header("Location:dashboard.php");
+    header("Location:views/dashboard.php");
 } else {
     header("Location:index.php");
     $errorLogin = 'Login ou senha incorretos';

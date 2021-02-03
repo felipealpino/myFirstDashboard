@@ -1,6 +1,6 @@
 <?php
 require 'configODBC.php';
-require 'php_library/biblioteca.php';
+require '../php_library/biblioteca.php';
 
 $sqlCOMPRAS = "SELECT EMP, TOTAL, DT_ENTRADA FROM COMPRAS";
 $dados = (odbc_exec($conn, $sqlCOMPRAS));
