@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Biblioteca para pegar o nome do vendedor pelo código (ainda não achei a table referente a isso)
+ */
 function findNomeVendedor($codVendedor){
   switch($codVendedor){
     case '0002':
@@ -30,6 +33,12 @@ function findNomeVendedor($codVendedor){
   return $nomeVendedor;
 }
 
+
+
+
+/**
+ * Função para achar o nome do mês de acordo com um valor de 1 até 12
+ */
 function findNomeMes($c){
     $mesNome = '';
     switch($c):
@@ -75,6 +84,12 @@ function findNomeMes($c){
     return $mesNome;
 }
 
+
+
+
+/**
+ * Função para achar nome da familia de um produto pelo código 
+ */
 function findNomeFamilia($codFam){
   switch ($codFam){
     case '01':
@@ -143,6 +158,12 @@ function findNomeFamilia($codFam){
   return $nomeFamilia;
 }
 
+
+
+
+/**
+ * Função para facilitar busca pela ficha tecnica em composicoes.php
+ */
 function getIdFIchaTecnicaSintaxe($input){
   $myInput = '';
   switch(strlen($input)){
@@ -177,12 +198,29 @@ function getIdFIchaTecnicaSintaxe($input){
   return $myInput;
 }
 
+
+
+
+/**
+ * Funçao para inverter data que vem do banco de:
+ * yyyy-MM-dd
+ * para
+ * dd-MM-yyyy
+ */
 function formatEuaDataToBrasilData($dataInvertida){
   $arrayData = explode('-', $dataInvertida);
   return (substr($arrayData[2],0,2).'/'.$arrayData[1].'/'.$arrayData[0]);
 }
 
 
+
+
+/**
+ * Função para escrever um valor double para moeda brasileira
+ * exemplo: 
+ * entrada  - 12345.22334556
+ * saida    - 12.345,22
+ */
 function formatNumberToReal($intValue){
   return number_format($intValue, 2, ',', '.');
 }

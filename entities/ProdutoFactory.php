@@ -1,5 +1,5 @@
 <?php
-    require 'Produto.php';
+    require 'ProdutoVendido.php';
     require 'php_library/biblioteca.php';
 
     class ProdutoFactory{
@@ -23,7 +23,7 @@
                 }
 
                 if($aux == 0){
-                    $produto = new Produto();
+                    $produto = new ProdutoVendido();
                         $produto->setCodProd($codProd);
                         $produto->setReferencia($referencia);
                         $produto->setDescricao($descricao);
@@ -33,7 +33,7 @@
                 }
 
             } else {
-                $produto = new Produto();
+                $produto = new ProdutoVendido();
                     $produto->setCodProd($codProd);
                     $produto->setReferencia($referencia);
                     $produto->setDescricao($descricao);

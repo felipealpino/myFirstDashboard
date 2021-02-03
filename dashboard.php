@@ -14,15 +14,7 @@ while(odbc_fetch_row($dados)){
     $qtVendidaProduto = odbc_result($dados, "QUANTIDADE");
 
     $produtoFactory->thisExist($codProduto, $refProduto, $descProduto, $custoProduto, $qtVendidaProduto);
-    
-    // echo($codProduto." - ".$refProduto." - ".$descProduto." - ".$custoProduto." - ".$qtVendidaProduto."<br>");
-    // $x++;
-
 }
-
-// print_r($produtoFactory->getListaProd());
-// echo ($produtoFactory->valorTotal());
-
 ?>
 
 

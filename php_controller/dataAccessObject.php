@@ -1,6 +1,10 @@
 <?php 
 // require '../configODBC.php';
 
+
+/**
+ * Query que alimenta aba carga.php
+*/
 function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
     require '../configODBC.php';
 
@@ -13,6 +17,10 @@ function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
 }
 
 
+
+/**
+ * Query que alimenta dashboard.php - quantidade que deve para cliente
+ */
 function valorDevendoCliente(){
     require 'configODBC.php';
 
@@ -27,6 +35,10 @@ function valorDevendoCliente(){
 }
 
 
+
+/**
+ * Query que alimenta composicoes.php
+ */
 function composicoesAccessData($myInput){
     require '../configODBC.php';
     $sqlVW_PRODUTO =   "SELECT * FROM 
@@ -41,6 +53,9 @@ function composicoesAccessData($myInput){
 
 
 
+/**
+ * Query que alimenta kardex.php
+ */
 function kardexAccessData($myInput){
     require '../configODBC.php';
     // $sqlMVGERAL = "SELECT * FROM MVGERAL WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%') AND EMP LIKE '00'";
@@ -57,6 +72,9 @@ function kardexAccessData($myInput){
 
 
 
+/**
+ * Query que alimenta produtos_estoque.php
+ */
 function produtosAccessData($myInput){
     require '../configODBC.php';
     $myInput = trim($myInput);
@@ -71,6 +89,9 @@ function produtosAccessData($myInput){
 
 
 
+/**
+ * Query que alimenta producao.php
+ */
 function producaoAccessData(){
     require 'configODBC.php';
     $sqlMVGERAL = 'SELECT DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE FROM MVGERAL ORDER BY DT_MOVIMENTO ASC';
@@ -80,6 +101,9 @@ function producaoAccessData(){
 
 
 
+/**
+ * Query que alimenta vendas.php
+ */
 function vendasAccessData(){
     require 'configODBC.php';
     $sqlENCEFAT = 'SELECT CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO FROM ENCEFAT '; 
