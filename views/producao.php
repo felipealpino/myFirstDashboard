@@ -17,6 +17,11 @@ if($mes && $ano) {
     $dados = producaoAccessData();
     $myArray = [];
 
+    /**
+    * Declarando array de [0] até [30]
+    */
+    $pesoDia = array_fill(0, 31, 0);
+
     while(odbc_fetch_row($dados)){
         $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
 
@@ -30,117 +35,14 @@ if($mes && $ano) {
             && (odbc_result($dados,"CODPROD") == "000880" 
             || odbc_result($dados,"CODPROD") == "000383")) {
             
-            array_push($myArray, (object)[
-            'dia' => substr(($arrayData[2]),0,2),
-            'quant' => odbc_result($dados, "QUANTIDADE"),
-            ]);
-            
-            
-            
+            $dia = substr(($arrayData[2]),0 , 2);
+            $quant = odbc_result($dados, "QUANTIDADE");
 
-        }
-    }
-
-    /**
-     * Declarando array de [0] até [30]
-     */
-    $pesoDia = array_fill(0, 31, 0);
-
-    foreach($myArray as $value){
-            switch($value->dia){
-                case '01':
-                    $pesoDia[0] += $value->quant;   
-                    break;
-                case '02':
-                    $pesoDia[1] += $value->quant;
-                    break;
-                case '03':
-                    $pesoDia[2] += $value->quant;
-                    break;
-                case '04':
-                    $pesoDia[3] += $value->quant;
-                    break;
-                case '05':
-                    $pesoDia[4] += $value->quant;
-                    break;
-                case '06':
-                    $pesoDia[5] += $value->quant;
-                    break;
-                case '07':
-                    $pesoDia[6] += $value->quant;
-                    break;
-                case '08':
-                    $pesoDia[7] += $value->quant;
-                    break;
-                case '09':
-                    $pesoDia[8] += $value->quant;
-                    break;
-                case '10':
-                    $pesoDia[9] += $value->quant;
-                    break;
-                case '11':
-                    $pesoDia[10] += $value->quant;
-                    break;
-                case '12':
-                    $pesoDia[11] += $value->quant;
-                    break;
-                case '13':
-                    $pesoDia[12] += $value->quant;
-                    break;
-                case '14':
-                    $pesoDia[13] += $value->quant;
-                    break;
-                case '15':
-                    $pesoDia[14] += $value->quant;
-                    break;
-                case '16':
-                    $pesoDia[15] += $value->quant;
-                    break;
-                case '17':
-                    $pesoDia[16] += $value->quant;
-                    break;
-                case '18':
-                    $pesoDia[17] += $value->quant;
-                    break;               
-                case '19':
-                    $pesoDia[18] += $value->quant;
-                    break;
-                case '20':
-                    $pesoDia[19] += $value->quant;
-                    break;
-                case '21':
-                    $pesoDia[20] += $value->quant;
-                    break;
-                case '22':
-                    $pesoDia[21] += $value->quant;
-                    break;
-                case '23':
-                    $pesoDia[22] += $value->quant;
-                    break;
-                case '24':
-                    $pesoDia[23] += $value->quant;
-                    break;
-                case '25':
-                    $pesoDia[24] += $value->quant;
-                    break;
-                case '26':
-                    $pesoDia[25] += $value->quant;
-                    break;
-                case '27':
-                    $pesoDia[26] += $value->quant;
-                    break;
-                case '28':
-                    $pesoDia[27] += $value->quant;
-                    break;
-                case '29':
-                    $pesoDia[28] += $value->quant;
-                    break;
-                case '30':
-                    $pesoDia[29] += $value->quant;
-                    break;
-                case '31':
-                    $pesoDia[30] += $value->quant;
-                    break;
+            /**
+             * Se o dia é 1, soma quantidade no $pesoDia[0]
+             * Se o dia é 2, soma quantidade no $pesoDia[1] ...... 
+             */
+            $pesoDia[$dia - 1] += $quant;
         }
     }
 }
