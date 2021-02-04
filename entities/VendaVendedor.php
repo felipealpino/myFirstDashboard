@@ -1,5 +1,5 @@
 <?php
-
+    
     class VendaVendedor extends Vendedor{
 
         private $dataVenda;
@@ -20,12 +20,12 @@
         }
 
 
-        public function getValorVenda(){
-            return $this->valorVenda;
-        }
-        public function setValorVenda($valorVenda){
-            $this->valorVenda = $valorVenda;
-        }
+        // public function getValorVenda(){
+        //     return $this->valorVenda;
+        // }
+        // public function setValorVenda($valorVenda){
+        //     $this->valorVenda = $valorVenda;
+        // }
 
 
         public function getSubTotal(){
@@ -33,6 +33,12 @@
         }
         public function addSubTotal($valor){
             $this->subTotal += $valor;
+        }
+
+
+        public function getAnoDaData(){
+            $arrayData = explode('-', $this->getDataVenda());
+            return $arrayData[0];            
         }
 
 

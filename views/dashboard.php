@@ -1,8 +1,13 @@
 <?php 
 require '../php_controller/dataAccessObject.php';
 require '../entities/ProdutoFactory.php';
+require '../entities/VendaFactory.php';
 require '../connections/configODBC.php';
 
+
+/**
+ * TOTAL QUE DEVE PARA CLIENTE
+ */
 $produtoFactory = new ProdutoFactory;
 $x=0;
 $dados = relDashValorDevendoCliente();
@@ -15,6 +20,30 @@ while(odbc_fetch_row($dados)){
 
     $produtoFactory->thisExist($codProduto, $refProduto, $descProduto, $custoProduto, $qtVendidaProduto);
 }
+
+
+/**
+ * RELATÓRIO DE VENDA NOS ULTIMOS 4 ANOS NO MES ATUAL
+ */
+$mes = date('m');
+$ano = date('Y');
+$dados = relDashVendasPassadas($mes, $ano);
+$vendasPorAno = new VendaFactory();
+while (odbc_fetch_row($dados)){
+    $dataVenda = odbc_result($dados, "DT_MOVIMENTO");
+    $valorVenda = odbc_result($dados, "VLRRECEBER");
+    $arrayData = explode('-', $dataVenda);
+
+    $vendasPorAno->vendasPorAno($dataVenda, $valorVenda, $arrayData[0]);
+}
+$arrVendaPorAno = $vendasPorAno->getListVendedor();
+
+print_r ($arrVendaPorAno);
+
+
+
+
+
 ?>
 
 

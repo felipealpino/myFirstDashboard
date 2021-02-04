@@ -1,5 +1,4 @@
 <?php 
-    require 'VendaVendedor.php';
 
     class VendaFactory{
         private $listVendedor = array();
@@ -13,7 +12,7 @@
         }
 
 
-        public function thisExists($codVendedor, $valorVenda){
+        public function thisExists($codVendedor, $valorVenda, $dataVenda){
             if(count($this->listVendedor) === 0){
                 $vendaVendedor =  new VendaVendedor();
                     $vendaVendedor->setCodVendedor($codVendedor);
@@ -50,6 +49,30 @@
         }
 
 
+
+        public function vendasPorAno($dataVenda, $valorVenda, $anoVenda){
+            if(count($this->listVendedor) === 0){
+                $venda = new VendaVendedor();
+                    $venda->setDataVenda($dataVenda);
+                    $venda->addSubTotal($valorVenda);
+                array_push($this->listVendedor, $venda);
+            } else {
+                for($i=0; $i<count($this->listVendedor); $i++){
+                    if($this->listVendedor[$i]->getAnoDaData() === $anoVenda){
+                        $this->listVendedor[$i]->addSubTotal($valorVenda);
+                        return true;
+                    }
+                }
+    
+                $venda = new VendaVendedor();
+                    $venda->setDataVenda($dataVenda);
+                    $venda->addSubTotal($valorVenda);
+                array_push($this->listVendedor, $venda);
+            }
+        }
+
+
+        
     }
 
 

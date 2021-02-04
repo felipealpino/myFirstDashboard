@@ -47,17 +47,20 @@ function relDashValorDevendoCliente(){
 }
 
 
-function relDashVendasPassadas($ano){
+
+function relDashVendasPassadas($mes, $ano){
     require '../connections/configODBC.php';
+    $rangeAno = $ano-3;
     $sqlENCEFAT =   "SELECT 
     CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO 
     FROM 
         ENCEFAT 
     WHERE 
-        DT_MOVIMENTO BETWEEN '$ano' AND '$ano-3'  "; 
+        EXTRACT(YEAR FROM DT_MOVIMENTO) <= '$ano' AND EXTRACT(YEAR FROM DT_MOVIMENTO) >= '$rangeAno' AND EXTRACT(MONTH FROM DT_MOVIMENTO) = '$mes' "; 
     $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
     return $dados;
 }
+
 
 
 /**
