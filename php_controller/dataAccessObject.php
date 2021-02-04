@@ -5,7 +5,6 @@
 */
 function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
     require '../connections/configODBC.php';
-
     if($dataInicial === ""){
         $dataInicial = '1970-01-01';
     }
@@ -30,9 +29,8 @@ function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
 /**
  * Query que alimenta dashboard.php - quantidade que deve para cliente
  */
-function valorDevendoCliente(){
+function relDashValorDevendoCliente(){
     require '../connections/configODBC.php';
-
     $sqlVW_PRODUTO_ENTREGAI =   "SELECT * FROM
                                 (SELECT 
                                     ENTREGAI.CODPROD, ENTREGAI.QUANTIDADE, ENTREGAI.STATUS, VW_PRODUTO.EMP, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO
@@ -48,6 +46,18 @@ function valorDevendoCliente(){
     return $dados;
 }
 
+
+function relDashVendasPassadas($ano){
+    require '../connections/configODBC.php';
+    $sqlENCEFAT =   "SELECT 
+    CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO 
+    FROM 
+        ENCEFAT 
+    WHERE 
+        DT_MOVIMENTO BETWEEN '$ano' AND '$ano-3'  "; 
+    $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
+    return $dados;
+}
 
 
 /**
@@ -120,14 +130,16 @@ function produtosAccessData($myInput){
 /**
  * Query que alimenta producao.php
  */
-function producaoAccessData(){
+function producaoAccessData($mes, $ano){
     require '../connections/configODBC.php';
-    $sqlMVGERAL =   'SELECT 
+    $sqlMVGERAL =   "SELECT 
                         DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE 
                     FROM 
                         MVGERAL 
+                    WHERE 
+                        EXTRACT(MONTH FROM DT_MOVIMENTO) = '$mes' AND EXTRACT(YEAR FROM DT_MOVIMENTO) = '$ano'
                     ORDER BY 
-                        DT_MOVIMENTO ASC';
+                        DT_MOVIMENTO ASC";
     $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
     return $dados;
 }

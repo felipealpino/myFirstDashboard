@@ -14,24 +14,22 @@ if (!$mes && !$ano){
 
 // Manipulando valores $mes e $ano caso passados pelo form
 if($mes && $ano) {
-    $dados = producaoAccessData();
-    $myArray = [];
+    $dados = producaoAccessData($mes, $ano);
 
     /**
     * Declarando array $pesoDia de [0] até [30]
     */
     $pesoDia = array_fill(0, 31, 0);
 
+
+    /**
+    * TIPOMOV = 11 = ENTRADA ACABADO
+    * CODPROD = 000880 = QUILO ISOFTALICO BRANCO
+    * CODPROD = 000383 = QUILO ISOFTALICO 
+    */
     while(odbc_fetch_row($dados)){
         $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
-
-        /**
-         * TIPOMOV = 11 = ENTRADA ACABADO
-         * CODPROD = 000880 = QUILO ISOFTALICO BRANCO
-         * CODPROD = 000383 = QUILO ISOFTALICO 
-         */
-        if ($arrayData[1] == $mes && $arrayData[0] == $ano 
-            && odbc_result($dados,"TIPOMOV") == "11" 
+        if (odbc_result($dados,"TIPOMOV") == "11" 
             && (odbc_result($dados,"CODPROD") == "000880" 
             || odbc_result($dados,"CODPROD") == "000383")) {
             
@@ -118,7 +116,7 @@ if($z !== 0){
         chart.draw(data, google.charts.Bar.convertOptions(options));
       }
       </script>
-
+</head>
       
     <?php include 'all.php'; ?>  
 
@@ -165,7 +163,7 @@ if($z !== 0){
                         </thead>
                     
                     <?php //Fazendo consulta SQL novamente (não estava funcionando com a do inicio da página) 
-                        $dados = producaoAccessData();
+                        $dados = producaoAccessData($mes, $ano);
                         while(odbc_fetch_row($dados)): 
                             $dataFormated = formatEuaDataToBrasilData(odbc_result($dados,"DT_MOVIMENTO"));
                             $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO")); 

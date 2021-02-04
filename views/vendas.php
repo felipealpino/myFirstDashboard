@@ -51,7 +51,7 @@ if($mes && $ano){
             var data = google.visualization.arrayToDataTable([
             ['Vendedor', 'Quantidade vendida'],
             <?php for($i=0; $i<count($totalPorVendedor->getListVendedor()); $i++): ?> 
-                ['<?= $listaVendedores[$i]->getNomeVendedor() .' R$ '. formatNumberToReal($totalVendido)?>', <?=$listaVendedores[$i]->getSubTotal()?>],
+                ['<?= $listaVendedores[$i]->getNomeVendedor() .' R$ '. formatNumberToReal($listaVendedores[$i]->getSubTotal())?>', <?=$listaVendedores[$i]->getSubTotal()?>],
             <?php endfor ?>    
             ]);
             

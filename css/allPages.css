@@ -1,6 +1,12 @@
+:root {
+    --main-bg-color: #0599D3;
+}
+
+
 td{
     cursor: pointer;
 }
+
 
 /* Input mes e ano top dashboard */
 .form-top-dashboard-mes-ano{
@@ -105,7 +111,7 @@ td{
 
 div.list-left-side ul li svg{
     margin-right: 10px;
-    color: #0599D3;
+    color: var(--main-bg-color);
     height: 16px;
     width: 18px;
 
@@ -142,14 +148,14 @@ div.list-left-side ul li svg{
 
 div.top-dashboard-mobile svg{
     margin-right: 35px;
-    color: #0599D3;
+    color: var(--main-bg-color);
     cursor: pointer;
     height: 40px;
     width: 40px;
 }
 div.top-dashboard-mobile.left-icon svg{
     margin-right: 15px;
-    color: #0599D3;
+    color: var(--main-bg-color);
     cursor: pointer;
     height: 30px;
     width: 30px;

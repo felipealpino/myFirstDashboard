@@ -5,7 +5,7 @@ require '../connections/configODBC.php';
 
 $produtoFactory = new ProdutoFactory;
 $x=0;
-$dados = valorDevendoCliente();
+$dados = relDashValorDevendoCliente();
 while(odbc_fetch_row($dados)){
     $codProduto = odbc_result($dados,"CODPROD");
     $refProduto = odbc_result($dados,"REFERENCIA");

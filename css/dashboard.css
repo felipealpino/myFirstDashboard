@@ -4,6 +4,7 @@
     padding: 0px;
 }
 
+
 .dashboard-content{
     display: flex;
 }
@@ -44,16 +45,19 @@ div.top-dashboard svg{
 }
 .dashboard_rel_vendas{
     background-color: rgb(66, 66, 187);
+    padding: 5px;
     width: 100%;
     text-align: center;
 }
 .dashboard_rel_estoque{
     background-color: rgb(194, 67, 67);
+    padding: 5px;
     width: 100%;
     text-align: center;
 }
 .dashboard_rel_producao{
     background-color: rgb(148, 40, 148);
+    padding: 5px;
     width: 100%;
     text-align: center;
 }
