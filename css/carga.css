@@ -1,6 +1,7 @@
 .select-filter-carga{
     display: flex;
     align-items: center;
+    padding: 0px 150px 0px 0px;
             
 }
 .select-filter-carga label{
@@ -10,7 +11,7 @@
 #filterCargaSelect{
     border-radius: 4px;
     max-height: 23px;
-    max-width: 150px;
+    max-width: 180px;
 }
 #filterCargaId:hover ~ #filterCargaSelect {
     background-color: #6DB1F5;

@@ -105,12 +105,13 @@ td{
 
 div.list-left-side ul li svg{
     margin-right: 10px;
-    color: #7B75FF;
+    color: #0599D3;
     height: 16px;
     width: 18px;
 
 }
 .left-side-dashboard{
+    background-color: #0599d32f;
     max-width: 205px;
     height: 100vh;
     border-right: 1px solid rgba(245, 238, 238, 0.8);
@@ -126,7 +127,6 @@ div.list-left-side ul li svg{
 .form-control.input-busca{
     max-width: 300px;
     min-width: 250px;
-    margin-left: 30px;
 }
 .thead_produtos tr{
     background-color:#A2D0FF;
@@ -142,14 +142,14 @@ div.list-left-side ul li svg{
 
 div.top-dashboard-mobile svg{
     margin-right: 35px;
-    color: #7B75FF;
+    color: #0599D3;
     cursor: pointer;
     height: 40px;
     width: 40px;
 }
 div.top-dashboard-mobile.left-icon svg{
     margin-right: 15px;
-    color: #7B75FF;
+    color: #0599D3;
     cursor: pointer;
     height: 30px;
     width: 30px;
