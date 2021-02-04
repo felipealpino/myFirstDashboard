@@ -19,7 +19,6 @@ if($mes && $ano){
 
     while(odbc_fetch_row($dados)){
         $codVendedor = odbc_result($dados, "CODVENDEDOR");
-        // $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
         $valorVenda = odbc_result($dados,"VLRRECEBER");
 
         $totalPorVendedor->thisExists($codVendedor, $valorVenda);

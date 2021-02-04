@@ -68,9 +68,9 @@
                 <span class="span-produto-estoque-sem-produto"> Utilize o filtro para localizar o desejado...</span>
                 <script>
                     document.getElementById('buscar-produto').addEventListener('click', function(){
-                        const selectValue = document.querySelector('select').value
+                        const selectedValue = document.querySelector('select').value
                         const settedDates = document.querySelectorAll('.select-filter-carga--data input');
-                            buscar($("#myInput").val(), selectValue, settedDates[0].value, settedDates[1].value)
+                            buscar($("#myInput").val(), selectedValue, settedDates[0].value, settedDates[1].value)
                     }, false);
 
                     function buscar(myInput, selectionValue, dataInicial, dataFinal){
