@@ -1,5 +1,5 @@
 <?php
-require 'configODBC.php';
+require '../connections/configODBC.php';
 require '../php_library/biblioteca.php';
 
 $sqlCOMPRAS = "SELECT EMP, TOTAL, DT_ENTRADA FROM COMPRAS";

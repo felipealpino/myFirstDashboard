@@ -1,5 +1,5 @@
 <?php 
-require '../views/configODBC.php';
+require '../connections/configODBC.php';
 require '../php_library/biblioteca.php';
 require 'dataAccessObject.php';
 $myInput = $_POST['myInput'];

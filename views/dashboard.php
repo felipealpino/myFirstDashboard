@@ -1,7 +1,7 @@
 <?php 
 require '../php_controller/dataAccessObject.php';
 require '../entities/ProdutoFactory.php';
-require 'configODBC.php';
+require '../connections/configODBC.php';
 
 $produtoFactory = new ProdutoFactory;
 $x=0;

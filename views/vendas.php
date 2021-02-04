@@ -1,5 +1,5 @@
 <?php
-require 'configODBC.php';
+require '../connections/configODBC.php';
 require '../entities/Vendedor.php';
 require '../entities/VendaFactory.php';
 require '../php_library/biblioteca.php';

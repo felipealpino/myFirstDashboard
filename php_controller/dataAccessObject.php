@@ -4,7 +4,7 @@
  * Query que alimenta aba carga.php
 */
 function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
-    require '../views/configODBC.php';
+    require '../connections/configODBC.php';
 
     if($dataInicial === ""){
         $dataInicial = '1970-01-01';
@@ -31,7 +31,7 @@ function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
  * Query que alimenta dashboard.php - quantidade que deve para cliente
  */
 function valorDevendoCliente(){
-    require '../views/configODBC.php';
+    require '../connections/configODBC.php';
 
     $sqlVW_PRODUTO_ENTREGAI =   "SELECT * FROM
                                 (SELECT 
@@ -54,7 +54,7 @@ function valorDevendoCliente(){
  * Query que alimenta composicoes.php
  */
 function composicoesAccessData($myInput){
-    require '../views/configODBC.php';
+    require '../connections/configODBC.php';
     $sqlVW_PRODUTO =    "SELECT * FROM 
                         (SELECT 
                             VW_PRODUTO.EMP, VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, FICHATECNICAI.IDFICHATECNICA, FICHATECNICAI.QUANTIDADE, FICHATECNICAI.PRECOCUSTO, FICHATECNICAI.SOMA
@@ -76,7 +76,7 @@ function composicoesAccessData($myInput){
  * Query que alimenta kardex.php
  */
 function kardexAccessData($myInput){
-    require '../views/configODBC.php';
+    require '../connections/configODBC.php';
     $sqlMVGERAL =   "SELECT * FROM 
                     (SELECT 
                         MVGERAL.CODEMPRESA, MVGERAL.DT_MOVIMENTO, MVGERAL.DOCUMENTO, MVGERAL.CODPROD, MVGERAL.TIPOMOV, MVGERAL.QUANTIDADE,VW_PRODUTO.EMP, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO
@@ -99,7 +99,7 @@ function kardexAccessData($myInput){
  * Query que alimenta produtos_estoque.php
  */
 function produtosAccessData($myInput){
-    require '../views/configODBC.php';
+    require '../connections/configODBC.php';
     $myInput = trim($myInput);
     $sqlVW_PRODUTO =    "SELECT 
                             VW_PRODUTO.CODPROD, VW_PRODUTO.REFERENCIA, VW_PRODUTO.DESCRICAO, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA, PRODUTO.IDFICHATECNICA 
@@ -121,7 +121,7 @@ function produtosAccessData($myInput){
  * Query que alimenta producao.php
  */
 function producaoAccessData(){
-    require '../views/configODBC.php';
+    require '../connections/configODBC.php';
     $sqlMVGERAL =   'SELECT 
                         DT_MOVIMENTO,TIPOMOV,CODPROD,QUANTIDADE 
                     FROM 
@@ -138,7 +138,7 @@ function producaoAccessData(){
  * Query que alimenta vendas.php
  */
 function vendasAccessData($mes, $ano){
-    require '../views/configODBC.php';
+    require '../connections/configODBC.php';
     $sqlENCEFAT =   "SELECT 
                         CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO 
                     FROM 
