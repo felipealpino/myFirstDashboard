@@ -8,6 +8,9 @@ function findNomeVendedor($codVendedor){
     case '0002':
       $nomeVendedor = 'Janaina';
       break;
+    case '0004':
+      $nomeVendedor = 'Divinópolis';
+      break;
     case '0012':
       $nomeVendedor = 'Rosangela';
       break;
@@ -32,7 +35,6 @@ function findNomeVendedor($codVendedor){
   }
   return $nomeVendedor;
 }
-
 
 
 
@@ -83,7 +85,6 @@ function findNomeMes($c){
     endswitch;
     return $mesNome;
 }
-
 
 
 
@@ -160,7 +161,6 @@ function findNomeFamilia($codFam){
 
 
 
-
 /**
  * Função para facilitar busca pela ficha tecnica em composicoes.php
  */
@@ -200,7 +200,6 @@ function getIdFIchaTecnicaSintaxe($input){
 
 
 
-
 /**
  * Funçao para inverter data que vem do banco de:
  * yyyy-MM-dd
@@ -211,7 +210,6 @@ function formatEuaDataToBrasilData($dataInvertida){
   $arrayData = explode('-', $dataInvertida);
   return (substr($arrayData[2],0,2).'/'.$arrayData[1].'/'.$arrayData[0]);
 }
-
 
 
 

@@ -1,37 +1,28 @@
 <?php
 
-// require 'VendasDataValor.php';
-
 class Vendedor{
 
     private $codVendedor;
-    private $vendaDataAndValor;
+    private $nomeVendedor;
 
+    function __construct(){
 
-    function __construct($codVendedor, $vendaDataAndValor){
-        $this->codVendedor = $codVendedor;
-        $this->addVendaDataValor($vendaDataAndValor[0],$vendaDataAndValor[1]);
     }
-
-    public function addVendaDataValor($data, $valor){
-        $this->vendaDataAndValor = new VendaDataValor($data,$valor);
-    }
-
 
     public function getCodVendedor(){
         return $this->codVendedor;
     }
-    // public function setCodVendedor($cod_do_vendedor){
-    //     $this->$codVendedor = $cod_do_vendedor;
-    // }
-
-    public function getVendaDataAndValor(){
-        return $this->vendaDataAndValor;
+    public function setCodVendedor($codVendedor){
+        $this->codVendedor = $codVendedor;
     }
-    // public function setVendaDataAndValor($valor_da_venda){
-    //     $this->$vendaDataAndValor = $valor_da_venda;
-    // }
 
+
+    public function getNomeVendedor(){
+        return $this->nomeVendedor;
+    }
+    public function setNomeVendedor($codVendedor){
+        $this->nomeVendedor = findNomeVendedor($codVendedor);
+    }
 
 }
 

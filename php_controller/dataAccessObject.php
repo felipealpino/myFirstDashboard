@@ -12,7 +12,7 @@ function cargaAccessData ($myInput, $selectedValue, $dataInicial, $dataFinal){
             FROM CARGA2
             WHERE ($selectedValue LIKE '%$myInput%') --AND (CONVERT(varchar(10), DATAPENTREGA, 105) <= $dataInicial AND CONVERT(varchar(10), DATAPENTREGA, 105) >= $dataFinal)
             ORDER BY DATAPENTREGA ASC";
-    $dados = odbc_exec($conn, $sqlCARGA2)  or die('Erro no sql');
+    $dados = odbc_exec($conn, $sqlCARGA2) or die('Erro no sql');
     return $dados;
 }
 
@@ -66,7 +66,7 @@ function kardexAccessData($myInput){
     ON MVGERAL.CODPROD = VW_PRODUTO.CODPROD) 
     WHERE ((DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR DOCUMENTO LIKE '%$myInput%') AND (CODEMPRESA LIKE '00' AND EMP LIKE '00'))";
 
-    $dados = odbc_exec($conn, $sqlMVGERAL)  or die('Erro no sql');
+    $dados = odbc_exec($conn, $sqlMVGERAL) or die('Erro no sql');
     return $dados;
 }
 
@@ -83,7 +83,7 @@ function produtosAccessData($myInput){
                     INNER JOIN PRODUTO
                     ON VW_PRODUTO.CODPROD = PRODUTO.CODPROD 
                     WHERE (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR CODPROD LIKE '%$myInput%')";
-    $dados = odbc_exec($conn, $sqlVW_PRODUTO)  or die('Erro no sql');
+    $dados = odbc_exec($conn, $sqlVW_PRODUTO) or die('Erro no sql');
     return $dados;
 }
 
@@ -104,9 +104,10 @@ function producaoAccessData(){
 /**
  * Query que alimenta vendas.php
  */
-function vendasAccessData(){
+function vendasAccessData($mes, $ano){
     require '../views/configODBC.php';
-    $sqlENCEFAT = 'SELECT CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO FROM ENCEFAT '; 
+    $sqlENCEFAT = "SELECT CODVENDEDOR, VLRRECEBER, DT_MOVIMENTO FROM ENCEFAT 
+                WHERE EXTRACT(MONTH FROM DT_MOVIMENTO) = '$mes' AND EXTRACT(YEAR FROM DT_MOVIMENTO) = '$ano' "; 
     $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
     return $dados;
 }

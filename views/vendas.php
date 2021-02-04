@@ -1,7 +1,7 @@
 <?php
 require 'configODBC.php';
 require '../entities/Vendedor.php';
-require '../entities/VendaDataValor.php';
+require '../entities/VendaFactory.php';
 require '../php_library/biblioteca.php';
 require '../php_controller/dataAccessObject.php';
 
@@ -14,40 +14,19 @@ if(!$mes && !$ano){
 }
 
 if($mes && $ano){
-    $dados = vendasAccessData();
-    $myArray = [];
-    $vendedoresMes = [];
+    $dados = vendasAccessData($mes, $ano);
+    $totalPorVendedor = new VendaFactory();
+
     while(odbc_fetch_row($dados)){
         $codVendedor = odbc_result($dados, "CODVENDEDOR");
-        $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
-        if ($arrayData[1] == $mes && $arrayData[0] == $ano){
-            $vendedor = new Vendedor(
-                $codVendedor,
-                [odbc_result($dados,"DT_MOVIMENTO"),odbc_result($dados, "VLRRECEBER")],
-            );
-            array_push($myArray, $vendedor);
-            if(array_search($codVendedor, $vendedoresMes) === false){
-                array_push($vendedoresMes,$codVendedor);
-            }
-        }
+        // $arrayData = explode("-",odbc_result($dados,"DT_MOVIMENTO"));  
+        $valorVenda = odbc_result($dados,"VLRRECEBER");
+
+        $totalPorVendedor->thisExists($codVendedor, $valorVenda);
     }
-
-    $somaVendas = array_fill(0,count($vendedoresMes),0);  
-
-    foreach ($myArray as $value){        
-        for($i=0; $i<count($vendedoresMes); $i++){
-            if($value->getCodVendedor() === $vendedoresMes[$i]){
-                $somaVendas[$i] += $value->getVendaDataAndValor()->getValor_venda();
-            }
-        }
-    }
-
-    $totalVendidoMes = 0;
-    foreach($somaVendas as $item){
-        $totalVendidoMes += $item;
-    }
-
-    // var_dump($vendedoresMes,"<br>",count($vendedoresMes),"<br>",$somaVendas);
+    
+    $totalVendido = $totalPorVendedor->totalVendasVendedores();
+    $listaVendedores = $totalPorVendedor->getListVendedor();
 
 }
 
@@ -65,17 +44,15 @@ if($mes && $ano){
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../plugins/package/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
     <script type="text/javascript">
         google.charts.load('current', {'packages':['corechart']});
         google.charts.setOnLoadCallback(drawChart);
-
         function drawChart() {
-            
             var data = google.visualization.arrayToDataTable([
             ['Vendedor', 'Quantidade vendida'],
-            <?php for($i=0; $i<count($vendedoresMes); $i++): 
-                $nomeVendedor = findNomeVendedor($vendedoresMes[$i]); ?> 
-                ['<?= $nomeVendedor.' R$ '.formatNumberToReal($somaVendas[$i])?>', <?=$somaVendas[$i]?>],
+            <?php for($i=0; $i<count($totalPorVendedor->getListVendedor()); $i++): ?> 
+                ['<?= $listaVendedores[$i]->getNomeVendedor() .' R$ '. formatNumberToReal($totalVendido)?>', <?=$listaVendedores[$i]->getSubTotal()?>],
             <?php endfor ?>    
             ]);
             
@@ -88,7 +65,7 @@ if($mes && $ano){
             chart.draw(data, options);
         }
     </script>
-
+</head>
 
         <?php include 'all.php';?>
 
@@ -118,7 +95,7 @@ if($mes && $ano){
             <div class="content-dashboard vendas">
                 <div id="dashboard-grafico-vendas" class="dashboard-grafico-vendas"></div>
                 <div>
-                    <?php echo "Total vendido no mês: R$ ".formatNumberToReal($totalVendidoMes) ?>
+                    <?php echo "Total vendido no mês: R$ ".formatNumberToReal($totalVendido) ?>
                 </div>
             </div>
             
