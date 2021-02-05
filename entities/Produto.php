@@ -6,9 +6,14 @@
         private $referencia;
         private $descricao;
         private $custo;
+        private $codFamilia;
+        private $estoque;
+        private $valorEmEstoque;
 
         function __construct(){
-            
+            if($this->estoque != ''){
+                $this->valorEmEstoque = $this->estoque * $this->custo;
+            }
         }
         
         
@@ -41,6 +46,33 @@
         }
         public function setCusto($custo) {
             $this->custo = $custo;
+        }
+
+
+        public function getCodFamilia(){
+            return $this->codFamilia;
+        }
+        public function setCodFamilia($codFamilia){
+            $this->codFamilia = $codFamilia;
+        }
+
+
+        public function getEstoque(){
+            return $this->estoque;
+        }
+        public function setEstoque($estoque){
+            $this->estoque = $estoque;
+        }
+
+
+        public function getValorEmEstoque(){
+            return $this->valorEmEstoque;
+        }
+
+
+
+        public function somaValorEstoque($valor){
+            $this->valorEmEstoque += $valor;
         }
 
     }

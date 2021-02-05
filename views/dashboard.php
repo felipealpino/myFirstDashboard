@@ -40,6 +40,22 @@ while (odbc_fetch_row($dados)){
 }
 $arrVendaPorAno = $vendasPorAno->getListVendedor();
 
+
+/**
+ * RELATÓRIO ESTOQUE / FAMILIA 
+ */
+$dados = relDashFamiliaProdutos();
+$totalFamilias = new ProdutoFactory();
+while(odbc_fetch_row($dados)){
+    $estoque = odbc_result($dados, "ESTOQUE");
+    $custo = odbc_result($dados,"PRECO_CUSTO");
+    $codFamilia = odbc_result($dados, "CODFAMILIA");
+
+    $totalFamilias->valorTotalPorFamilia($custo, $estoque, $codFamilia);
+}
+$list = $totalFamilias->getListaProd();
+
+
 ?>
 
 
@@ -94,7 +110,19 @@ $arrVendaPorAno = $vendasPorAno->getListVendedor();
                     </div>
 
                     <!-- RELACAO VALOR - FAMILIA ESTOQUE -->
-                    <div class="dashboard_rel_estoque">estoque</div>
+                    <div class="dashboard_rel_estoque">
+                        <?php for ($i=0; $i <count($totalFamilias->getListaProd()) ; $i++): ?>
+                            <span>
+                                Familia: 
+                                    <?php 
+                                        echo findNomeFamilia($list[$i]->getCodFamilia())
+                                        ." - ";
+                                        echo "R$ ".formatNumberToReal($list[$i]->getValorEmEstoque());  
+                                    ?> 
+                            </span> <br>
+                        <?php endfor ?>
+                    </div>
+
 
                     <!-- RELAÇÃO PRODUCAO MES/ANOS -->
                     <div class="dashboard_rel_producao">producao</div>

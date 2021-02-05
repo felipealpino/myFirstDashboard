@@ -63,6 +63,24 @@ function relDashVendasPassadas($mes, $ano){
 
 
 
+function relDashFamiliaProdutos(){
+    require '../connections/configODBC.php';
+    $sqlVW_PRODUTO =    "SELECT 
+                            VW_PRODUTO.EMP, VW_PRODUTO.CODPROD, VW_PRODUTO.PRECO_CUSTO, VW_PRODUTO.ESTOQUE, PRODUTO.CODFAMILIA 
+                        FROM 
+                            VW_PRODUTO
+                        INNER JOIN 
+                            PRODUTO
+                        ON 
+                            VW_PRODUTO.CODPROD = PRODUTO.CODPROD 
+                        WHERE 
+                            EMP LIKE '00' ";
+    $dados = odbc_exec($conn, $sqlVW_PRODUTO) or die('Erro no sql');
+    return $dados;
+}
+
+
+
 /**
  * Query que alimenta composicoes.php
  */
@@ -123,7 +141,8 @@ function produtosAccessData($myInput){
                         ON 
                             VW_PRODUTO.CODPROD = PRODUTO.CODPROD 
                         WHERE 
-                            DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR CODPROD LIKE '%$myInput%' ";
+                            (DESCRICAO LIKE '%$myInput%' OR REFERENCIA LIKE '%$myInput%' OR CODPROD LIKE '%$myInput%') 
+                            AND EMP LIKE '00' ";
     $dados = odbc_exec($conn, $sqlVW_PRODUTO) or die('Erro no sql');
     return $dados;
 }
