@@ -40,7 +40,7 @@
                         </li>
                         <li>
                             <i class="fas fa-hammer"></i>
-                            <a href="producao.php">producao</a>
+                            <a href="producao.php">produção</a>
                         </li>
                         <li>
                             <i class="far fa-money-bill-alt"></i>

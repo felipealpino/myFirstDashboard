@@ -1,7 +1,9 @@
 <?php 
 require '../php_controller/dataAccessObject.php';
 require '../entities/ProdutoFactory.php';
+require '../entities/Vendedor.php';
 require '../entities/VendaFactory.php';
+require '../entities/VendaVendedor.php';
 require '../connections/configODBC.php';
 
 
@@ -34,15 +36,9 @@ while (odbc_fetch_row($dados)){
     $valorVenda = odbc_result($dados, "VLRRECEBER");
     $arrayData = explode('-', $dataVenda);
 
-    $vendasPorAno->vendasPorAno($dataVenda, $valorVenda, $arrayData[0]);
+    $vendasPorAno->vendasPorAno($arrayData[0], $valorVenda);
 }
 $arrVendaPorAno = $vendasPorAno->getListVendedor();
-
-print_r ($arrVendaPorAno);
-
-
-
-
 
 ?>
 
@@ -77,11 +73,30 @@ print_r ($arrVendaPorAno);
 
             <div class="content-dashboard">
                 <div class="content-dashboard-grid">
+                    <!-- DEVENDO P/ CLIENTE -->
                     <div class="dashboard_rel_carga"> <?php echo "Valor total não entregue: R$".$produtoFactory->valorTotal() ?> </div>
 
+                    <!-- VENDAS MES/ANOS  -->
+                    <div class="dashboard_rel_vendas">
+                        <span>
+                            Vendas mês: 
+                            <?php echo findNomeMes($mes)?> 
+                        </span> <br> 
+                        <?php for ($i=0; $i < count($arrVendaPorAno); $i++): ?>
+                            <span>
+                                Ano: 
+                                <?php 
+                                    echo $arrVendaPorAno[$i]->getDataVenda()." - R$ ";
+                                    echo formatNumberToReal($arrVendaPorAno[$i]->getSubTotal()) 
+                                ?>         
+                            </span> <br>
+                        <?php endfor; ?>
+                    </div>
 
-                    <div class="dashboard_rel_vendas">vendas</div>
+                    <!-- RELACAO VALOR - FAMILIA ESTOQUE -->
                     <div class="dashboard_rel_estoque">estoque</div>
+
+                    <!-- RELAÇÃO PRODUCAO MES/ANOS -->
                     <div class="dashboard_rel_producao">producao</div>
                 </div>
             </div>

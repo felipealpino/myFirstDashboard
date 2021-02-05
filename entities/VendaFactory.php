@@ -1,18 +1,21 @@
 <?php 
 
     class VendaFactory{
+        
         private $listVendedor = array();
+
 
         function __construct(){
             
         }
+
 
         public function getListVendedor(){
             return $this->listVendedor;
         }
 
 
-        public function thisExists($codVendedor, $valorVenda, $dataVenda){
+        public function thisExists($codVendedor, $valorVenda){
             if(count($this->listVendedor) === 0){
                 $vendaVendedor =  new VendaVendedor();
                     $vendaVendedor->setCodVendedor($codVendedor);
@@ -28,7 +31,7 @@
                     }
                 }
 
-                $vendaVendedor =  new VendaVendedor();
+                $vendaVendedor = new VendaVendedor();
                     $vendaVendedor->setCodVendedor($codVendedor);
                     $vendaVendedor->setNomeVendedor($codVendedor);
                     $vendaVendedor->addSubTotal($valorVenda);
@@ -49,23 +52,22 @@
         }
 
 
-
-        public function vendasPorAno($dataVenda, $valorVenda, $anoVenda){
-            if(count($this->listVendedor) === 0){
+        public function vendasPorAno($anoVenda, $valorVenda){
+            if(count($this->listVendedor) == 0){
                 $venda = new VendaVendedor();
-                    $venda->setDataVenda($dataVenda);
+                    $venda->setDataVenda($anoVenda);
                     $venda->addSubTotal($valorVenda);
                 array_push($this->listVendedor, $venda);
             } else {
                 for($i=0; $i<count($this->listVendedor); $i++){
-                    if($this->listVendedor[$i]->getAnoDaData() === $anoVenda){
+                    if($this->listVendedor[$i]->getDataVenda() === $anoVenda){
                         $this->listVendedor[$i]->addSubTotal($valorVenda);
                         return true;
                     }
                 }
     
                 $venda = new VendaVendedor();
-                    $venda->setDataVenda($dataVenda);
+                    $venda->setDataVenda($anoVenda);
                     $venda->addSubTotal($valorVenda);
                 array_push($this->listVendedor, $venda);
             }
@@ -74,9 +76,5 @@
 
         
     }
-
-
-   
-
 
 ?>

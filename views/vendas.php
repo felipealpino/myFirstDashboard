@@ -1,6 +1,8 @@
 <?php
 require '../connections/configODBC.php';
+require '../entities/Vendedor.php';
 require '../entities/VendaFactory.php';
+require '../entities/VendaVendedor.php';
 require '../php_library/biblioteca.php';
 require '../php_controller/dataAccessObject.php';
 
@@ -21,7 +23,7 @@ if($mes && $ano){
         $valorVenda = odbc_result($dados,"VLRRECEBER");
         $dataVenda = odbc_result($dados, "DT_MOVIMENTO");
 
-        $totalPorVendedor->thisExists($codVendedor, $valorVenda, $dataVenda);
+        $totalPorVendedor->thisExists($codVendedor, $valorVenda);
     }
     
     $totalVendido = $totalPorVendedor->totalVendasVendedores();
