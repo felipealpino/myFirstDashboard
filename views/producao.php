@@ -153,7 +153,7 @@ if($z !== 0){
                         <div><?='Total dias trabalhados no mês: '.$z.' dias'?></div>
                         <div><?='Média produzida por dia: '.formatNumberToReal($mediaMes).' kg' ?></div>
                     </div>
-                    <table class="table sortable table-sm table-bordered table-hover tabela-produtos">
+                    <table class="table sortable table-sm table-bordered table-hover tabela-produtos tabela-producao-detalhada">
                         <thead class="thead_produtos">
                             <tr>
                                 <th style="text-align: center;">Dia</th>

@@ -95,7 +95,7 @@ if($mes && $ano){
 
             <div class="content-dashboard vendas">
                 <div id="dashboard-grafico-vendas" class="dashboard-grafico-vendas"></div>
-                <div>
+                <div class="total-vendido-mes">
                     <?php echo "Total vendido no mês: R$ ".formatNumberToReal($totalVendido) ?>
                 </div>
             </div>

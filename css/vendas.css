@@ -35,9 +35,18 @@
     .dashboard-grafico-vendas{
         transform: scale(0.8);
     }
+    .total-vendido-mes{
+        text-align: center;
+    }
 }
 @media screen and (max-width:560px){
     .dashboard-grafico-vendas{
         transform: scale(0.5);
+    }
+    .dashboard-grafico-vendas:hover{
+        transform: scale(0.5);
+    }
+    .total-vendido-mes{
+        text-align: center;
     }
 }

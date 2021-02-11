@@ -25,9 +25,9 @@
 }
 @media screen and (max-width:560px){
     .dashboard-grafico-compras{
-        transform: scale(0.6);
+        transform: scale(0.9);
     }
     .dashboard-grafico-compras:hover{
-        transform: scale(0.6);
+        transform: scale(0.9);
     }
 }
