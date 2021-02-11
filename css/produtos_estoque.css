@@ -45,18 +45,10 @@
     max-height: calc(100vh - 138px);
 }
 
-.header-produtos{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px ;
-    background-color: #6db1f5;
-}
-.header-produtos{
-    display: flex;
-    justify-content: space-between;
-}
+
 
 #myTable tr td {
     font-size: 13px;
 }
+
+

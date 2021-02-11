@@ -44,3 +44,19 @@
     from {background-color: white;}
     to {background-color: rgb(214, 108, 108);}
 }
+
+
+
+@media only screen and (max-width: 600px){
+    .inputs-select-filter-carga{
+        flex-direction: column;
+    }
+    .select-filter-carga{
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: 10px;
+    }
+    .form-control.input-busca{
+        min-width: 180px;
+    }
+}
