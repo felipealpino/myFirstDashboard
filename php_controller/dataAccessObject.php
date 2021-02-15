@@ -48,6 +48,9 @@ function relDashValorDevendoCliente(){
 
 
 
+/**
+ * Query que alimenta dashboard.php - vendas nos ultimos 3 anos daquele mês
+ */
 function relDashVendasPassadas($mes, $ano){
     require '../connections/configODBC.php';
     $rangeAno = $ano-3;
@@ -63,6 +66,9 @@ function relDashVendasPassadas($mes, $ano){
 
 
 
+/**
+ * Query que alimenta dashboard.php - quantidade em estoque por familia
+ */
 function relDashFamiliaProdutos(){
     require '../connections/configODBC.php';
     $sqlVW_PRODUTO =    "SELECT 
@@ -180,6 +186,18 @@ function vendasAccessData($mes, $ano){
                     WHERE 
                         EXTRACT(MONTH FROM DT_MOVIMENTO) = '$mes' AND EXTRACT(YEAR FROM DT_MOVIMENTO) = '$ano' "; 
     $dados = odbc_exec($conn, $sqlENCEFAT) or die('Erro no sql');
+    return $dados;
+}
+
+
+
+/**
+ * Query que alimenta compras.php
+ */
+function comprasAccessData(){
+    require '../connections/configODBC.php';
+    $sqlCOMPRAS = "SELECT EMP, TOTAL, DT_ENTRADA FROM COMPRAS";
+    $dados = (odbc_exec($conn, $sqlCOMPRAS));
     return $dados;
 }
 

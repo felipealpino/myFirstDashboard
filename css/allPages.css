@@ -135,7 +135,7 @@ div.list-left-side ul li svg{
 .left-side-dashboard{
     background-color: var(--main-bg-color);
     max-width: 205px;
-    height: 120vh;
+    min-height: 100vh;
     border-right: 2px solid rgba(245, 238, 238, 0.8);
     transition: all 0.5s;
 }
