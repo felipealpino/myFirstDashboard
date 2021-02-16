@@ -1,10 +1,9 @@
 <?php 
 session_start();
-// $_SESSION['flash'] = '';
-// $_SESSION['user'] = '';
-// $_SESSION['email'] = '';
-// $_SESSION['token'] = '';
-session_destroy();
+require '../php_controller/UserDaoMysql.php';
+$UserDao = new UserDaoMysql($pdo);
+
+$UserDao->logOut();
 
 header("Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php");
 

@@ -32,13 +32,11 @@ class UserDaoMysql{
             }
         } else {
             return false;
-        }
-        
+        } 
     }
 
     
     public function isLogged($email){
-
         if($email){
             $sql = $this->pdo->prepare("SELECT * FROM users WHERE email=:email");
                 $sql->bindValue(':email', $email);
@@ -56,7 +54,11 @@ class UserDaoMysql{
 
 
     public function logOut(){
-        
+        // $_SESSION['flash'] = '';
+        // $_SESSION['user'] = '';
+        // $_SESSION['email'] = '';
+        // $_SESSION['token'] = '';
+        session_destroy();
     }
 
 

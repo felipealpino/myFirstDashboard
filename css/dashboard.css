@@ -83,7 +83,6 @@ div.top-dashboard svg{
         justify-content: space-around;
     }
     .left-side-dashboard{
-        height: 100%;
         position: absolute;
         z-index: 1;
         background-color: white;

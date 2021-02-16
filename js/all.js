@@ -79,3 +79,12 @@ function ascendingAndDescending(){
         });
     });
 }
+
+
+var right = document.querySelector('.right-side-dashboard')
+var left = document.querySelector('.left-side-dashboard')
+window.addEventListener('resize', () => {
+    if(right.clientHeight != left.clientHeight){
+        left.style.height = right.clientHeight+"px";
+    }
+})

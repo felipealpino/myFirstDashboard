@@ -1,6 +1,16 @@
 <?php 
+require '../php_controller/UserDaoMysql.php';
 session_start();
 
+$UserDao = new UserDaoMysql($pdo);
+
+if(isset($_SESSION['email'])){
+    $isLogged = $UserDao->isLogged($_SESSION['email']);
+    if($isLogged){
+        header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/dashboard.php');
+        exit;
+    } 
+}
 
 ?>
 
@@ -35,9 +45,7 @@ session_start();
                     <label for="exampleInputPassword1">Senha</label>
                     <input type="password" name="formIndexSenha" class="form-control" id="senha-form-index" placeholder="Digite sua senha">
                 </div>
-                <div class="form-goto-cadastro">
-                    <button type="submit"  class="btn btn-submit-forms">Entrar</button>
-                </div>
+                <button type="submit"  class="btn btn-submit-forms">Entrar</button>
             </form>
         </div>
         <div class="main-content"> </div> <!--  Imagem que não está aparecendo -->
@@ -50,7 +58,6 @@ session_start();
     <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
     <script src="js/validate/validate-index.js"></script>
     <script src="../js/all.js"></script>
-
 
 </body>
 </html>
