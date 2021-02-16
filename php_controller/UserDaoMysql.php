@@ -26,8 +26,11 @@ class UserDaoMysql{
                 $user->setEmail($data['email']);
                 $user->setSenha($data['senha']);
                 $user->setToken($data['token']);
+                $_SESSION['id'] = $user->getId();
                 $_SESSION['nome'] = $user->getNome();
                 $_SESSION['email'] = $user->getEmail();
+                $_SESSION['senha'] = $user->getSenha();
+                $_SESSION['token'] = $user->getToken();
                 return $user;
             }
         } else {
@@ -86,6 +89,19 @@ class UserDaoMysql{
         return true;
     }
 
+
+
+    public function updateUsuario($nome, $senha, $id){
+        $sql = $this->pdo->prepare("UPDATE users SET nome=:nome, senha=:senha WHERE id=:id");
+            $sql->bindValue(':id', $id);
+            $sql->bindValue(':nome', $nome);
+            $sql->bindValue(':senha', $senha);
+        $sql->execute();
+
+        $_SESSION['nome'] = $nome;
+        $_SESSION['senha'] = $senha;
+        return true;
+    }
 
 
 

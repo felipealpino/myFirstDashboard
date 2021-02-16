@@ -44,7 +44,16 @@ if(!$isLogged){
                     </div>
 
                     <div class="perfil-usuario-dados">
-                        <form action="" method="POST">
+                        <form action="../php_controller/perfil_action.php" method="POST">
+                            <?php 
+                                if(isset($_SESSION['flash']) && $_SESSION['flash'] != ''){
+                                    echo '<div class="flash-warning">';
+                                    print_r($_SESSION['flash']);
+                                    $_SESSION['flash'] = '';
+                                    echo '</div>'; 
+                                }
+                            ?>
+
                             <div class="form-group">
                                 <label for="email-input-index">Nome</label>
                                 <input type="text" name="formPerfilNome" class="form-control" id="nome-form-perfil" placeholder="Edite seu nome">
@@ -57,7 +66,7 @@ if(!$isLogged){
                                 <label for="nova-senha-input-perfil">Repita a nova senha</label>
                                 <input type="email" name="formPerfilNovaSenha" class="form-control" id="nova-senha-form-index" placeholder="Repita a nova senha">
                             </div>
-                            <button type="submit" class="btn btn-submit-forms btn-submit-cadastrar" onclick="event.preventDefault()">Editar</button>
+                            <button type="submit" class="btn btn-submit-forms btn-submit-cadastrar">Editar</button>
                         </form>
                     </div>
                 </div>                
