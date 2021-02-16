@@ -6,6 +6,17 @@ require '../entities/VendaVendedor.php';
 require '../php_library/biblioteca.php';
 require '../php_controller/dataAccessObject.php';
 
+require '../php_controller/UserDaoMysql.php';
+session_start();
+
+$UserDao = new UserDaoMysql($pdo);
+$isLogged = $UserDao->isLogged($_SESSION['email']);
+if(!$isLogged){
+    header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php');
+    exit;
+}
+
+
 $mes = filter_input(INPUT_GET,"mes_vendas_name");
 $ano = filter_input(INPUT_GET,"ano_vendas_name");
 

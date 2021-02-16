@@ -3,6 +3,17 @@ require '../connections/configODBC.php';
 require '../php_library/biblioteca.php';
 require '../php_controller/dataAccessObject.php';
 
+require '../php_controller/UserDaoMysql.php';
+session_start();
+
+$UserDao = new UserDaoMysql($pdo);
+$isLogged = $UserDao->isLogged($_SESSION['email']);
+if(!$isLogged){
+    header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php');
+    exit;
+}
+
+
 $dados = comprasAccessData();
 
 class QtAnoDia {

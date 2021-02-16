@@ -12,7 +12,6 @@ if ($email && $senha){
     $user = $UserDao->login($email, $senha);
 
     if($user){
-        $_SESSION['user'] = $user;
         header("Location:/dashboard/MGpiscinas/myFirstDashboard/views/dashboard.php");
         exit;
     }

@@ -27,6 +27,7 @@ class UserDaoMysql{
                 $user->setSenha($data['senha']);
                 $user->setToken($data['token']);
                 $_SESSION['nome'] = $user->getNome();
+                $_SESSION['email'] = $user->getEmail();
                 return $user;
             }
         } else {
@@ -38,6 +39,19 @@ class UserDaoMysql{
     
     public function isLogged($email){
 
+        if($email){
+            $sql = $this->pdo->prepare("SELECT * FROM users WHERE email=:email");
+                $sql->bindValue(':email', $email);
+            $sql->execute();
+
+            if($sql->rowCount() > 0){
+                $data = $sql->fetch(PDO::FETCH_ASSOC);
+                $_SESSION['token'] = $data['token']; 
+                return true;
+            }
+        } else {
+            return false;
+        }
     }
 
 
