@@ -22,6 +22,10 @@ if ($nome && $senha && $senhaConfirma){
         $_SESSION['flash'] = "Usuário alterado com sucesso !";
         header("Location:/dashboard/MGpiscinas/myFirstDashboard/views/perfil.php");
         exit;
+    } else {
+        $_SESSION['flash'] = "As senhas precisam ser iguais !";
+        header("Location:/dashboard/MGpiscinas/myFirstDashboard/views/perfil.php");
+        exit;
     }
 } else {
     $_SESSION['flash'] = "Algo deu errado no update, tente novamente !";

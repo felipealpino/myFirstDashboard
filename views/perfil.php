@@ -64,7 +64,7 @@ if(!$isLogged){
                             </div>
                             <div class="form-group">
                                 <label for="nova-senha-input-perfil">Repita a nova senha</label>
-                                <input type="email" name="formPerfilNovaSenha" class="form-control" id="nova-senha-form-index" placeholder="Repita a nova senha">
+                                <input type="password" name="formPerfilNovaSenha" class="form-control" id="nova-senha-form-index" placeholder="Repita a nova senha">
                             </div>
                             <button type="submit" class="btn btn-submit-forms btn-submit-cadastrar">Editar</button>
                         </form>

@@ -92,14 +92,15 @@ class UserDaoMysql{
 
 
     public function updateUsuario($nome, $senha, $id){
+        $hash = password_hash($senha, PASSWORD_DEFAULT);
         $sql = $this->pdo->prepare("UPDATE users SET nome=:nome, senha=:senha WHERE id=:id");
             $sql->bindValue(':id', $id);
             $sql->bindValue(':nome', $nome);
-            $sql->bindValue(':senha', $senha);
+            $sql->bindValue(':senha', $hash);
         $sql->execute();
 
         $_SESSION['nome'] = $nome;
-        $_SESSION['senha'] = $senha;
+        $_SESSION['senha'] = $hash;
         return true;
     }
 
