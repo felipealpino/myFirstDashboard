@@ -8,6 +8,12 @@ td{
     cursor: pointer;
 }
 
+.flash-warning{
+    padding:5px;
+    border:  1px solid red;
+    margin-bottom: 5px;
+    border-radius: 5px;
+}
 
 /* Input mes e ano top dashboard */
 .form-top-dashboard-mes-ano{
@@ -65,9 +71,9 @@ td{
 }
 
 
-.content-dashboard{
+/* .content-dashboard{
     padding-top: 30px;
-}
+} */
 
 .content-dashboard{
     max-height: 100vh;
@@ -180,7 +186,7 @@ div.top-dashboard-mobile.left-icon svg{
 }
 
 .selected{
-    background-color: #7c75fc1e !important;
+    background-color: #5abfd171 !important;
 }
 
 

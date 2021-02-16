@@ -31,14 +31,16 @@ if(isset($_SESSION['email'])){
         <div class="side-bar">
             <form  method="POST" action="../php_controller/login_action.php" class="form-index-login" id="form-index-login">
                 <div class="form-group">
-                    <label for="email-input-index">Email address</label>
                     <?php 
-                        echo "<br>";
                         if(isset($_SESSION['flash']) && $_SESSION['flash'] != ''){
+                            echo '<div class="flash-warning">';
                             print_r($_SESSION['flash']);
                             $_SESSION['flash'] = '';
+                            echo '</div>'; 
                         }
                     ?>
+
+                    <label for="email-input-index">Email address</label>
                     <input type="email" name="formIndexEmail" class="form-control" id="email-form-index" placeholder="Digite seu email">
                 </div>
                 <div class="senha-input-index">

@@ -50,10 +50,6 @@ if(!$isLogged){
                                 <input type="text" name="formPerfilNome" class="form-control" id="nome-form-perfil" placeholder="Edite seu nome">
                             </div>
                             <div class="form-group">
-                                <label for="cpf-input-perfil">Cpf</label>
-                                <input type="text" name="formPerfilCpf" class="form-control" id="cpf-form-perfil" placeholder="Edite seu CPF">
-                            </div>
-                            <div class="form-group">
                                 <label for="senha-input-perfil">Nova senha</label>
                                 <input type="password" name="formPerfilSenha" class="form-control" id="senha-form-perfil" placeholder="Digite uma nova senha">
                             </div>

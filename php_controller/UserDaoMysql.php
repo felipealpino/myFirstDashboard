@@ -62,6 +62,31 @@ class UserDaoMysql{
     }
 
 
+    public function emailExists($email){
+        $sql = $this->pdo->prepare("SELECT * FROM users WHERE email=:email");
+            $sql->bindValue(':email', $email);
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            return true;
+        } else { 
+            return false;
+        }
+    }
+
+    public function addUsuario($nome, $email, $senha){
+        $hash = password_hash($senha, PASSWORD_DEFAULT);
+        $token = md5(time().rand(0,9999).time());
+        $sql = $this->pdo->prepare("INSERT INTO users (nome, email, senha, token) VALUES (:nome, :email, :senha, :token)");
+            $sql->bindValue(':nome', $nome);
+            $sql->bindValue(':email', $email);
+            $sql->bindValue(':senha', $hash);
+            $sql->bindValue(':token', $token);
+        $sql->execute();
+        return true;
+    }
+
+
 
 
 }

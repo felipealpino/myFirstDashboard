@@ -81,10 +81,25 @@ function ascendingAndDescending(){
 }
 
 
-var right = document.querySelector('.right-side-dashboard')
-var left = document.querySelector('.left-side-dashboard')
-window.addEventListener('resize', () => {
-    if(right.clientHeight != left.clientHeight){
-        left.style.height = right.clientHeight+"px";
+/**
+ * Arrumando bug do left-side-dashboard
+ */
+window.addEventListener('resize', resizeLeftSide)
+function resizeLeftSide(){
+    const left = document.querySelector('.left-side-dashboard')
+    const grid = document.querySelector('.content-dashboard-grid');
+    const topContent = document.querySelector('.top-dashboard-mobile.left-icon')
+    const rightSide = document.querySelector('.right-side-dashboard')
+
+    try{
+        var sum = topContent.clientHeight + grid.clientHeight;
+        if(sum != left.clientHeight){
+            left.style.height = sum+"px";
+        }
+    } catch{
+        if(rightSide.clientHeight != left.clientHeight){
+            left.style.height = rightSide.clientHeight+"px";
+        }
     }
-})
+}
+resizeLeftSide();

@@ -10,6 +10,7 @@
     align-items: center;
 }
 .content-dashboard.content-perfil{
+    padding: 30px;
     background-color: #fafafa;
     border-top: 1px solid rgba(245, 238, 238, 0.8);
 }
@@ -43,13 +44,10 @@
 
 @media screen and (min-width:701px) and (max-width:1200px){
     .perfil-usuario{
-        flex-direction: column;
-        padding: 30px;
-        width: fit-content;
-        margin-top: 300px;
+        padding: 20px;
     }
     .perfil-usuario-foto{
-        margin-bottom: 10px;
+        display: none;
     }
 }
 
@@ -58,13 +56,9 @@
         flex-direction: column;
         padding: 20px;
         width: fit-content;
-        margin-top: 200px;
         }
     .perfil-usuario-foto{
-        margin-bottom: 10px;
-        width: 240px;
-        height: 320px;
-        background-position: left;
+        display: none;
          
     }
 }

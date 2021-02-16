@@ -1,4 +1,15 @@
-<!DOCTYPE html>
+<?php
+require '../php_controller/UserDaoMysql.php';
+session_start();
+
+$UserDao = new UserDaoMysql($pdo);
+$isLogged = $UserDao->isLogged($_SESSION['email']);
+if(!$isLogged){
+    header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php');
+    exit;
+}
+?>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,9 +23,21 @@
     <title>Cadastre-se</title>
 </head>
 <body>
+
+
+
     <div class="form-width-cadastro">
-        <form method="POST" action="" class="form-cadastrar-login" id="form-cadastrar-login">
+        <form method="POST" action="../php_controller/cadastrar_action.php" class="form-cadastrar-login" id="form-cadastrar-login">
             
+        <?php
+            if(isset($_SESSION['flash']) && $_SESSION['flash'] != ''){
+                echo '<div class="flash-warning">';
+                print_r($_SESSION['flash']);
+                $_SESSION['flash'] = '';
+                echo '</div>'; 
+            }
+        ?>
+
             <div class="form-group">
                 <label for="email-input-cadastrar">Nome Completo</label>
                 <input type="text" name="formCadastrarNome" class="form-control" id="nome-form-cadastrar" placeholder="Digite um nome">

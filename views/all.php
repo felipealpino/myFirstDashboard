@@ -56,11 +56,17 @@
                         </li>
                         <li>
                             <?php
-                                echo $_SESSION['nome']
+                                echo $_SESSION['nome']."<br>";
                                 // $ip = file_get_contents('https://api.ipify.org');
                                 // echo "public IP address : " . $ip;
                             ?>
                         </li>
+                        <li>
+                            <?php if (strtoupper($_SESSION['nome']) == "FELIPE GONTIJO"): ?>
+                                <a href="cadastrar.php">Cadastrar usuário</a>
+                            <?php endif ?>
+                            </li>
+
                         
                     </ul>
                 </div>
