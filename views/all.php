@@ -52,12 +52,13 @@
                         </li>
                         <li>
                             <i class="fas fa-sign-out-alt"></i>
-                            <a href="index.php">Logout</a>    
+                            <a href="../php_controller/logout_action.php">Logout</a>    
                         </li>
                         <li>
                             <?php
-                                $ip = file_get_contents('https://api.ipify.org');
-                                echo "public IP address : " . $ip;
+                                echo $_SESSION['nome']
+                                // $ip = file_get_contents('https://api.ipify.org');
+                                // echo "public IP address : " . $ip;
                             ?>
                         </li>
                         

@@ -5,7 +5,7 @@ require '../entities/Vendedor.php';
 require '../entities/VendaFactory.php';
 require '../entities/VendaVendedor.php';
 require '../connections/configODBC.php';
-
+session_start();
 
 /**
  * TOTAL QUE DEVE PARA CLIENTE
