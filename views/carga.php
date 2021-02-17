@@ -70,7 +70,7 @@ if(!$isLogged){
                     </div>
 
                     <div class="form-busca-produtos-estoque">
-                        <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar ..">
+                        <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar .." autofocus>
                         <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                     </div>
                 </div>

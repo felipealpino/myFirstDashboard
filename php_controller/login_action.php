@@ -10,6 +10,12 @@ $senha = filter_input(INPUT_POST, 'formIndexSenha');
 
 if ($email && $senha){
     $user = $UserDao->login($email, $senha);
+    $_SESSION['id'] = $user->getId();
+    $_SESSION['nome'] = $user->getNome();
+    $_SESSION['email'] = $user->getEmail();
+    $_SESSION['senha'] = $user->getSenha();
+    $_SESSION['permissao'] = $user->getPermissaoId();
+    $_SESSION['token'] = $user->getToken();
 
     if($user){
         header("Location:/dashboard/MGpiscinas/myFirstDashboard/views/dashboard.php");

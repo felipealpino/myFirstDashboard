@@ -46,7 +46,7 @@ if(!$isLogged){
                     <h2 class="header_texto">Relatório de produtos</h2>
                 </div>
                 <div class="form-busca-produtos-estoque">
-                    <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar referencia ou descrição..">
+                    <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar referencia ou descrição.." autofocus> 
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                 </div>
             </div>

@@ -9,7 +9,7 @@ $selectedValue = $_POST['selectionValue'];
 $dataInicial = $_POST['dataInicial'];
 $dataFinal = $_POST['dataFinal'];
 
-if ($myInput === ''){
+if ($myInput === '' ){
     goto notfound; //vai pro final desse arquivo
 }
 

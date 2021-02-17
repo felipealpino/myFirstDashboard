@@ -16,7 +16,6 @@ if(!$isLogged){
 }
 
 
-
 /**
  * TOTAL QUE DEVE PARA CLIENTE
  */

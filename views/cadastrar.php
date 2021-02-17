@@ -43,7 +43,7 @@ $dados = $UserDao->permissoesDisponiveis();
 
             <div class="form-group">
                 <label for="email-input-cadastrar">Nome Completo</label>
-                <input type="text" name="formCadastrarNome" class="form-control" id="nome-form-cadastrar" placeholder="Digite um nome">
+                <input type="text" name="formCadastrarNome" class="form-control" id="nome-form-cadastrar" placeholder="Digite um nome" autofocus>
             </div>
             
             <div class="form-group">

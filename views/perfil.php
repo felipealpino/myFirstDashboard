@@ -56,7 +56,7 @@ if(!$isLogged){
 
                             <div class="form-group">
                                 <label for="email-input-index">Nome</label>
-                                <input type="text" name="formPerfilNome" class="form-control" id="nome-form-perfil" placeholder="Edite seu nome">
+                                <input type="text" name="formPerfilNome" class="form-control" id="nome-form-perfil" placeholder="Edite seu nome" autofocus>
                             </div>
                             <div class="form-group">
                                 <label for="senha-input-perfil">Nova senha</label>

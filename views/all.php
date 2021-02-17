@@ -42,10 +42,14 @@
                             <i class="fas fa-hammer"></i>
                             <a href="producao.php">produção</a>
                         </li>
+
+                        <?php if($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2):?>
                         <li>
                             <i class="far fa-money-bill-alt"></i>
                             <a href="vendas.php">vendas</a>
                         </li>
+                        <?php endif; ?>
+
                         <li>
                             <i class="fas fa-shopping-cart"></i>
                             <a href="compras.php">compras</a>

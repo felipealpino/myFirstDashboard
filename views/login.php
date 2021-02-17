@@ -41,7 +41,7 @@ if(isset($_SESSION['email'])){
                     ?>
 
                     <label for="email-input-index">Email address</label>
-                    <input type="email" name="formIndexEmail" class="form-control" id="email-form-index" placeholder="Digite seu email">
+                    <input type="email" name="formIndexEmail" class="form-control" id="email-form-index" placeholder="Digite seu email" autofocus>
                 </div>
                 <div class="senha-input-index">
                     <label for="exampleInputPassword1">Senha</label>

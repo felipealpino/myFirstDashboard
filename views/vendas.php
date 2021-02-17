@@ -16,6 +16,10 @@ if(!$isLogged){
     exit;
 }
 
+if($_SESSION['permissao'] == 3){
+    header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/dashboard.php');
+    exit;
+}
 
 $mes = filter_input(INPUT_GET,"mes_vendas_name");
 $ano = filter_input(INPUT_GET,"ano_vendas_name");
@@ -44,7 +48,6 @@ if($mes && $ano){
 
 ?>
 
-<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -110,7 +113,6 @@ if($mes && $ano){
                     <?php echo "Total vendido no mês: R$ ".formatNumberToReal($totalVendido) ?>
                 </div>
             </div>
-            
 
         </div>
     </div>

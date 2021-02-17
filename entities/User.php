@@ -46,7 +46,7 @@ class User{
     public function getPermissaoId(){
         return $this->permissao;
     }
-    public function setPermissao($idPermissao){
+    public function setPermissaoId($idPermissao){
         $this->permissao = $idPermissao;
     }
 

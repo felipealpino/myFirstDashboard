@@ -26,15 +26,8 @@ class UserDaoMysql{
                 $user->setNome($data['nome']);
                 $user->setEmail($data['email']);
                 $user->setSenha($data['senha']);
-                $user->setPermissao($data['permissao']);
+                $user->setPermissaoId($data['permissao']);
                 $user->setToken($data['token']);
-
-                $_SESSION['id'] = $user->getId();
-                $_SESSION['nome'] = $user->getNome();
-                $_SESSION['email'] = $user->getEmail();
-                $_SESSION['senha'] = $user->getSenha();
-                $_SESSION['permissao'] = $user->getPermissaoId();
-                $_SESSION['token'] = $user->getToken();
                 return $user;
             }
         } else {

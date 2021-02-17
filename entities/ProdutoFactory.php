@@ -19,25 +19,14 @@
                         return true;
                     }
                 }
-
-                $produto = new ProdutoVendido();
-                    $produto->setCodProd($codProd);
-                    $produto->setReferencia($referencia);
-                    $produto->setDescricao($descricao);
-                    $produto->setCusto($custo);
-                    $produto->addQuantidade($quantidade);
-                array_push($this->listaProd, $produto);
-
-            } else {
-                $produto = new ProdutoVendido();
-                    $produto->setCodProd($codProd);
-                    $produto->setReferencia($referencia);
-                    $produto->setDescricao($descricao);
-                    $produto->setCusto($custo);
-                    $produto->addQuantidade($quantidade);
-                array_push($this->listaProd, $produto);
             }
-
+            $produto = new ProdutoVendido();
+                $produto->setCodProd($codProd);
+                $produto->setReferencia($referencia);
+                $produto->setDescricao($descricao);
+                $produto->setCusto($custo);
+                $produto->addQuantidade($quantidade);
+            array_push($this->listaProd, $produto);
         }
 
 
