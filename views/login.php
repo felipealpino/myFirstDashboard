@@ -50,7 +50,7 @@ if(isset($_SESSION['email'])){
                 <button type="submit"  class="btn btn-submit-forms">Entrar</button>
             </form>
         </div>
-        <div class="main-content"> </div> <!--  Imagem que não está aparecendo -->
+        <!-- <div class="main-content"> </div>  -->
     </div>
     <script src="../plugins/jquery-3.5.1/jquery-3.5.1.js"></script>
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
