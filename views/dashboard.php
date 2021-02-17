@@ -76,68 +76,74 @@ $list = $totalFamilias->getListaProd();
     <link rel="stylesheet" href="../plugins/fontawesome5.15.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../plugins/package/dist/sweetalert2.min.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-        <?php include 'all.php';?>
+    <?php include 'all.php';?>
 
-        <div class="right-side-dashboard">    
-            <div class="top-dashboard-mobile left-icon">
-                <div class="top-dashboard">
-                    <i class="fas fa-home"></i>
-                    <span>Dashboard</span>
-                </div>
-                <div class="open-close-mobile">
-                    <div class="open-close-mobile-icon">
-                        <i class="fas fa-align-justify"></i>
-                    </div>
-                </div>
+    <div class="right-side-dashboard">    
+        <div class="top-dashboard-mobile left-icon">
+            <div class="top-dashboard">
+                <i class="fas fa-home"></i>
+                <span>Dashboard</span>
             </div>
-
-            <div class="content-dashboard">
-                <div class="content-dashboard-grid">
-                    <!-- DEVENDO P/ CLIENTE -->
-                    <div class="dashboard_rel_carga"> <?php echo "Valor total não entregue: R$".$produtoFactory->valorTotal() ?> </div>
-
-                    <!-- VENDAS MES/ANOS  -->
-                    <div class="dashboard_rel_vendas">
-                        <span>
-                            Vendas mês: 
-                            <?php echo findNomeMes($mes)?> 
-                        </span> <br> 
-                        <?php for ($i=0; $i < count($arrVendaPorAno); $i++): ?>
-                            <span>
-                                Ano: 
-                                <?php 
-                                    echo $arrVendaPorAno[$i]->getDataVenda()." - R$ ";
-                                    echo formatNumberToReal($arrVendaPorAno[$i]->getSubTotal()) 
-                                ?>         
-                            </span> <br>
-                        <?php endfor; ?>
-                    </div>
-
-                    <!-- RELACAO VALOR - FAMILIA ESTOQUE -->
-                    <div class="dashboard_rel_estoque">
-                        <?php for ($i=0; $i <count($totalFamilias->getListaProd()) ; $i++): ?>
-                            <span>
-                                Familia: 
-                                    <?php 
-                                        echo findNomeFamilia($list[$i]->getCodFamilia())
-                                        ." - ";
-                                        echo "R$ ".formatNumberToReal($list[$i]->getValorEmEstoque());  
-                                    ?> 
-                            </span> <br>
-                        <?php endfor ?>
-                    </div>
-
-
-                    <!-- RELAÇÃO PRODUCAO MES/ANOS -->
-                    <div class="dashboard_rel_producao">producao</div>
+            <div class="open-close-mobile">
+                <div class="open-close-mobile-icon">
+                    <i class="fas fa-align-justify"></i>
                 </div>
             </div>
         </div>
-    </div>
 
+
+     <?php if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2):?>
+
+        <div class="content-dashboard">
+            <div class="content-dashboard-grid">
+                <!-- DEVENDO P/ CLIENTE -->
+                <div class="dashboard_rel_carga"> <?php echo "Valor total não entregue: R$".$produtoFactory->valorTotal() ?> </div>
+
+                <!-- VENDAS MES/ANOS  -->
+                <div class="dashboard_rel_vendas">
+                    <span>
+                        Vendas mês: 
+                        <?php echo findNomeMes($mes)?> 
+                    </span> <br> 
+                    <?php for ($i=0; $i < count($arrVendaPorAno); $i++): ?>
+                        <span>
+                            Ano: 
+                            <?php 
+                                echo $arrVendaPorAno[$i]->getDataVenda()." - R$ ";
+                                echo formatNumberToReal($arrVendaPorAno[$i]->getSubTotal()) 
+                            ?>         
+                        </span> <br>
+                    <?php endfor; ?>
+                </div>
+
+                <!-- RELACAO VALOR - FAMILIA ESTOQUE -->
+                <div class="dashboard_rel_estoque">
+                    <?php for ($i=0; $i <count($totalFamilias->getListaProd()) ; $i++): ?>
+                        <span>
+                            Familia: 
+                                <?php 
+                                    echo findNomeFamilia($list[$i]->getCodFamilia())
+                                    ." - ";
+                                    echo "R$ ".formatNumberToReal($list[$i]->getValorEmEstoque());  
+                                ?> 
+                        </span> <br>
+                    <?php endfor ?>
+                </div>
+
+
+                <!-- RELAÇÃO PRODUCAO MES/ANOS -->
+                <div class="dashboard_rel_producao">producao</div>
+            </div>
+        </div>
+     <?php else:
+        echo "Em desenvolvimento.... ";   
+        endif
+     ?>
+
+    </div>
+    
     <script src="../plugins/jquery-3.5.1/jquery-3.5.1.js"></script>
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
     <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>

@@ -14,10 +14,14 @@
                             <i class="fas fa-home"></i>
                             <a href="dashboard.php">Dashboard</a>
                         </li>
-                        <li>
-                            <i class="fas fa-user-alt"></i>
-                            <a href="perfil.php">Perfil</a>
-                        </li>
+
+                        <?php if($_SESSION['permissao'] != 4):?>
+                            <li>
+                                <i class="fas fa-user-alt"></i>
+                                <a href="perfil.php">Perfil</a>
+                            </li>
+                        <?php endif ?>
+                        
                         <li>
                             <i class="fab fa-product-hunt"></i>
                             <a href="produtos_estoque.php">Produtos Estoque</a>
@@ -30,30 +34,43 @@
                             <i class="fas fa-truck"></i>
                             <a href="carga.php">Carga</a>
                         </li>
-                        <li>
-                            <i class="fas fa-clipboard-check"></i>
-                            <a href="kardex.php">Kardex</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-boxes"></i>
-                            <a href="estoque.php">estoque</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-hammer"></i>
-                            <a href="producao.php">produção</a>
-                        </li>
+
+                        <?php if($_SESSION['permissao'] != 4):?>
+                            <li>
+                                <i class="fas fa-clipboard-check"></i>
+                                <a href="kardex.php">Kardex</a>
+                            </li>
+                        <?php endif ?>
+
+                        <?php if($_SESSION['permissao'] != 4):?>
+                            <li>
+                                <i class="fas fa-boxes"></i>
+                                <a href="estoque.php">estoque</a>
+                            </li>
+                        <?php endif ?>
+                        
+
+                        <?php if($_SESSION['permissao'] != 4):?>
+                            <li>
+                                <i class="fas fa-hammer"></i>
+                                <a href="producao.php">produção</a>
+                            </li>
+                        <?php endif ?>
 
                         <?php if($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2):?>
-                        <li>
-                            <i class="far fa-money-bill-alt"></i>
-                            <a href="vendas.php">vendas</a>
-                        </li>
+                            <li>
+                                <i class="far fa-money-bill-alt"></i>
+                                <a href="vendas.php">vendas</a>
+                            </li>
                         <?php endif; ?>
 
-                        <li>
-                            <i class="fas fa-shopping-cart"></i>
-                            <a href="compras.php">compras</a>
-                        </li>
+                        <?php if($_SESSION['permissao'] != 4):?>
+                            <li>
+                                <i class="fas fa-shopping-cart"></i>
+                                <a href="compras.php">compras</a>
+                            </li>   
+                        <?php endif; ?>
+
                         <li>
                             <i class="fas fa-sign-out-alt"></i>
                             <a href="../php_controller/logout_action.php">Logout</a>    

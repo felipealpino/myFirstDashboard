@@ -4,7 +4,7 @@ require '../php_library/biblioteca.php';
 require 'dataAccessObject.php';
 $myInput = $_POST['myInput'];
 $myInput = getIdFIchaTecnicaSintaxe($myInput); 
-
+session_start();
 $dados = composicoesAccessData($myInput);
 
 ?>
@@ -19,8 +19,10 @@ $dados = composicoesAccessData($myInput);
                     <th>Referencia</th>
                     <th>Descrição</th>
                     <th style="text-align: center;">Quant.</th>
-                    <th>Custo (R$)</th>
-                    <th>Soma (R$)</th>
+                    <?php if($_SESSION['permissao'] != 4): ?> 
+                        <th>Custo (R$)</th>
+                        <th>Soma (R$)</th>
+                    <?php endif ?>
                 </tr>
             </thead>
 
@@ -32,8 +34,10 @@ $dados = composicoesAccessData($myInput);
                     <td> <?=odbc_result($dados,"REFERENCIA")?> </td>
                     <td> <?=odbc_result($dados,"DESCRICAO")?> </td>
                     <td style="text-align: center;"> <?=odbc_result($dados,"QUANTIDADE") ?> </td>
-                    <td> <?="R$ ".number_format(odbc_result($dados,"PRECOCUSTO"),2)?></td>
-                    <td> <?="R$ ".number_format(odbc_result($dados,"SOMA"),2)?></td>
+                    <?php if($_SESSION['permissao'] != 4): ?> 
+                        <td> <?="R$ ".number_format(odbc_result($dados,"PRECOCUSTO"),2)?></td>
+                        <td> <?="R$ ".number_format(odbc_result($dados,"SOMA"),2)?></td>
+                    <?php endif ?>
                 </tr>
             <?php endwhile ?>
             </tbody>

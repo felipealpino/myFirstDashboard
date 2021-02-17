@@ -22,7 +22,6 @@ $dados = $UserDao->permissoesDisponiveis();
     <link rel="stylesheet" href="../plugins/fontawesome5.15.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../plugins/package/dist/sweetalert2.min.css">
     <title>Cadastre-se</title>
 </head>
 <body>
