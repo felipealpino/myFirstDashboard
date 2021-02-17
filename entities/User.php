@@ -7,6 +7,7 @@ class User{
     private $nome;
     private $email;
     private $senha;
+    private $permissao;
     private $token;
 
 
@@ -39,6 +40,14 @@ class User{
     }
     public function setSenha($senha){
         $this->senha = $senha;
+    }
+
+
+    public function getPermissaoId(){
+        return $this->permissao;
+    }
+    public function setPermissao($idPermissao){
+        $this->permissao = $idPermissao;
     }
 
 

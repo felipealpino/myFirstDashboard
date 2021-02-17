@@ -11,6 +11,7 @@ class UserDaoMysql{
     }
 
 
+
     public function login($email, $senha){
         $sql = $this->pdo->prepare("SELECT * FROM users WHERE email=:email");
             $sql->bindValue(':email', $email);
@@ -25,11 +26,14 @@ class UserDaoMysql{
                 $user->setNome($data['nome']);
                 $user->setEmail($data['email']);
                 $user->setSenha($data['senha']);
+                $user->setPermissao($data['permissao']);
                 $user->setToken($data['token']);
+
                 $_SESSION['id'] = $user->getId();
                 $_SESSION['nome'] = $user->getNome();
                 $_SESSION['email'] = $user->getEmail();
                 $_SESSION['senha'] = $user->getSenha();
+                $_SESSION['permissao'] = $user->getPermissaoId();
                 $_SESSION['token'] = $user->getToken();
                 return $user;
             }
@@ -39,6 +43,7 @@ class UserDaoMysql{
     }
 
     
+
     public function isLogged($email){
         if($email){
             $sql = $this->pdo->prepare("SELECT * FROM users WHERE email=:email");
@@ -56,13 +61,11 @@ class UserDaoMysql{
     }
 
 
+
     public function logOut(){
-        // $_SESSION['flash'] = '';
-        // $_SESSION['user'] = '';
-        // $_SESSION['email'] = '';
-        // $_SESSION['token'] = '';
         session_destroy();
     }
+
 
 
     public function emailExists($email){
@@ -77,13 +80,16 @@ class UserDaoMysql{
         }
     }
 
-    public function addUsuario($nome, $email, $senha){
+
+
+    public function addUsuario($nome, $email, $senha, $idPermissao){
         $hash = password_hash($senha, PASSWORD_DEFAULT);
         $token = md5(time().rand(0,9999).time());
-        $sql = $this->pdo->prepare("INSERT INTO users (nome, email, senha, token) VALUES (:nome, :email, :senha, :token)");
+        $sql = $this->pdo->prepare("INSERT INTO users (nome, email, senha, permissao, token) VALUES (:nome, :email, :senha, :permissao, :token)");
             $sql->bindValue(':nome', $nome);
             $sql->bindValue(':email', $email);
             $sql->bindValue(':senha', $hash);
+            $sql->bindValue(':permissao', $idPermissao);
             $sql->bindValue(':token', $token);
         $sql->execute();
         return true;
@@ -105,6 +111,32 @@ class UserDaoMysql{
     }
 
 
+
+    public function permissoesDisponiveis(){
+        $sql = $this->pdo->prepare("SELECT * FROM permissoes");
+        $sql->execute();
+        if($sql->rowCount() > 0){
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        } else {
+            return false;
+        }
+    }
+
+
+
+    public function findPermissaoIdByName($nome){
+        $sql = $this->pdo->prepare("SELECT * FROM permissoes WHERE tipo_permissao=:tipo_permissao");
+            $sql->bindValue(':tipo_permissao', $nome);
+        $sql->execute();
+        
+        if($sql->rowCount() > 0){
+            $idPermissao = $sql->fetch(PDO::FETCH_ASSOC);
+            return $idPermissao['id'];
+        } else {
+            return false;
+        }
+    }
 
 }
 

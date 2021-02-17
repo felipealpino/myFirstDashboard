@@ -8,6 +8,9 @@ if(!$isLogged){
     header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php');
     exit;
 }
+
+$dados = $UserDao->permissoesDisponiveis();
+
 ?>
 
 <html lang="en">
@@ -24,8 +27,6 @@ if(!$isLogged){
 </head>
 <body>
 
-
-
     <div class="form-width-cadastro">
         <form method="POST" action="../php_controller/cadastrar_action.php" class="form-cadastrar-login" id="form-cadastrar-login">
             
@@ -37,6 +38,8 @@ if(!$isLogged){
                 echo '</div>'; 
             }
         ?>
+
+            <a href="dashboard.php">Retornar para dashboard</a> <br><br>
 
             <div class="form-group">
                 <label for="email-input-cadastrar">Nome Completo</label>
@@ -54,24 +57,27 @@ if(!$isLogged){
             </div>
 
             <div class="confirmar-senha-input-cadastrar">
-                <label for="exampleInputPassword1">Confirmar enha</label>
+                <label for="exampleInputPassword1">Confirmar senha</label>
                 <input type="password" name="formCadastrarConfirmarSenha" class="form-control" id="confirmar-senha-form-cadastrar" placeholder="Digine novamente a senha">
             </div>
             
+            <div class="form-group">
+                <label for="exampleInputPassword1">Grupo</label> <br>
+                <select class="form-control" name="formCadastrarOption">
+                    <?php foreach($dados as $item): ?>
+                        <option value="<?php echo $item['tipo_permissao']?>">
+                            <?php echo ucfirst($item['tipo_permissao']);?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
+
             <button type="submit" class="btn btn-submit-forms btn-submit-cadastrar">Cadastrar</button>
 
         </form>
     </div>
 
-    <script src="../plugins/jquery-3.5.1/jquery-3.5.1.js"></script>
-    <script src="../plugins/jquery-validation-1.19.2/dist/jquery.validate.min.js"></script>
-    <script src="../plugins/jquery-validation-1.19.2/dist/additional-methods.min.js"></script>
-    <script src="../plugins/jquery-validation-1.19.2/dist/localization/messages_pt_BR.min.js"></script>
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
-    <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
-    <script src="../plugins/package/dist/sweetalert2.all.min.js"></script>
-    <script src="../js/validate/validate-cadastrar.js"></script>
-    <script src="../plugins/jQuery-Mask-Plugin-master/dist/jquery.mask.min.js"></script>
     <script src="../js/all.js"></script>
 </body>
 </html>
