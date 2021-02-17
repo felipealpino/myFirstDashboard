@@ -36,6 +36,8 @@ div.top-dashboard svg{
     grid-gap: 5px;
     padding: 30px;
     justify-items: center;
+    height: calc(100vh - 71px);
+
 }
 
 
@@ -83,6 +85,8 @@ div.top-dashboard svg{
         grid-gap: 30px;
         padding: 20px;
         justify-content: space-around;
+        height: calc(100vh - 151px);
+
     }
     .left-side-dashboard{
         position: absolute;
