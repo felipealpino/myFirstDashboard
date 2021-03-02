@@ -18,8 +18,12 @@ class UserDaoMysql{
         $sql->execute();
 
         if($sql->rowCount() > 0){
+            $updateTime = $this->pdo->prepare("UPDATE users SET ultimo_login = :ultimo_login WHERE email = :email");
+                $updateTime->bindValue(':ultimo_login', date("Y-m-d H:i:s", strtotime("-4 hours")));
+                $updateTime->bindValue(':email', $email);
+            $updateTime->execute();
+
             $data = $sql->fetch(PDO::FETCH_ASSOC);
-            
             if(password_verify($senha, $data['senha'])){
                 $user = new User();
                 $user->setid($data['id']);

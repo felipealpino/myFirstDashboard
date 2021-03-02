@@ -16,10 +16,10 @@
                         </li>
 
                         <?php if($_SESSION['permissao'] != 4):?>
-                            <li>
-                                <i class="fas fa-user-alt"></i>
-                                <a href="perfil.php">Perfil</a>
-                            </li>
+                        <li>
+                            <i class="fas fa-user-alt"></i>
+                            <a href="perfil.php">Perfil</a>
+                        </li>
                         <?php endif ?>
                         
                         <li>
@@ -36,39 +36,39 @@
                         </li>
 
                         <?php if($_SESSION['permissao'] != 4):?>
-                            <li>
-                                <i class="fas fa-clipboard-check"></i>
-                                <a href="kardex.php">Kardex</a>
-                            </li>
+                        <li>
+                            <i class="fas fa-clipboard-check"></i>
+                            <a href="kardex.php">Kardex</a>
+                        </li>
                         <?php endif ?>
 
                         <?php if($_SESSION['permissao'] != 4):?>
-                            <li>
-                                <i class="fas fa-boxes"></i>
-                                <a href="estoque.php">estoque</a>
-                            </li>
+                        <li>
+                            <i class="fas fa-boxes"></i>
+                            <a href="estoque.php">estoque</a>
+                        </li>
                         <?php endif ?>
                         
 
                         <?php if($_SESSION['permissao'] != 4):?>
-                            <li>
-                                <i class="fas fa-hammer"></i>
-                                <a href="producao.php">produção</a>
-                            </li>
+                        <li>
+                            <i class="fas fa-hammer"></i>
+                            <a href="producao.php">produção</a>
+                        </li>
                         <?php endif ?>
 
                         <?php if($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2):?>
-                            <li>
-                                <i class="far fa-money-bill-alt"></i>
-                                <a href="vendas.php">vendas</a>
-                            </li>
+                        <li>
+                            <i class="far fa-money-bill-alt"></i>
+                            <a href="vendas.php">vendas</a>
+                        </li>
                         <?php endif; ?>
 
                         <?php if($_SESSION['permissao'] != 4):?>
-                            <li>
-                                <i class="fas fa-shopping-cart"></i>
-                                <a href="compras.php">compras</a>
-                            </li>   
+                        <li>
+                            <i class="fas fa-shopping-cart"></i>
+                            <a href="compras.php">compras</a>
+                        </li>   
                         <?php endif; ?>
 
                         <li>
@@ -83,11 +83,20 @@
                                 // echo "public IP address : " . $ip;
                             ?>
                         </li>
+                        <?php if (strtoupper($_SESSION['permissao']) == 1): ?>
                         <li>
-                            <?php if (strtoupper($_SESSION['permissao']) == 1): ?>
                                 <a href="cadastrar.php">Cadastrar usuário</a>
-                            <?php endif ?>
                         </li>
+                        <?php endif ?>
+
+                        <!--                         
+                        <li>
+                            <?php
+                                echo $_SERVER['REMOTE_ADDR'];
+                            ?>
+                        </li> -->
+                        
+                        
 
                         
                     </ul>

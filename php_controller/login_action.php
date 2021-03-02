@@ -15,7 +15,6 @@ if ($email && $senha){
         $_SESSION['id'] = $user->getId();
         $_SESSION['nome'] = $user->getNome();
         $_SESSION['email'] = $user->getEmail();
-        $_SESSION['senha'] = $user->getSenha();
         $_SESSION['permissao'] = $user->getPermissaoId();
         $_SESSION['token'] = $user->getToken();
         header("Location:/dashboard/MGpiscinas/myFirstDashboard/views/dashboard.php");

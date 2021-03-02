@@ -47,8 +47,11 @@
                 for($i=0; $i<count($this->listVendedor); $i++){
                     $sum += $this->listVendedor[$i]->getSubTotal();
                 }
+                return $sum; 
+            } else {
+                $sum = 0; 
+                return $sum;
             }
-            return $sum;
         }
 
 
