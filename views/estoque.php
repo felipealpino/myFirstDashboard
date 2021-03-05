@@ -1,5 +1,7 @@
 <?php
+require '../php_library/biblioteca.php';
 require '../php_controller/UserDaoMysql.php';
+
 session_start();
 
 $UserDao = new UserDaoMysql($pdo);

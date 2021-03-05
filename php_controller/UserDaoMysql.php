@@ -135,6 +135,20 @@ class UserDaoMysql{
         }
     }
 
+
+
+    public function getAllUsers(){
+        $sql = $this->pdo->prepare("SELECT * FROM users ORDER BY id");
+        $sql->execute();
+
+        if($sql->rowCount() > 0){
+            $users = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $users;
+        } else { 
+            return "Algum erro aconteceu ao capturar os usuários.";
+        }
+    }
+
 }
 
 

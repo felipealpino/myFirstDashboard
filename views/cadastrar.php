@@ -61,7 +61,7 @@ $dados = $UserDao->permissoesDisponiveis();
             </div>
             
             <div class="form-group">
-                <label for="exampleInputPassword1">Grupo</label> <br>
+                <label for="exampleInputPassword1">Grupo de permissão</label> <br>
                 <select class="form-control" name="formCadastrarOption">
                     <?php foreach($dados as $item): ?>
                         <option value="<?php echo $item['tipo_permissao']?>">
