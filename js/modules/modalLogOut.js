@@ -8,8 +8,8 @@ export default function initLogOutModal(){
     }
     
     function clicouForaModalLogout(event){
-        if(event.target === this){
-            abrirFecharModalLogout();
+        if(event.target == this){
+            containerLogout.classList.toggle('ativo');
         }
     }
     

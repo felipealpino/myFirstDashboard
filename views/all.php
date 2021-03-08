@@ -110,7 +110,7 @@
 
                             <li>
                                 <a href="" id="listar_usuarios_link">
-                                    Listar usuários 
+                                    Listar usuários
                                 </a>
                             </li>
                         <?php endif ?>
@@ -134,38 +134,41 @@
         $UserDao = new UserDaoMysql($pdo);
         $dados = $UserDao->getAllUsers();
         ?>
-        <div class="popup-usuarios closepopup-usuarios" data-modal="ModallistarUsuarios">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Ultimo login</th>
-                        <th scope="col">Opções</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($dados as $dado) : ?>
+        <div class="container-popup-usuarios closepopup-usuarios"">
+            <div class="popup-usuarios data-modal="ModalListarUsuarios">
+                <button class="logout-fecharListarUsuarios-botao">X</button>
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <td> <?php echo $dado['id']; ?> </td>
-                            <td> <?php echo $dado['nome']; ?> </td>
-                            <td> <?php echo $dado['email']; ?></td>
-                            <td>
-                                <?php
-                                $time = explode(' ', $dado['ultimo_login']);
-                                $dataBR = formatEuaDataToBrasilData($dado['ultimo_login']);
-                                echo $dataBR . ' ' . $time[1];
-                                ?>
-                            </td>
-                            <td>
-                                <a href="../php_controller/editar_action.php/<?= $dado['id'] ?>">[Editar]</a>
-                                <a href="../php_controller/excluir_action.php/<?= $dado['id'] ?>">[Excluir]</a>
-                            </td>
+                            <th scope="col">ID</th>
+                            <th scope="col">Nome</th>
+                            <th scope="col">E-mail</th>
+                            <th scope="col">Ultimo login</th>
+                            <th scope="col">Opções</th>
                         </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($dados as $dado) : ?>
+                            <tr>
+                                <td> <?php echo $dado['id']; ?> </td>
+                                <td> <?php echo $dado['nome']; ?> </td>
+                                <td> <?php echo $dado['email']; ?></td>
+                                <td>
+                                    <?php
+                                    $time = explode(' ', $dado['ultimo_login']);
+                                    $dataBR = formatEuaDataToBrasilData($dado['ultimo_login']);
+                                    echo $dataBR . ' ' . $time[1];
+                                    ?>
+                                </td>
+                                <td>
+                                    <a href="../php_controller/editar_action.php/<?= $dado['id'] ?>">[Editar]</a>
+                                    <a href="../php_controller/excluir_action.php/<?= $dado['id'] ?>">[Excluir]</a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
         </div>
 
 
@@ -174,7 +177,7 @@
         <div class="logout-modal" data-modal="logout">
             <div class="logout-container">
                 <button class="logout-fechar-botao" data-modal="modalLogout">X</button>
-                <span class="logout-container-span">Deseja realmente sair, <?= $_SESSION['nome']?> ?</span>
+                <span class="logout-container-span">Deseja realmente sair, <?= $_SESSION['nome'] ?> ?</span>
                 <div class="logout-botoes">
                     <a href="../php_controller/logout_action.php" class="logout-link">Fazer logoff</a>
                 </div>

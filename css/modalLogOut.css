@@ -46,10 +46,12 @@
     border: 3px solid #BFE4F3;
     text-decoration: none;
     color: black;
+    transition: 0.3s ease-in-out;
 }
 .logout-link:hover{
     text-decoration: none;
     color: black;
+    background-color: #e3eff3;;
 }
 
 

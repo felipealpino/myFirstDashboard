@@ -1,21 +1,47 @@
+.container-popup-usuarios{
+    position: fixed;
+    height: 100vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .popup-usuarios {
     width: 1000px; 
     height: 400px; 
     border: 1px solid black;
     border-radius: 5px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 3;
     overflow-y: auto;
     background-color: #BFE4F3;
-    transition: all 0.6s;
-    opacity: 1;
-    visibility: visible;
+    animation: abreModalListarUsuarios .6s forwards;
+    position: relative;
 }  
 .closepopup-usuarios{
-    opacity: 0;
-    visibility: hidden;
+    display: none;
+}
+
+@keyframes abreModalListarUsuarios{
+    from{
+        opacity: 0;
+        transform: translate3d(0, -30px, 0);
+    }
+    to{
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.logout-fecharListarUsuarios-botao{
+    position: absolute;
+    height: 40px;
+    width: 40px;
+    border-radius:5px;
+    top: 0px;
+    right: 0px;
+    border: none;
+    margin: 2px;
 }
 

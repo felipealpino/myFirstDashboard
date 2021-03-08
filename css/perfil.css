@@ -11,8 +11,7 @@
 }
 .content-dashboard.content-perfil{
     padding: 30px;
-    background-color: #fafafa;
-    border-top: 1px solid rgba(245, 238, 238, 0.8);
+        border-top: 1px solid rgba(245, 238, 238, 0.8);
 }
 
 .perfil-usuario{
