@@ -1,3 +1,12 @@
+//Aplicando modules 
+import initLogOutModal from './modules/modalLogOut.js';
+import initListarUsuariosModal from './modules/modalListarUsuarios.js';
+
+initLogOutModal();
+initListarUsuariosModal();
+
+//******************************************************************/
+
 /**
  * Função para abrir e fechar menu lateral
  */
@@ -104,17 +113,12 @@ function resizeLeftSide(){
 }
 resizeLeftSide();
 
-const userPopup = document.querySelector('.popup-usuarios');
-function checkDisplayUsuarioList(event){
-    event.preventDefault();
-    const listarUsuario = document.querySelector('#listar_usuarios_link');
-    if(userPopup.classList.contains("closepopup-usuarios")){
-        userPopup.classList.remove("closepopup-usuarios")
-    } else { 
-        userPopup.classList.add("closepopup-usuarios");
-    }
-}
 
-function closePopUpX(){
-    userPopup.classList.add('closepopup-usuarios');
-}
+
+
+
+
+
+
+
+

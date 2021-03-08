@@ -85,7 +85,7 @@ if (!$isLogged) {
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
     <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
     <script src="../js/googleCharts.js"></script>
-    <script src="../js/all.js"></script>
+    <script type="module" src="../js/all.js"></script>
 
 </body>
 

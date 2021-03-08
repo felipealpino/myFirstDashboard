@@ -40,7 +40,7 @@ if (!$isLogged) {
     <script src="../plugins/jquery-3.5.1/jquery-3.5.1.js"></script>
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
     <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
-    <script src="../js/all.js"></script>
+    <script type="module" src="../js/all.js"></script>
     <script src="../js/googleCharts.js"></script>
 </body>
 

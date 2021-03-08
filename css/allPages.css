@@ -3,6 +3,9 @@
     --main-bg-color: #bfe4f3;
 }
 
+*{
+    font-family: 'IBM Plex Mono', monospace;
+}
 
 td{
     cursor: pointer;
@@ -140,6 +143,7 @@ div.list-left-side ul li svg{
 
 }
 .left-side-dashboard{
+    width: 320px;
     background-color: var(--main-bg-color);
     max-width: 205px;
     border-right: 2px solid rgba(245, 238, 238, 0.8);

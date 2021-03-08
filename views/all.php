@@ -91,7 +91,7 @@
 
                         <li>
                             <i class="fas fa-sign-out-alt"></i>
-                            <a href="../php_controller/logout_action.php">Logout</a>
+                            <a href="" data-modal="modalLogout">Logout</a>
                         </li>
 
                         <li>
@@ -109,17 +109,11 @@
                             </li>
 
                             <li>
-                                <a href="" id="listar_usuarios_link" onclick="checkDisplayUsuarioList(event)">
-                                    Listar usuários
+                                <a href="" id="listar_usuarios_link">
+                                    Listar usuários 
                                 </a>
                             </li>
                         <?php endif ?>
-
-
-
-
-
-
 
                         <!--<li>
                             <?php
@@ -134,13 +128,14 @@
         </div>
 
 
+
+        <!-- ULTIMO LOGIN MODAL  -->
         <?php
         $UserDao = new UserDaoMysql($pdo);
         $dados = $UserDao->getAllUsers();
         ?>
-        <div class="popup-usuarios closepopup-usuarios">
+        <div class="popup-usuarios closepopup-usuarios" data-modal="ModallistarUsuarios">
             <table class="table table-hover">
-                <div class="close-popup-x" style="float: right;" onclick="closePopUpX()"> [<small>x</small>]</div>
                 <thead>
                     <tr>
                         <th scope="col">ID</th>
@@ -171,4 +166,17 @@
                     <?php endforeach ?>
                 </tbody>
             </table>
+        </div>
+
+
+
+        <!-- LOGOUT MODAL  -->
+        <div class="logout-modal" data-modal="logout">
+            <div class="logout-container">
+                <button class="logout-fechar-botao" data-modal="modalLogout">X</button>
+                <span class="logout-container-span">Deseja realmente sair, <?= $_SESSION['nome']?> ?</span>
+                <div class="logout-botoes">
+                    <a href="../php_controller/logout_action.php" class="logout-link">Fazer logoff</a>
+                </div>
+            </div>
         </div>

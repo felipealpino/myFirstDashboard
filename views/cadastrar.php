@@ -22,6 +22,8 @@ $dados = $UserDao->permissoesDisponiveis();
     <link rel="stylesheet" href="../plugins/bootstrap-4.5.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/fontawesome5.15.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;500;600&display=swap" rel="stylesheet">
     <title>Cadastre-se</title>
 </head>
 
@@ -77,6 +79,6 @@ $dados = $UserDao->permissoesDisponiveis();
     </div>
 
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
-    <script src="../js/all.js"></script>
+    <script type="module" src="../js/all.js"></script>
 </body>
 </html>
