@@ -13,7 +13,8 @@ $dados = $UserDao->permissoesDisponiveis();
 
 ?>
 
-<html lang="en">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,11 +22,10 @@ $dados = $UserDao->permissoesDisponiveis();
     <link rel="stylesheet" href="../plugins/bootstrap-4.5.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="../plugins/fontawesome5.15.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     <title>Cadastre-se</title>
 </head>
-<body>
 
+<body>
     <div class="form-width-cadastro">
         <form method="POST" action="../php_controller/cadastrar_action.php" class="form-cadastrar-login" id="form-cadastrar-login">
             

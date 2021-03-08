@@ -1,67 +1,17 @@
-<title>Dashboard</title>
-    <style>
-        .popup-usuarios {
-            width: 850px; 
-            height: 400px; 
-            border: 1px solid black;
-            border-radius: 5px;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 3;
-            overflow-y: auto;
-            background-color: #BFE4F3;
-            transition: all 0.6s;
-            opacity: 1;
-            visibility: visible;
-        }  
-        .closepopup-usuarios{
-            opacity: 0;
-            visibility: hidden;
-        }
-    </style>
+<!DOCTYPE html>
+<html lang="pt-br">
 
-</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="../plugins/bootstrap-4.5.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../plugins/fontawesome5.15.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
 <body>
     <div class="dashboard-content">
-        <?php 
-            $UserDao = new UserDaoMysql($pdo);
-            $dados = $UserDao->getAllUsers();
-        ?>
-        <div class="popup-usuarios closepopup-usuarios"> 
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nome</th>
-                        <th scope="col">E-mail</th>
-                        <th scope="col">Ultimo login</th>
-                        <th scope="col">Opções</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach($dados as $dado): ?>
-                    <tr>
-                        <td> <?php echo $dado['id']; ?> </td>
-                        <td> <?php echo $dado['nome']; ?> </td>
-                        <td> <?php echo $dado['email']; ?></td>
-                        <td> 
-                        <?php
-                            $time = explode(' ',$dado['ultimo_login']);
-                            $dataBR = formatEuaDataToBrasilData($dado['ultimo_login']);
-                            echo $dataBR.' '.$time[1];
-                        ?> 
-                        </td>
-                        <td>  
-                            <a href="../php_controller/editar_action.php/<?=$dado['id'] ?>">[Editar]</a>
-                            <a href="../php_controller/excluir_action.php/<?=$dado['id'] ?>">[Excluir]</a>
-                        </td>
-                    </tr>
-                    <?php endforeach ?>
-                </tbody>
-            </table>
-        </div>
 
         <div class="left-side-dashboard">
             <div class="sidebar-dashboard">
@@ -76,11 +26,12 @@
                             <a href="dashboard.php">Dashboard</a>
                         </li>
 
-                        <?php if($_SESSION['permissao'] != 4):?><!-- 4=vendas -->
-                        <li>
-                            <i class="fas fa-user-alt"></i>
-                            <a href="perfil.php">Perfil</a>
-                        </li>
+                        <?php if ($_SESSION['permissao'] != 4) : ?>
+                            <!-- 4=vendas -->
+                            <li>
+                                <i class="fas fa-user-alt"></i>
+                                <a href="perfil.php">Perfil</a>
+                            </li>
                         <?php endif ?>
 
                         <li>
@@ -98,64 +49,70 @@
                             <a href="carga.php">Carga</a>
                         </li>
 
-                        <?php if($_SESSION['permissao'] != 4):?><!-- 4=vendas -->
-                        <li>
-                            <i class="fas fa-clipboard-check"></i>
-                            <a href="kardex.php">Kardex</a>
-                        </li>
+                        <?php if ($_SESSION['permissao'] != 4) : ?>
+                            <!-- 4=vendas -->
+                            <li>
+                                <i class="fas fa-clipboard-check"></i>
+                                <a href="kardex.php">Kardex</a>
+                            </li>
                         <?php endif ?>
 
-                        <?php if($_SESSION['permissao'] != 4):?><!-- 4=vendas -->
-                        <li>
-                            <i class="fas fa-boxes"></i>
-                            <a href="estoque.php">estoque</a>
-                        </li>
+                        <?php if ($_SESSION['permissao'] != 4) : ?>
+                            <!-- 4=vendas -->
+                            <li>
+                                <i class="fas fa-boxes"></i>
+                                <a href="estoque.php">estoque</a>
+                            </li>
                         <?php endif ?>
 
-                        <?php if($_SESSION['permissao'] != 4):?><!-- 4 = vendas -->
-                        <li>
-                            <i class="fas fa-hammer"></i>
-                            <a href="producao.php">produção</a>
-                        </li>
+                        <?php if ($_SESSION['permissao'] != 4) : ?>
+                            <!-- 4 = vendas -->
+                            <li>
+                                <i class="fas fa-hammer"></i>
+                                <a href="producao.php">produção</a>
+                            </li>
                         <?php endif ?>
 
-                        <?php if($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2):?><!-- 1=admin & 2=gerencia -->
-                        <li>
-                            <i class="far fa-money-bill-alt"></i>
-                            <a href="vendas.php">vendas</a>
-                        </li>
+                        <?php if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) : ?>
+                            <!-- 1=admin & 2=gerencia -->
+                            <li>
+                                <i class="far fa-money-bill-alt"></i>
+                                <a href="vendas.php">vendas</a>
+                            </li>
                         <?php endif; ?>
-                        
-                        <?php if($_SESSION['permissao'] != 4):?><!-- 4=vendas -->
-                        <li>
-                            <i class="fas fa-shopping-cart"></i>
-                            <a href="compras.php">compras</a>
-                        </li>   
+
+                        <?php if ($_SESSION['permissao'] != 4) : ?>
+                            <!-- 4=vendas -->
+                            <li>
+                                <i class="fas fa-shopping-cart"></i>
+                                <a href="compras.php">compras</a>
+                            </li>
                         <?php endif; ?>
 
                         <li>
                             <i class="fas fa-sign-out-alt"></i>
-                            <a href="../php_controller/logout_action.php">Logout</a>    
+                            <a href="../php_controller/logout_action.php">Logout</a>
                         </li>
-                        
+
                         <li>
                             <?php
-                                echo "Usuário: <br>";
-                                echo $_SESSION['nome']."<br>";
+                            echo "Usuário: <br>";
+                            echo $_SESSION['nome'] . "<br>";
 
                             ?>
                         </li>
 
-                        <?php if (strtoupper($_SESSION['permissao']) == 1): ?><!-- 1=admin -->
-                        <li>
-                            <a href="cadastrar.php">Cadastrar usuário</a>
-                        </li>
+                        <?php if (strtoupper($_SESSION['permissao']) == 1) : ?>
+                            <!-- 1=admin -->
+                            <li>
+                                <a href="cadastrar.php">Cadastrar usuário</a>
+                            </li>
 
-                        <li>
-                            <a href="" id="listar_usuarios_link" onclick="checkDisplayUsuarioList(event)">
-                                Listar usuários
-                            </a>
-                        </li>
+                            <li>
+                                <a href="" id="listar_usuarios_link" onclick="checkDisplayUsuarioList(event)">
+                                    Listar usuários
+                                </a>
+                            </li>
                         <?php endif ?>
 
 
@@ -163,12 +120,12 @@
 
 
 
-                                        
-                    <!--<li>
+
+                        <!--<li>
                             <?php
-                                echo $_SERVER['REMOTE_ADDR'];
-                                // $ip = file_get_contents('https://api.ipify.org');
-                                // echo "public IP address : " . $ip;
+                            echo $_SERVER['REMOTE_ADDR'];
+                            // $ip = file_get_contents('https://api.ipify.org');
+                            // echo "public IP address : " . $ip;
                             ?>
                         </li> -->
                     </ul>
@@ -176,6 +133,42 @@
             </div>
         </div>
 
-        
 
-        
+        <?php
+        $UserDao = new UserDaoMysql($pdo);
+        $dados = $UserDao->getAllUsers();
+        ?>
+        <div class="popup-usuarios closepopup-usuarios">
+            <table class="table table-hover">
+                <div class="close-popup-x" style="float: right;" onclick="closePopUpX()"> [<small>x</small>]</div>
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">E-mail</th>
+                        <th scope="col">Ultimo login</th>
+                        <th scope="col">Opções</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($dados as $dado) : ?>
+                        <tr>
+                            <td> <?php echo $dado['id']; ?> </td>
+                            <td> <?php echo $dado['nome']; ?> </td>
+                            <td> <?php echo $dado['email']; ?></td>
+                            <td>
+                                <?php
+                                $time = explode(' ', $dado['ultimo_login']);
+                                $dataBR = formatEuaDataToBrasilData($dado['ultimo_login']);
+                                echo $dataBR . ' ' . $time[1];
+                                ?>
+                            </td>
+                            <td>
+                                <a href="../php_controller/editar_action.php/<?= $dado['id'] ?>">[Editar]</a>
+                                <a href="../php_controller/excluir_action.php/<?= $dado['id'] ?>">[Excluir]</a>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                </tbody>
+            </table>
+        </div>

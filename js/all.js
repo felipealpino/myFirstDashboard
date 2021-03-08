@@ -104,14 +104,17 @@ function resizeLeftSide(){
 }
 resizeLeftSide();
 
-
+const userPopup = document.querySelector('.popup-usuarios');
 function checkDisplayUsuarioList(event){
     event.preventDefault();
     const listarUsuario = document.querySelector('#listar_usuarios_link');
-    const userPopup = document.querySelector('.popup-usuarios');
     if(userPopup.classList.contains("closepopup-usuarios")){
         userPopup.classList.remove("closepopup-usuarios")
     } else { 
         userPopup.classList.add("closepopup-usuarios");
     }
+}
+
+function closePopUpX(){
+    userPopup.classList.add('closepopup-usuarios');
 }
