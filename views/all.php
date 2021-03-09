@@ -9,7 +9,8 @@
     <link rel="stylesheet" href="../plugins/fontawesome5.15.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-
+    <link rel="shortcut icon" href="../images/dash.ico" />
+</head>
 <body>
     <div class="dashboard-content">
 

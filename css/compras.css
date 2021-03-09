@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .dashboard-grafico-compras{
     -webkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
     -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
@@ -17,19 +18,31 @@
     transition: 0.5s;
     cursor: pointer;
 }
-.dashboard-grafico-compras:hover{
-    transform: scale(1.02);
-}
+
 .dashboard-grafico-compras{
     margin-top: 30px;
     width: 900px;
     height: 500px;
 }
-@media screen and (max-width:560px){
+
+@media screen and (max-width:1130px){
     .dashboard-grafico-compras{
         transform: scale(0.9);
     }
-    .dashboard-grafico-compras:hover{
-        transform: scale(0.9);
+}
+@media screen and (max-width:740px){
+    .dashboard-grafico-compras{
+        transform: scale(0.8);
     }
 }
+@media screen and (max-width:620px){
+    .dashboard-grafico-compras{
+        transform: scale(0.7);
+    }
+}
+@media screen and (max-width:470px){
+    .dashboard-grafico-compras{
+        transform: scale(0.6);
+    }
+}
+

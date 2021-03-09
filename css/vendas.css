@@ -23,9 +23,7 @@
     transition: 0.5s;
     cursor: pointer;
 }
-.dashboard-grafico-vendas:hover{
-    transform: scale(1.02);
-}
+
 .dashboard-grafico-vendas{
     margin-top: 30px;
     width: 900px;
@@ -49,5 +47,11 @@
     }
     .total-vendido-mes{
         text-align: center;
+    }
+}
+
+@media screen and (max-width: 465px){
+    .form-top-dashboard-mes-ano{
+        display: inline-flex;
     }
 }

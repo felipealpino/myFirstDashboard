@@ -2,14 +2,18 @@
 require '../php_controller/UserDaoMysql.php';
 session_start();
 
-$UserDao = new UserDaoMysql($pdo);
-$isLogged = $UserDao->isLogged($_SESSION['email']);
-if(!$isLogged){
+if($_SESSION['permissao'] == 1){
+    $UserDao = new UserDaoMysql($pdo);
+    $isLogged = $UserDao->isLogged($_SESSION['email']);
+    if(!$isLogged){
+        header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php');
+        exit;
+    }
+    $dados = $UserDao->permissoesDisponiveis();
+} else {
     header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php');
     exit;
 }
-
-$dados = $UserDao->permissoesDisponiveis();
 
 ?>
 
@@ -24,6 +28,7 @@ $dados = $UserDao->permissoesDisponiveis();
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;500;600&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../images/dash.ico" />
     <title>Cadastre-se</title>
 </head>
 

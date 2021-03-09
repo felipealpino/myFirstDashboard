@@ -66,9 +66,8 @@ $list = $totalFamilias->getListaProd();
 
 ?>
 
-<?php include 'all.php'; ?>
 <title>Dashboard</title>
-</head>
+<?php include 'all.php'; ?>
 
 <div class="right-side-dashboard">
     <div class="top-dashboard-mobile left-icon">

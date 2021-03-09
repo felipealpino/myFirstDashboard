@@ -8,6 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 }
 .popup-usuarios {
     width: 1000px; 
@@ -45,3 +46,8 @@
     margin: 2px;
 }
 
+
+
+@media screen and (max-width:730px){
+    
+}

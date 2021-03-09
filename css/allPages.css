@@ -140,9 +140,8 @@ div.list-left-side ul li svg{
 
 }
 .left-side-dashboard{
-    width: 320px;
     background-color: var(--main-bg-color);
-    max-width: 205px;
+    min-width: 200px;
     border-right: 2px solid rgba(245, 238, 238, 0.8);
     transition: all 0.5s;
 }
@@ -191,6 +190,13 @@ div.top-dashboard-mobile.left-icon svg{
     background-color: #5abfd171 !important;
 }
 
+
+@media screen and (max-width:1130px){
+    .left-side-dashboard{
+        position: absolute;
+        z-index: 10;
+    }
+}
 
 
 @media only screen and (max-width: 600px){
