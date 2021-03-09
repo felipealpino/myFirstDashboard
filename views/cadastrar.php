@@ -79,6 +79,7 @@ $dados = $UserDao->permissoesDisponiveis();
     </div>
 
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
-    <script type="module" src="../js/all.js"></script>
+    <script src="../js/all.js"></script>
+    <script type="module" src="../js/script.js"></script>
 </body>
 </html>

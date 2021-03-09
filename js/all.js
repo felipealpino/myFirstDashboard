@@ -1,12 +1,3 @@
-//Aplicando modules 
-import initLogOutModal from './modules/modalLogOut.js';
-import initListarUsuariosModal from './modules/modalListarUsuarios.js';
-
-initLogOutModal();
-initListarUsuariosModal();
-
-//******************************************************************/
-
 /**
  * Função para abrir e fechar menu lateral
  */

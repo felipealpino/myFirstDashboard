@@ -38,7 +38,7 @@ if (!$isLogged) {
                     <h2 class="header_texto">Relatório de produtos</h2>
                 </div>
                 <div class="form-busca-produtos-estoque">
-                    <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar referencia ou descrição.." autofocus>
+                    <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Referencia ou descrição.." autofocus>
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                 </div>
             </div>
@@ -47,9 +47,7 @@ if (!$isLogged) {
                 <span class="span-produto-estoque-sem-produto"> Utilize o filtro para localizar os produtos...</span>
                 <script>
                     document.getElementById('buscar-produto').addEventListener('click', function() {
-                        ascendingAndDescending();
                         buscar($("#myInput").val())
-
                     }, false);
 
                     function buscar(myInput) {
@@ -85,7 +83,9 @@ if (!$isLogged) {
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
     <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
     <script src="../js/googleCharts.js"></script>
-    <script type="module" src="../js/all.js"></script>
+    <script type="module" src="../js/script.js"></script>
+    <script src="../js/all.js"></script>
+
 
 </body>
 

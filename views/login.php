@@ -56,7 +56,8 @@ if(isset($_SESSION['email'])){
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
     <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
     <script src="js/validate/validate-index.js"></script>
-    <script type="module" src="../js/all.js"></script>
+    <script src="../js/all.js"></script>
+    <script type="module" src="../js/script.js"></script>
 
 </body>
 </html>

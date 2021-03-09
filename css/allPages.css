@@ -125,7 +125,6 @@ td{
     padding: 5px 10px;
     list-style: none;
     text-transform: uppercase;
-    margin-top: 5px;
 }
 .selected{
     background-color: rgba(204, 204, 204, 0.616);
@@ -136,10 +135,8 @@ td{
 }
 
 div.list-left-side ul li svg{
-    margin-right: 10px;
     color: var(--main-bg-color-svgs);
-    height: 16px;
-    width: 18px;
+    width: 16px !important;
 
 }
 .left-side-dashboard{

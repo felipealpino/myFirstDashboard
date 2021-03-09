@@ -39,7 +39,7 @@ if (!$isLogged) {
                     <h2 class="header_texto">Relatório de composições</h2>
                 </div>
                 <div class="form-busca-produtos-estoque">
-                    <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Buscar ficha técnica.." autofocus>
+                    <input id="myInput" class="form-control input-busca" autocomplete="off" type="text" placeholder="Ficha técnica.." autofocus>
                     <button id="buscar-produto" class="btn btn-submit-forms">Buscar</button>
                 </div>
             </div>
@@ -87,7 +87,8 @@ if (!$isLogged) {
     <script src="../plugins/jquery-3.5.1/jquery-3.5.1.js"></script>
     <script src="../plugins/bootstrap-4.5.3/js/bootstrap.min.js"></script>
     <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
-    <script type="module" src="../js/all.js"></script>
+    <script src="../js/all.js"></script>
+    <script type="module" src="../js/script.js"></script>
     <script src="../js/googleCharts.js"></script>
 </body>
 
