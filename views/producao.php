@@ -1,9 +1,10 @@
 <?php
 require '../connections/configODBC.php';
 require '../php_library/biblioteca.php';
-require '../php_controller/dataAccessObject.php';
-
+// require '../php_controller/dataAccessObject.php';
 require '../php_controller/UserDaoMysql.php';
+require '../php_controller/ProducaoDaoODBC.php';
+
 session_start();
 if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['permissao'] == 3) {
     $UserDao = new UserDaoMysql($pdo);
@@ -12,7 +13,6 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
         header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php');
         exit;
     }
-
 
     $mes = filter_input(INPUT_GET, 'mes_producao_name');
     $ano = filter_input(INPUT_GET, 'ano_producao_name');
@@ -23,62 +23,10 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
         $ano = date('Y');
     }
 
-    // Manipulando valores $mes e $ano caso passados pelo form
-    if ($mes && $ano) {
-        $dados = producaoAccessData($mes, $ano);
-
-        /**
-         * Declarando array $pesoDia de [0] até [30]
-         */
-        $pesoDia = array_fill(0, 31, 0);
-
-
-        /**
-         * TIPOMOV = 11 = ENTRADA ACABADO
-         * CODPROD = 000880 = QUILO ISOFTALICO BRANCO
-         * CODPROD = 000383 = QUILO ISOFTALICO 
-         */
-        while (odbc_fetch_row($dados)) {
-            $arrayData = explode("-", odbc_result($dados, "DT_MOVIMENTO"));
-            if (
-                odbc_result($dados, "TIPOMOV") == "11"
-                && (odbc_result($dados, "CODPROD") == "000880"
-                    || odbc_result($dados, "CODPROD") == "000383")
-            ) {
-
-                $dia = substr(($arrayData[2]), 0, 2);
-                $quant = odbc_result($dados, "QUANTIDADE");
-
-                /**
-                 * Se o dia é 1, soma quantidade no $pesoDia[0]
-                 * Se o dia é 2, soma quantidade no $pesoDia[1] ...... 
-                 */
-                $pesoDia[$dia - 1] += $quant;
-            }
-        }
-    }
-
-
-    /**
-     * Descobrindo quantos dias da semana tiveram 0kg produzidos
-     * Esse valor armazenado em $z será util para fazer a média do mês
-     */
-    $z = 0;
-    for ($contador = 0; $contador < count($pesoDia); $contador++) {
-        if ($pesoDia[$contador] !== 0) {
-            $z += 1;
-        }
-    }
-
-    /**
-     * Descobrindo média produzia no mês
-     */
-    $pesoTotal = array_sum($pesoDia);
-    if ($z !== 0) {
-        $mediaMes = ($pesoTotal / $z);
-    } else {
-        $mediaMes = 0;
-    }
+    $producaoData = new ProducaoDaoODBC();
+    $pesoDia = $producaoData->getPesoPorDia($mes, $ano);
+    $diasProduzido = $producaoData->getDiasProduzidos($pesoDia);
+    $mediaMes = $producaoData->getMediaKgProdPorDia($pesoDia, $diasProduzido);
 } else {
     header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php');
     exit;
@@ -157,8 +105,8 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
 
         <div class="producao-table-values">
             <div class="dados_finais_producao_mes">
-                <div><?= 'Total produzido no mês: ' . formatNumberToReal($pesoTotal) . ' kg' ?></div>
-                <div><?= 'Total dias trabalhados no mês: ' . $z . ' dias' ?></div>
+                <div><?= 'Total produzido no mês: ' . formatNumberToReal(array_sum($pesoDia)) . ' kg' ?></div>
+                <div><?= 'Total dias trabalhados no mês: ' . $diasProduzido . ' dias' ?></div>
                 <div><?= 'Média produzida por dia: ' . formatNumberToReal($mediaMes) . ' kg' ?></div>
             </div>
             <table class="table sortable table-sm table-bordered table-hover tabela-produtos tabela-producao-detalhada">

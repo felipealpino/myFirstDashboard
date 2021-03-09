@@ -86,6 +86,11 @@ function relDashFamiliaProdutos(){
 }
 
 
+function relDashProducao(){
+    require '../connections/configODBC.php';
+    
+}
+
 
 /**
  * Query que alimenta composicoes.php
