@@ -52,9 +52,9 @@ class UserDaoMysql{
                 $_SESSION['token'] = $data['token']; 
                 return true;
             }
-        } else {
-            return false;
-        }
+        } 
+        
+        return false;
     }
 
 

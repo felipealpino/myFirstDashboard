@@ -113,7 +113,6 @@ if (!$isLogged) {
 <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
 <script src="../js/all.js"></script>
 <script type="module" src="../js/script.js"></script>
-<script src="../js/carga.js"></script>
 <script src="../js/googleCharts.js"></script>
 </body>
 
