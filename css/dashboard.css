@@ -45,13 +45,18 @@ div.top-dashboard svg{
     border: 1px solid rgba(0, 0, 0, 0.500);
     padding: 5px;
     width: 100%;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .dashboard_rel_vendas{
     border: 1px solid rgba(0, 0, 0, 0.500);
     padding: 5px;
     width: 100%;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 .dashboard_rel_estoque{
     border: 1px solid rgba(0, 0, 0, 0.500);
@@ -59,13 +64,15 @@ div.top-dashboard svg{
     width: 100%;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 .dashboard_rel_producao{
     border: 1px solid rgba(0, 0, 0, 0.500);
     padding: 5px;
     width: 100%;
     display: flex;
-    justify-content: center
+    justify-content: center;
+    align-items: center;
 }
 
 

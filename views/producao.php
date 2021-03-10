@@ -61,13 +61,19 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
                 title: 'Production Performance',
                 subtitle: ' <?= $nomeMes; ?> / <?= $ano; ?>',
             },
+            fontName: 'IBM Plex Mono',
             hAxis: {
                 maxValue: 3000,
             },
             bars: 'vertical', // Required for Material Bar Charts.
             annotations: {
                 style: 'line',
-            }
+            },
+            animation: {
+                duration: 3000,
+                easing: 'linear',
+                startup: true,
+            },
         };
         var chart = new google.charts.Bar(document.getElementById('dashboard-grafico-producao'));
         chart.draw(data, google.charts.Bar.convertOptions(options));

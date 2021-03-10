@@ -74,25 +74,13 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
         $mesNome = findNomeMes($c) ?> //php_library/biblioteca.php
         ['<?= $mesNome ?>', <?= $arrayObjMesesAno[$c - 1]->Ano_02 ?>, <?= $arrayObjMesesAno[$c - 1]->Ano_01 ?>, <?= $arrayObjMesesAno[$c - 1]->Ano_00 ?>],
       <?php endfor; ?>
-
-      // ['Janeiro', 1000, 400, 200],
-      // ['Fevereiro', 1170, 460, 250],
-      // ['Março', 660, 1120, 300],
-      // ['Abril', 1030, 540, 350],
-      // ['Maio', 1030, 540, 350],
-      // ['Junho', 1030, 540, 350],
-      // ['Julho', 1030, 540, 350],
-      // ['Agosto', 1030, 540, 350],
-      // ['Setembro', 1030, 540, 350],
-      // ['Outubro', 1030, 540, 350],
-      // ['Novembro', 1030, 540, 350],
-      // ['Dezembro', 1030, 540, 350],
     ]);
 
     var options = {
       legend: {
         position: 'in'
       },
+      fontName: 'IBM Plex Mono',
       chart: {
         title: 'Relatório de compras',
       }

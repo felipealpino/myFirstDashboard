@@ -112,7 +112,7 @@ $arrayPesosMeses = $producaoData->getPesoPorDiaUltimosAnos($mes, $ano);
                             echo $arrVendaPorAno[$i]->getDataVenda() . " - R$ ";
                             echo formatNumberToReal($arrVendaPorAno[$i]->getSubTotal())
                             ?>
-                        </span> <br>
+                        </span>
                     <?php endfor; ?>
                 </div>
 

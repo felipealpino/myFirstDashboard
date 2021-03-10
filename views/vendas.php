@@ -68,7 +68,10 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
 
         var options = {
             <?php $mesNome = findNomeMes($mes); ?>
-            title: 'Vendas por mês- <?= $mesNome.'/'.$ano?>'};
+            title: 'Vendas por mês- <?= $mesNome.'/'.$ano?>',
+            fontName: 'IBM Plex Mono',
+        };
+            
 
         var chart = new google.visualization.PieChart(document.getElementById('dashboard-grafico-vendas'));
 
