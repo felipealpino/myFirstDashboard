@@ -52,7 +52,12 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
 ?>
 
 <title>Vendas</title>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"> </script> -->
+<script src="../node_modules/chart.js/dist/Chart.js"></script>
+
+
+<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {
         'packages': ['corechart']
@@ -77,7 +82,7 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
 
         chart.draw(data, options);
     }
-</script>
+</script> -->
 
 
 
@@ -110,10 +115,76 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
     </div>
 
     <div class="content-dashboard vendas">
-        <div id="dashboard-grafico-vendas" class="dashboard-grafico-vendas"></div>
+        
         <div class="total-vendido-mes">
-            <?php echo "Total vendido no mês: R$ " . formatNumberToReal($totalVendido) ?>
+            <?php echo "Total faturado no mês: R$ " . formatNumberToReal($totalVendido) ?>
         </div>
+
+        <!-- <div id="dashboard-grafico-vendas" class="dashboard-grafico-vendas"></div> -->
+        <canvas id="dashboard-grafico-vendas" class="dashboard-grafico-vendas"></canvas>
+        <!-- CANVAS CHART JS  -->
+        <script>
+        var ctx = document.getElementById('dashboard-grafico-vendas');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: [
+                    <?php for($i = 0; $i < count($totalPorVendedor->getListVendedor()); $i++):?>
+                    '<?= $listaVendedores[$i]->getNomeVendedor().
+                    ' | R$'.
+                    formatNumberToReal($listaVendedores[$i]->getSubTotal()).
+                    ' | '.
+                    formatNumberToReal(($listaVendedores[$i]->getSubTotal() * 100)/$totalVendido).'%'
+                    ?>',
+                    <?php endfor ?>
+                ],
+                datasets: [{
+                    label: '<?=$mesNome?> / <?=$ano?>',
+                    data: [
+                        <?php for($i = 0; $i < count($totalPorVendedor->getListVendedor()); $i++):?>
+                        <?= $listaVendedores[$i]->getSubTotal()?>,
+                        <?php endfor ?>
+                    ],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(33, 33, 41, 0.2)',
+
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(33, 33, 41, 1)',
+
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                legend: {
+                    labels: {
+                        defaultFontFamily: 'IBM Plex Mono',
+                    }
+                },
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+        </script>
+
     </div>
 
 </div>
