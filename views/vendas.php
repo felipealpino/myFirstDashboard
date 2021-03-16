@@ -78,6 +78,12 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
         chart.draw(data, options);
     }
 </script>
+
+
+
+
+
+
 <?php include 'all.php'; ?>
 
 <div class="right-side-dashboard">

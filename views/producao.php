@@ -35,52 +35,13 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
 ?>
 
 <title>Produção</title>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {
-        'packages': ['bar']
-    });
-    google.charts.setOnLoadCallback(drawChart);
-    <?php $nomeMes = findNomeMes($mes); ?> ///php_library/biblioteca.php
-    function drawChart() {
-        var x = 1;
-        var data = google.visualization.arrayToDataTable([
-            ['Dia', 'Quant.'],
-            <?php for ($x = 1; $x <= 31; $x++) : ?>
-                <?php if ($x < 9) : ?>['<?= '0' . $x; ?>', <?= $pesoDia[$x - 1]; ?>],
-                <?php else : ?>['<?= $x; ?>', <?= $pesoDia[$x - 1]; ?>],
-                <?php endif ?>
-            <?php endfor ?>
-        ]);
+     <?php $nomeMes = findNomeMes($mes); ?> <!-- php_library/biblioteca.php -->
+ 
 
-        var options = {
-            legend: {
-                position: 'none'
-            },
-            chart: {
-                title: 'Production Performance',
-                subtitle: ' <?= $nomeMes; ?> / <?= $ano; ?>',
-            },
-            fontName: 'IBM Plex Mono',
-            hAxis: {
-                maxValue: 3000,
-            },
-            bars: 'vertical', // Required for Material Bar Charts.
-            annotations: {
-                style: 'line',
-            },
-            animation: {
-                duration: 3000,
-                easing: 'linear',
-                startup: true,
-            },
-        };
-        var chart = new google.charts.Bar(document.getElementById('dashboard-grafico-producao'));
-        chart.draw(data, google.charts.Bar.convertOptions(options));
-    }
-</script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"> </script> -->
+<script src="../node_modules/chart.js/dist/Chart.js"></script>
+
 <?php include 'all.php'; ?>
-
 
 <div class="right-side-dashboard">
     <div class="top-dashboard-mobile left-icon">
@@ -96,7 +57,6 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
                 <input type="submit" value="Modificar" class="submit_form_input">
             </form>
 
-
         </div>
 
         <div class="open-close-mobile">
@@ -107,7 +67,48 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
     </div>
 
     <div class="content-dashboard producao">
-        <div id="dashboard-grafico-producao" class="dashboard-grafico-producao"></div>
+
+        <canvas id="dashboard-grafico-producao" class="dashboard-grafico-producao"></canvas>
+        <!-- CANVAS CHART JS  -->
+        <script>
+            var ctx = document.querySelector('#dashboard-grafico-producao').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+
+                    labels: [
+                        <?php for($x=1; $x<=31; $x++):?>
+                        '<?=$x?>',
+                        <?php endfor ?>
+                    ],
+                    datasets: [{
+                        label: '<?=$nomeMes?> / <?=$ano?>',
+                        data: [
+                            <?php for($x=1; $x<=31; $x++):?>
+                                <?=$pesoDia[$x - 1]; ?>,
+                            <?php endfor ?>
+                        ],
+                        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    animation: {
+                        duration:1000,
+                        easing:'linear'
+                    },
+                    defaultFontFamily:'IBM Plex Mono',
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        </script>
 
         <div class="producao-table-values">
             <div class="dados_finais_producao_mes">
@@ -152,7 +153,6 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
 <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
 <script src="../js/all.js"></script>
 <script type="module" src="../js/script.js"></script>
-<script src="../js/googleCharts.js"></script>
 </body>
 
 </html>

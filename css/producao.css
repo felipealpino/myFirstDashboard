@@ -22,8 +22,8 @@
 }
 .dashboard-grafico-producao{
     margin-top: 30px;
-    width: 900px;
-    height: 500px;
+    /* width: 900px;
+    height: 500px; */
 }
 
 .dados_finais_producao_mes{
@@ -33,7 +33,7 @@
     width: fit-content
 }
 
-@media screen and (max-width:920px){
+/* @media screen and (max-width:920px){
     .content-dashboard.producao{
         width: 100vw;
     }
@@ -44,10 +44,9 @@
     .producao-table-values{
         padding-left: 300px;
     }
-}
+} */
 
-
-@media screen and (max-width: 660px){
+/* @media screen and (max-width: 660px){
     .content-dashboard.producao{
         grid-gap:0px
     }
@@ -58,4 +57,4 @@
     .dashboard-grafico-producao{
         transform: scale(0.45);
     }
-}
+} */
