@@ -22,14 +22,11 @@
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
     transition: 0.5s;
     cursor: pointer;
+    margin-top: 10px;
+    max-width: 1200px !important;
+
 }
 
-.dashboard-grafico-vendas{
-    margin-top: 10px;
-    /* width: 900px;
-    height: 500px; */
-    max-width: calc(100vw - 220px) !important; 
-}
 
 @media screen and (min-width:561px) and (max-width:1230px){
     /* .dashboard-grafico-vendas{
