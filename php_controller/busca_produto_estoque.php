@@ -20,11 +20,11 @@ $dados = produtosAccessData($myInput);
                     <th>Código</th>
                     <th>Referencia</th>
                     <th>Descrição</th>
-                    <?php if($_SESSION['permissao'] != 4): ?> 
+                    <?php if($_SESSION['permissao'] != 4 && $_SESSION['permissao'] != 6): ?>  <!-- 4 vendas | 6 teste_usuario --> 
                         <th>Custo (R$)</th>
                     <?php endif ?>
                     <th>Estoque</th>
-                    <?php if($_SESSION['permissao'] != 4): ?> 
+                    <?php if($_SESSION['permissao'] != 4 && $_SESSION['permissao'] != 6): ?>  <!-- 4 vendas | 6 teste_usuario --> 
                         <th>Total (R$)</th>
                     <?php endif ?>
                     <th>Familia</th>    
@@ -42,11 +42,11 @@ $dados = produtosAccessData($myInput);
                     <td> <?=odbc_result($dados,"CODPROD")?> </td>
                     <td> <?=odbc_result($dados,"REFERENCIA")?></td>
                     <td> <?=odbc_result($dados,"DESCRICAO")?></td>
-                    <?php if($_SESSION['permissao'] != 4): ?> 
+                    <?php if($_SESSION['permissao'] != 4 && $_SESSION['permissao'] != 6): ?>  <!-- 4 vendas | 6 teste_usuario -->
                         <td> <?="R$ ".number_format(odbc_result($dados,"PRECO_CUSTO"),2)?></td>
                     <?php endif ?>
                     <td style="text-align: center;"> <?=number_format(odbc_result($dados,"ESTOQUE"),2)?></td>
-                    <?php if($_SESSION['permissao'] != 4): ?> 
+                    <?php if($_SESSION['permissao'] != 4 && $_SESSION['permissao'] != 6): ?>  <!-- 4 vendas | 6 teste_usuario --> 
                         <td> <?="R$ ".number_format(odbc_result($dados,"ESTOQUE") * odbc_result($dados,"PRECO_CUSTO"),2); ?></td>
                     <?php endif ?>    
                     <td> <?=$nomeFamilia ?> </td>

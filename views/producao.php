@@ -6,7 +6,7 @@ require '../php_controller/UserDaoMysql.php';
 require '../php_controller/ProducaoDaoODBC.php';
 
 session_start();
-if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['permissao'] == 3) {
+if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['permissao'] == 3 || $_SESSION['permissao'] == 6) {
     $UserDao = new UserDaoMysql($pdo);
     $isLogged = $UserDao->isLogged($_SESSION['email']);
     if (!$isLogged) {

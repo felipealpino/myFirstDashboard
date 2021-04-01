@@ -19,7 +19,7 @@ $dados = composicoesAccessData($myInput);
                     <th>Referencia</th>
                     <th>Descrição</th>
                     <th style="text-align: center;">Quant.</th>
-                    <?php if($_SESSION['permissao'] != 4): ?> 
+                    <?php if($_SESSION['permissao'] != 4 && $_SESSION['permissao'] != 6): ?>  <!-- 4 vendas | 6 teste_usuario --> 
                         <th>Custo (R$)</th>
                         <th>Soma (R$)</th>
                     <?php endif ?>
@@ -34,7 +34,7 @@ $dados = composicoesAccessData($myInput);
                     <td> <?=odbc_result($dados,"REFERENCIA")?> </td>
                     <td> <?=odbc_result($dados,"DESCRICAO")?> </td>
                     <td style="text-align: center;"> <?=odbc_result($dados,"QUANTIDADE") ?> </td>
-                    <?php if($_SESSION['permissao'] != 4): ?> 
+                    <?php if($_SESSION['permissao'] != 4 && $_SESSION['permissao'] != 6): ?>  <!-- 4 vendas | 6 teste_usuario -->
                         <td> <?="R$ ".number_format(odbc_result($dados,"PRECOCUSTO"),2)?></td>
                         <td> <?="R$ ".number_format(odbc_result($dados,"SOMA"),2)?></td>
                     <?php endif ?>

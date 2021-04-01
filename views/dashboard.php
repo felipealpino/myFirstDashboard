@@ -1,5 +1,11 @@
 <?php
-// require '../php_controller/dataAccessObject.php';
+
+/**
+ * Existem algumas regras de negocio no arquivo. Caso voce não seja o Felipe e veja ($_SESSION['permissao'] == 6),
+ * isso significa que o usuário é permissão nivel 'teste', ou seja, eu manipulei os valores para que eu pudesse mostrar a planilha,
+ * sendo assim, consigo disponibilizar para outras pessoas acessarem sem expor os dados.
+ */
+
 require '../php_controller/UserDaoMysql.php';
 require '../entities/ProdutoFactory.php';
 require '../entities/Vendedor.php';
@@ -92,12 +98,12 @@ $arrayPesosMeses = $producaoData->getPesoPorDiaUltimosAnos($mes, $ano);
     </div>
 
 
-    <?php if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) : ?>
+    <?php if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['permissao'] == 6) : ?>
 
         <div class="content-dashboard">
             <div class="content-dashboard-grid">
                 <!-- DEVENDO P/ CLIENTE -->
-                <div class="dashboard_rel_carga"> <?php echo "Valor total não entregue: R$" . $produtoFactory->valorTotal() ?> </div>
+                <div class="dashboard_rel_carga"> <?php echo "Valor total não entregue: R$" . (($_SESSION['permissao'] == 6) ? " 1.000.000" : $produtoFactory->valorTotal()) ?> </div>
 
                 <!-- VENDAS MES/ANOS  -->
                 <div class="dashboard_rel_vendas">
@@ -110,7 +116,7 @@ $arrayPesosMeses = $producaoData->getPesoPorDiaUltimosAnos($mes, $ano);
                             Ano:
                             <?php
                             echo $arrVendaPorAno[$i]->getDataVenda() . " - R$ ";
-                            echo formatNumberToReal($arrVendaPorAno[$i]->getSubTotal())
+                            echo (($_SESSION['permissao'] == 6) ? "1.000.000" : formatNumberToReal($arrVendaPorAno[$i]->getSubTotal()))
                             ?>
                         </span>
                     <?php endfor; ?>
@@ -135,7 +141,7 @@ $arrayPesosMeses = $producaoData->getPesoPorDiaUltimosAnos($mes, $ano);
                                 <?php
                                     echo findNomeFamilia($list[$i]->getCodFamilia())
                                     . " - ";
-                                    echo "R$ " . formatNumberToReal($list[$i]->getValorEmEstoque());
+                                    echo "R$ " . (($_SESSION['permissao'] == 6) ? "1.000.000" : formatNumberToReal($list[$i]->getValorEmEstoque()));
                                 ?>
                                 </span> <br>
                                 <?php endif ?>

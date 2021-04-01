@@ -28,8 +28,8 @@
                             <a href="dashboard.php">Dashboard</a>
                         </li>
 
-                        <?php if ($_SESSION['permissao'] != 4) : ?>
-                            <!-- 4=vendas -->
+                        <?php if ($_SESSION['permissao'] != 4 && $_SESSION['permissao'] != 6) : ?>
+                            <!-- 4=vendas -- 6=teste_usuario -->
                             <li>
                                 <i class="fas fa-user-alt"></i>
                                 <a href="perfil.php">Perfil</a>
@@ -75,7 +75,7 @@
                             </li>
                         <?php endif ?>
 
-                        <?php if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) : ?>
+                        <?php if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['permissao'] == 6) : ?>
                             <!-- 1=admin & 2=gerencia -->
                             <li>
                                 <i class="far fa-money-bill-alt"></i>
@@ -104,7 +104,7 @@
                             ?>
                         </li>
 
-                        <?php if (strtoupper($_SESSION['permissao']) == 1) : ?>
+                        <?php if (($_SESSION['permissao']) == 1) : ?>
                             <!-- 1=admin -->
                             <li>
                                 <a href="cadastrar.php">Cadastrar usuário</a>

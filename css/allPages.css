@@ -126,6 +126,9 @@ td{
     list-style: none;
     text-transform: uppercase;
 }
+.list-left-side li:hover{
+    background-color: #5abfd171;
+}
 .selected{
     background-color: rgba(204, 204, 204, 0.616);
 }

@@ -8,7 +8,9 @@ require '../php_controller/dataAccessObject.php';
 
 require '../php_controller/UserDaoMysql.php';
 session_start();
-if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
+
+// 1 admin | 2 gerencia | 6 user_teste
+if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['permissao'] == 6) {
 
     $UserDao = new UserDaoMysql($pdo);
     $isLogged = $UserDao->isLogged($_SESSION['email']);
@@ -17,6 +19,7 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
         exit;
     }
 
+    //3 usuario
     if ($_SESSION['permissao'] == 3) {
         header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/dashboard.php');
         exit;
@@ -44,6 +47,7 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
 
         $totalVendido = $totalPorVendedor->totalVendasVendedores();
         $listaVendedores = $totalPorVendedor->getListVendedor();
+        $mesNome = findNomeMes($mes);
     }
 } else {
     header('Location:/dashboard/MGpiscinas/myFirstDashboard/views/login.php');
@@ -52,42 +56,7 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
 ?>
 
 <title>Vendas</title>
-
-<!-- <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js"> </script> -->
 <script src="../node_modules/chart.js/dist/Chart.js"></script>
-
-
-<!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript">
-    google.charts.load('current', {
-        'packages': ['corechart']
-    });
-    google.charts.setOnLoadCallback(drawChart);
-
-    function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Vendedor', 'Quantidade vendida'],
-            <?php for ($i = 0; $i < count($totalPorVendedor->getListVendedor()); $i++) : ?>['<?= $listaVendedores[$i]->getNomeVendedor() . ' R$ ' . formatNumberToReal($listaVendedores[$i]->getSubTotal()) ?>', <?= $listaVendedores[$i]->getSubTotal() ?>],
-            <?php endfor ?>
-        ]);
-
-        var options = {
-            <?php $mesNome = findNomeMes($mes); ?>
-            title: 'Vendas por mês- <?= $mesNome.'/'.$ano?>',
-            fontName: 'IBM Plex Mono',
-        };
-            
-
-        var chart = new google.visualization.PieChart(document.getElementById('dashboard-grafico-vendas'));
-
-        chart.draw(data, options);
-    }
-</script> -->
-
-
-
-
-
 
 <?php include 'all.php'; ?>
 
@@ -117,7 +86,7 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2) {
     <div class="content-dashboard vendas">
         
         <div class="total-vendido-mes">
-            <?php echo "Total faturado no mês: R$ " . formatNumberToReal($totalVendido) ?>
+            <?php echo "Total faturado no mês: R$ " . (($_SESSION['permissao'] == 6) ? "10.000" : formatNumberToReal($totalVendido)) ?>
         </div>
 
         <!-- <div id="dashboard-grafico-vendas" class="dashboard-grafico-vendas"></div> -->
