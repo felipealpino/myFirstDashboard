@@ -58,7 +58,7 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
 ?>
 
 <title>Compras</title>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="../node_modules/chart.js/dist/Chart.js"></script>
 <script>
   google.charts.load('current', {
     'packages': ['bar']
@@ -107,7 +107,65 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
   </div>
 
   <div class="content-dashboard compras">
-    <div id="dashboard-grafico-compras" class="dashboard-grafico-compras"></div>
+  
+    <canvas id="dashboard-grafico-compras" class="dashboard-grafico-compras"></canvas>
+    <script>
+      var ctx = document.querySelector('#dashboard-grafico-compras').getContext('2d');
+      var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [
+            <?php for($x=1; $x<=12; $x++) : ?>
+              '<?= $x ?>',
+            <?php  endfor ?>
+          ],
+          datasets: [{
+              label: '<?= $year -2 ?>',
+              data: [
+                <?php for($c=1; $c<=12; $c++) : ?> 
+                  '<?= $arrayObjMesesAno[$c - 1]->Ano_02 ?>',
+                <?php endfor ?>
+              ],
+              backgroundColor: 'rgba(255, 99, 132, 0.4)',
+              borderColor:'rgba(255, 99, 132, 1)',
+              borderWidth: 1
+            },
+
+            {
+              label: '<?= $year -1 ?>',
+              data: [
+                <?php for($c=1; $c<=12; $c++) : ?> 
+                  '<?= $arrayObjMesesAno[$c - 1]->Ano_01 ?>',
+                <?php endfor ?>
+              ],
+              backgroundColor:'rgba(54, 162, 235, 0.4)',
+              borderColor:'rgba(54, 162, 235, 1)',
+              borderWidth: 1
+            },
+            
+            {
+              label: '<?= $year ?>',
+              data: [
+                <?php for($c=1; $c<=12; $c++) : ?> 
+                  '<?= $arrayObjMesesAno[$c - 1]->Ano_00 ?>',
+                <?php endfor ?>
+              ],
+              backgroundColor:'rgba(75, 192, 192, 0.4)',
+              borderColor: 'rgba(75, 192, 192, 1)',
+              borderWidth: 1
+            }
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>
+
   </div>
 </div>
 </div>
@@ -117,7 +175,6 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
 <script src="../plugins/fontawesome5.15.1/js/all.min.js"></script>
 <script src="../js/all.js"></script>
 <script type="module" src="../js/script.js"></script>
-<script src="../js/googleCharts.js"></script>
 </body>
 
 </html>
