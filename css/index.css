@@ -31,20 +31,13 @@
     height: 100vh;
 }
 .side-bar{
-    background-color: #a9d7f3;
+    /* background-color: #a9d7f3; */
     width: 100%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin-left: 90px;
 }
-/* .main-content{
-    background-color: #F7F7F7;
-    width: 100%;
-    background-image: url(images/dashboard.png);
-    background-repeat: no-repeat;
-    background-size: 430px 280px;
-    background-position: center ;
-} */
+
 .form-index-login{
     width: 450px;
     background-color: white;
@@ -54,7 +47,12 @@
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.42);
 }
 
-
+.body-login-bgimage{
+    background-image: url("../images/water-drop.jpg");
+    background-repeat: no-repeat, repeat;
+    background-position:center; /* Center the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
 
 .form-index-login button{
     width: 40%;
