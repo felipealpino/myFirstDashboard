@@ -74,35 +74,36 @@ if (!$isLogged) {
                     buscar($("#myInput").val(), selectedValue, settedDates[0].value, settedDates[1].value)
                 }, false);
 
+
                 function buscar(myInput, selectionValue, dataInicial, dataFinal) {
                     $.ajax({
-                        //Configurações
-                        type: 'POST', //metodo que está sendo utilizado
-                        dataType: 'html', //tipo de dado que a página vai retornar
-                        url: '../php_controller/busca_carga.php', //pagina que está sendo solicitada
-                        beforeSend: function() {
-                            $("#dados-tabela-produtos").html("Carregando....");
-                        },
-                        data: {
-                            myInput: myInput,
-                            selectionValue: selectionValue,
-                            dataInicial: dataInicial,
-                            dataFinal: dataFinal,
-                        }, //Dados para consulta
+                            //Configurações
+                            type: 'POST', //metodo que está sendo utilizado
+                            dataType: 'html', //tipo de dado que a página vai retornar
+                            url: '../php_controller/busca_carga.php', //pagina que está sendo solicitada
+                            beforeSend: function() {
+                                $("#dados-tabela-produtos").html("<div class='div-spinner'><img src='../images/Spin-1.1s-200px.gif' class='spinner' /></div> ");
+                                    },
+                                    data: {
+                                        myInput: myInput,
+                                        selectionValue: selectionValue,
+                                        dataInicial: dataInicial,
+                                        dataFinal: dataFinal,
+                                    }, //Dados para consulta
 
-                        //funcao que sera executada quando a solicitação for finalizada.
-                        success: function(msg) {
-                            $("#dados-tabela-produtos").html(msg);
-                        },
-                        complete: function() {
-                            ascendingAndDescending();
-                        }
-                    });
-                }
+                                    //funcao que sera executada quando a solicitação for finalizada.
+                                    success: function(msg) {
+                                        $("#dados-tabela-produtos").html(msg);
+                                    },
+                                    complete: function() {
+                                        ascendingAndDescending();
+                                    }
+                            });
+                    }
 
-                // $("#buscar-produto").click(function () {
-                //     buscar($("#myInput").val())
-                // });
+                    // $("#buscar-produto").click(function () {
+                    //     buscar($("#myInput").val())
+                    // });
             </script>
         </div>
     </div>

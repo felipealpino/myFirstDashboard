@@ -62,7 +62,7 @@ if ($_SESSION['permissao'] == 1 || $_SESSION['permissao'] == 2 || $_SESSION['per
                         dataType: 'html', //tipo de dado que a página vai retornar
                         url: '../php_controller/busca_kardex.php', //pagina que está sendo solicitada
                         beforeSend: function() {
-                            $("#dados-tabela-produtos").html("Carregando....");
+                            $("#dados-tabela-produtos").html("<div class='div-spinner'><img src='../images/Spin-1.1s-200px.gif' class='spinner' /></div> ");
                         },
                         data: {
                             myInput: myInput

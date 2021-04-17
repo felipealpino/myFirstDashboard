@@ -193,6 +193,17 @@ div.top-dashboard-mobile.left-icon svg{
     background-color: #5abfd171 !important;
 }
 
+.div-spinner{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 250px;
+
+}
+.spinner{
+    width: 200px;
+    height: 200px;
+}
 
 @media screen and (max-width:1130px){
     .left-side-dashboard{
