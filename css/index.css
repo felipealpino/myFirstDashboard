@@ -7,7 +7,7 @@
 .form-control{
     margin-bottom: 5px;
 }
-.btn-submit-forms {background-image: linear-gradient(to right, #abbaab 0%, #ffffff  51%, #abbaab  100%)}
+.btn-submit-forms {background-image: linear-gradient(to right, #BFE4F3 0%, #ffffff  51%, #BFE4F3  100%)}
 .btn-submit-forms {
    padding: 15px 45px;
    text-align: center;
@@ -58,12 +58,9 @@
     width: 40%;
 }
 
-@media screen and (min-width:656px) and (max-width:800px){
-    .main-content{
-        flex: 1;
-        background-size: 215px 140px;
-    }
+@media screen and (max-width:768px){
     .side-bar{
-        flex: 2;
+        margin: 0;
+        justify-content: center;
     }
 }
